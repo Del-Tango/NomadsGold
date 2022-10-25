@@ -1,0 +1,125 @@
+#!/bin/bash
+#
+# Regards, the Alveare Solutions #!/Society -x
+#
+# Nomad's Gold - Cargo Script DOX
+
+cat <<EOF
+___________________________________________________________________________                                                                                   [76/294]
+
+ *                          *  Nomad's Gold  *                           *
+_____________________________________________________v1.0Stonks____________
+                Regards, the Alveare Solutions #!/Society -x
+
+[ EXAMPLE ]: Setup Nomad(G) trading machine -
+    ~$ nomads_gold.py \\
+        -S  | --setup \\
+        -c  | --config-file /etc/conf/nomad-gold.conf.json \\
+        -l  | --log-file /etc/log/nomad-gold.log
+
+[ EXAMPLE ]: Get Microsoft stock price history
+    ~$ nomads_gold.py \\
+        -a  | --action price-history\\
+        -p  | --period 1d\\
+        -b  | --period-start 2010-1-1\\
+        -e  | --period-end 2022-1-1\\
+        -t  | --ticker-symbol MSFT
+
+[ EXAMPLE ]: Get Tesla stock info
+    ~$ nomads_gold.py \\
+        -a  | --action stock-info\\
+        -t  | --ticker-symbol TSLA
+
+[ EXAMPLE ]: See Microsoft company calendar
+    ~$ nomads_gold.py \\
+        -a  | --action company-calendar\\
+        -t  | --ticker-symbol MSFT
+
+[ EXAMPLE ]: Check Microsoft stock price higs, lows and volume - write
+             output to file
+    ~$ nomads_gold.py \\
+        -a  | --action price-high,price-low,volume\\
+        -t  | --ticker-symbol MSFT\\
+        -W  | --write\\
+        -o  | --out-file nomads-gold.out\\
+            |
+        -p  | --period 1m\\
+        -I  | --period-interval 1d
+    OR      |
+        -b  | --period-start 2010-1-1\\
+        -e  | --period-end 2022-1-1
+
+[ EXAMPLE ]: Check top 10 crypto coin stats continuously at 5min interval
+             with BTC as the base currency
+    ~$ nomads_gold.py \\
+        -a  | --action crypto-topx\\
+        -T  | --action-target crypto\\
+        -X  | --crypto-topx 10\\
+        -B  | --base-currency BTC\\
+        -w  | --watch\\
+        -i  | --watch-interval 5m
+
+[ EXAMPLE ]: View ETH currency line chart with USD as base currency for the
+             past 5 days and save output to file
+    ~$ nomads_gold.py \\
+        -a  | --action currency-chart\\
+        -T  | --action-target currency\\
+        -B  | --base-currency USD\\
+        -E  | --exchange-currency ETH\\
+        -p  | --period 6d\\
+        -W  | --write\\
+        -o  | --out-file nomads-gold.out
+
+Options:
+
+    -h, --help            show this help message and exit
+    -S, --setup           Setup current machine and create dedicated user for
+                          NomadGold. Argument same as (--action setup).
+    -s, --silence         Eliminates all STDOUT messages.
+    -a ACTION-CSV, --action=ACTION-CSV
+                          Action to execute - Valid values include one or more
+                          of the following labels given as a CSV string: (setup
+                          | price-history | recommendations | stock-info | price-
+                          open | price-close | price-high | price-low | volume |
+                          company-calendar)
+
+    -w, --watch           Execute specified actions in an endless loop at a
+                          given interval.
+    -i SECONDS, --watch-interval=SECONDS
+                          Implies (--watch). Number of seconds between
+                          executions. Default (2).
+    -t SYMBOL, --ticker-symbol=SYMBOL
+                          Stock ticker symbol to perform action on.
+    -p N<d/m/y>, --period=N<d/m/y>
+                          Periods can be 1d, 5d, 1mo, 3mo, 6mo, 1y, 2y, 5y, 10y,
+                          ytd, max.
+    -b DATE, --period-start=DATE
+                          Start Date for stock data interogation - format
+                          YYYY/MM/DD.
+    -e DATE, --period-end=DATE
+                          End Date for stock data interogation - format
+                          YYYY/MM/DD.
+    -c FILE_PATH, --config-file=FILE_PATH
+                          Configuration file to load default values from.
+    -l FILE_PATH, --log-file=FILE_PATH
+                          Path to the log file.
+    -W, --write           Write output to file.
+    -o FILE_PATH, --out-file=FILE_PATH
+                          Implies (--write). Where to write output to.
+    -I INTERVAL, --period-interval=INTERVAL
+                          Interval for breaking down stock period reports.
+                          Intervals can be 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h,
+                          1d, 5d, 1wk, 1mo, 3mo.
+    -T TARGET, --action-target=TARGET
+                          Financial instrument type for specified actions.
+                          Values can be (stock | crypto | currency). Default
+                          (stock)
+    -B CURRENCY, --base-currency=CURRENCY
+                          Base currency to use in line charts and exchanges.
+    -E CURRENCY, --exchange-currency=CURRENCY
+                          Exchange currency to use in line charts and exchanges.
+    -X NUMBER, --crypto-topx=NUMBER
+                          Implies (--action-type crypto --action crypto-topx).
+                          Top crypto coins to display stats for.
+EOF
+exit $?

@@ -1,0 +1,71 @@
+#!/bin/bash
+#
+# Regards, the Alveare Solutions #!/Society -x
+#
+# Nomad's Gold
+
+declare -A NG_DEFAULT
+declare -A NG_LIB
+declare -A NG_SOURCE
+declare -A NG_CARGO
+
+# [ NOTE ]: Absolute directory path the current file is in.
+NG_DIRECTORY="$(
+    cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd
+)"
+CONF_FILE_PATH="$NG_DIRECTORY/conf/nomads-gold.conf"
+
+if [ ! -f "$CONF_FILE_PATH" ]; then
+    echo "[ WARNING ]: Config file ($CONF_FILE_PATH) not found."
+    exit 1
+else
+    source "$CONF_FILE_PATH"
+fi
+
+for script in ${!NG_SOURCE[@]}; do
+    source ${NG_SOURCE[$script]}
+    if [ $? -ne 0 ] && [ ${#@} -eq 0 ]; then
+        echo "[ NOK ]: Something went wrong."\
+            "Could not load ($script) script."
+    elif [ ${#@} -eq 0 ]; then
+        echo "[ OK ]: Successfully loaded ($script) script."
+    fi
+done
+
+for library in ${!NG_LIB[@]}; do
+    source ${NG_LIB[$library]}
+    if [ $? -ne 0 ] && [ ${#@} -eq 0 ]; then
+        echo "[ NOK ]: Something went wrong."\
+            "Could not load ($library) library."
+    elif [ ${#@} -eq 0 ]; then
+        echo "[ OK ]: Successfully loaded ($library) library."
+    fi
+done
+
+# MISCELLANEOUS
+
+function init_nomads_gold () {
+    # [ NOTE ]: Create mock MD_DEFAULT settings associative array on CLI
+    # interface actions to execute functions that use Machine Dialogue setting
+    # values without having to wait for the entire project setup sequence -
+    # unnecessary at this point.
+    if [ ${#@} -gt 0 ]; then
+        declare -A MD_DEFAULT
+        declare -A MD_CARGO
+        for setting_key in ${!NG_DEFAULT[@]}; do
+            MD_DEFAULT["${setting_key}"]="${NG_DEFAULT[${setting_key}]}"
+        done
+        for setting_key in ${!NG_CARGO[@]}; do
+            MD_CARGO["${setting_key}"]="${NG_CARGO[${setting_key}]}"
+        done
+        cli_update_config_json_file; process_cli_args $@
+        return $?
+    fi
+    project_setup
+    display_banners
+    init_menu 'MainController'
+    return $?
+}
+
+init_nomads_gold $@
+exit $?
