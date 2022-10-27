@@ -359,7 +359,7 @@ function format_config_json_file_content() {
          "bashrc-file":          "${MD_DEFAULT['bashrc-file']}",
          "bashrc-template":      "${MD_DEFAULT['bashrc-template']}",
          "bashaliases-file":     "${MD_DEFAULT['bashaliases-file']}",
-         "action"                "${MD_DEFAULT['action']}",
+         "action":               "${MD_DEFAULT['action']}",
          "ticker-symbol":        "${MD_DEFAULT['ticker-symbol']}",
          "watch-interval":       ${MD_DEFAULT['watch-interval']},
          "watch-cleanup":        ${MD_DEFAULT['watch-cleanup']},
