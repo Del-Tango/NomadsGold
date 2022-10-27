@@ -362,7 +362,7 @@ function format_config_json_file_content() {
          "action":               "${MD_DEFAULT['action']}",
          "ticker-symbol":        "${MD_DEFAULT['ticker-symbol']}",
          "watch-interval":       ${MD_DEFAULT['watch-interval']},
-         "watch-cleanup":        ${MD_DEFAULT['watch-cleanup']},
+         "watch-cleanup":        "${MD_DEFAULT['watch-cleanup']}",
          "watch-flag":           `format_config_json_flag ${MD_DEFAULT['watch-flag']}`,
          "watch-anchor-file":    "${MD_DEFAULT['watch-anchor-file']}",
          "period":               "${MD_DEFAULT['period']}",
