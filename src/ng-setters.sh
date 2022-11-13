@@ -35,7 +35,7 @@ function set_period_interval() {
 }
 
 function set_period() {
-    local ="$1"
+    local PERIOD="$1"
     MD_DEFAULT['period']=$PERIOD
     return 0
 }

@@ -246,7 +246,7 @@ function display_base_currency() {
 }
 
 function display_exchange_currency() {
-    printf "[ ${CYAN}Exchange Currency${RESET}        ]: ${GREEN}${MD_DEFAULT['exchange-currency']}${RESET}\t\n"
+    printf "[ ${CYAN}Quote Currency${RESET}           ]: ${GREEN}${MD_DEFAULT['quote-currency']}${RESET}\t\n"
     return $?
 }
 

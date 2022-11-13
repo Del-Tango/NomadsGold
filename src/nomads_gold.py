@@ -1301,7 +1301,7 @@ def parse_command_line_arguments():
 
 # INIT
 
-@pysnooper.snoop()
+#@pysnooper.snoop()
 def init_nomad_gold():
     log.debug('')
     display_header()
