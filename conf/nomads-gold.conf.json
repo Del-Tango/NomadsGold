@@ -34,11 +34,11 @@
          "wifi-pass":            "nomadsgold",
          "bashrc-file":          "/home/head/.bashrc",
          "bashrc-template":      "/home/sephermacronix/Projects/NomadsGold/data/.bashrc",
-         "bashaliases-file":     "/home/head/.bash_aliases",
-         "action"                "price-history",
+         "bashaliases-file":     "/home/sephermacronix/.bash_aliases",
+         "action":               "price-history",
          "ticker-symbol":        "MSFT",
          "watch-interval":       2,
-         "watch-cleanup":        on,
+         "watch-cleanup":        "on",
          "watch-flag":           false,
          "watch-anchor-file":    ".ng_watch.anch",
          "period":               "1w",
@@ -51,7 +51,7 @@
          "rate-sx-url":          "rate.sx",
          "action-target":        "stock",
          "base-currency":        "USD",
-         "exchange-currency":    "BTC",
+         "quote-currency":       "BTC",
          "quantity":             "1"
     },
     "NG_CARGO": {

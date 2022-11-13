@@ -57,8 +57,16 @@ function confirm_loaded_action_values_with_user() {
 function update_action_values() {
     local ACTION_VALUE_LABELS=( $@ )
     local FAILURES=0
-    for action_label in ${ACTION_VALUE_LABELS[@]}; do
-        case "$action_label" in
+    while :; do
+        echo; info_msg "Select setting to modify -
+        "
+        ACTION_LABEL=`fetch_selection_from_user 'Setting' ${ACTION_VALUE_LABELS[@]}`
+        if [[ -z "$ACTION_LABEL" ]]; then
+            info_msg "Aborting action.
+            "
+            break
+        fi
+        case "$ACTION_LABEL" in
             'ticker-symbol')
                 action_set_stock_symbol; break
                 ;;

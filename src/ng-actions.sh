@@ -239,7 +239,7 @@ function action_set_quantity() {
 function action_set_stock_symbol() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} stock symbol -"
     info_msg "Type stock symbol or (${MAGENTA}.back${RESET})."
-    local STOCK=`fetch_string_from_user 'Stock'`
+    local STOCK=`fetch_data_from_user 'Stock'`
     if [ $? -ne 0 ] || [ -z "$STOCK" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -258,7 +258,7 @@ function action_set_stock_symbol() {
 function action_set_base_currency() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} base currency -"
     info_msg "Type base currency symbol or (${MAGENTA}.back${RESET})."
-    local CURRENCY=`fetch_string_from_user '(B)Currency'`
+    local CURRENCY=`fetch_data_from_user '(B)Currency'`
     if [ $? -ne 0 ] || [ -z "$CURRENCY" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -277,7 +277,7 @@ function action_set_base_currency() {
 function action_set_exchange_currency() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} exchange currency -"
     info_msg "Type exchange currency symbol or (${MAGENTA}.back${RESET})."
-    local CURRENCY=`fetch_string_from_user '(E)Currency'`
+    local CURRENCY=`fetch_data_from_user '(E)Currency'`
     if [ $? -ne 0 ] || [ -z "$CURRENCY" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -335,12 +335,12 @@ function action_set_watch_anchor_file() {
 function action_set_period() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} period -"
     info_msg "Type interval (1d | 5d | 1w | 3mo | 1y | ytd | max ) or (${MAGENTA}.back${RESET})."
-    local INTERVAL=`fetch_string_from_user 'Period'`
+    local PERIOD=`fetch_data_from_user 'Period'`
     if [ $? -ne 0 ] || [ -z "$DATE" ]; then
         echo; info_msg 'Aborting action.'
         return 0
     fi
-    set_period $PERIOD
+    set_period "$PERIOD"
     local EXIT_CODE=$?
     echo; if [ $EXIT_CODE -ne 0 ]; then
         nok_msg "Something went wrong."\
@@ -354,7 +354,7 @@ function action_set_period() {
 function action_set_period_interval() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} period interval -"
     info_msg "Type interval (1d | 5d | 1w | 3mo | 1y ) or (${MAGENTA}.back${RESET})."
-    local INTERVAL=`fetch_string_from_user 'Interval'`
+    local INTERVAL=`fetch_data_from_user 'Interval'`
     if [ $? -ne 0 ] || [ -z "$DATE" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -373,7 +373,7 @@ function action_set_period_interval() {
 function action_set_period_start() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} period start date -"
     info_msg "Type date (YYYYY-MM-DD) or (${MAGENTA}.back${RESET})."
-    local DATE=`fetch_string_from_user 'Date'`
+    local DATE=`fetch_data_from_user 'Date'`
     if [ $? -ne 0 ] || [ -z "$DATE" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -392,7 +392,7 @@ function action_set_period_start() {
 function action_set_period_end() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} period end date -"
     info_msg "Type date (YYYYY-MM-DD) or (${MAGENTA}.back${RESET})."
-    local DATE=`fetch_string_from_user 'Date'`
+    local DATE=`fetch_data_from_user 'Date'`
     if [ $? -ne 0 ] || [ -z "$DATE" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -914,7 +914,7 @@ function action_set_cron_file() {
 function action_set_wifi_essid() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} WiFi ESSID -"
     info_msg "Type wireless gateway ESSID or (${MAGENTA}.back${RESET})."
-    local WIFI_ESSID=`fetch_string_from_user 'WiFi(ESSID)'`
+    local WIFI_ESSID=`fetch_data_from_user 'WiFi(ESSID)'`
     if [ $? -ne 0 ] || [ -z "$WIFI_ESSID" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -952,7 +952,7 @@ function action_set_wifi_password() {
 function action_set_system_user() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} head machine user name -"
     info_msg "Type system user name or (${MAGENTA}.back${RESET})."
-    local SYS_USER=`fetch_string_from_user 'User'`
+    local SYS_USER=`fetch_data_from_user 'User'`
     if [ $? -ne 0 ] || [ -z "$SYS_USER" ]; then
         echo; info_msg 'Aborting action.'
         return 0

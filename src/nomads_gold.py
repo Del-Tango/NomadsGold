@@ -72,7 +72,7 @@ NG_DEFAULT = {
     'rate-sx-url': 'rate.sx',
     'action-target': 'stock',   # (stock | currency | crypto)
     'base-currency': 'USD',     # See all by running show-currencies and show-crypto
-    'exchange-currency': 'BTC', # See all by running show-currencies and show-crypto
+    'quote-currency': 'BTC', # See all by running show-currencies and show-crypto
     'crypto-topx': 10,
     'quantity': 1,
 }
@@ -117,7 +117,7 @@ def fetch_ratesx_targets():
         'show-currencies': '{}/:currencies'.format(NG_DEFAULT['rate-sx-url']),
         'currency-convertor': '{}.{}/{}{}'.format(
             NG_DEFAULT['base-currency'], NG_DEFAULT['rate-sx-url'],
-            NG_DEFAULT['quantity'], NG_DEFAULT['exchange-currency']
+            NG_DEFAULT['quantity'], NG_DEFAULT['quote-currency']
         ),
         'crypto-topx': '{}.{}/?q&n={}'.format(
             NG_DEFAULT['base-currency'], NG_DEFAULT['rate-sx-url'],
@@ -125,15 +125,15 @@ def fetch_ratesx_targets():
         ),
         'currency-chart': '{}.{}/{}@{}?q&'.format(
             NG_DEFAULT['base-currency'], NG_DEFAULT['rate-sx-url'],
-            NG_DEFAULT['exchange-currency'], NG_DEFAULT['period']
+            NG_DEFAULT['quote-currency'], NG_DEFAULT['period']
         ),
         'crypto-topx-plain': '{}.{}/{}?qT&n={}'.format(
             NG_DEFAULT['base-currency'], NG_DEFAULT['rate-sx-url'],
-            NG_DEFAULT['exchange-currency'], NG_DEFAULT['crypto-topx']
+            NG_DEFAULT['quote-currency'], NG_DEFAULT['crypto-topx']
         ),
         'currency-chart-plain': '{}.{}/{}@{}?qT&'.format(
             NG_DEFAULT['base-currency'], NG_DEFAULT['rate-sx-url'],
-            NG_DEFAULT['exchange-currency'], NG_DEFAULT['period']
+            NG_DEFAULT['quote-currency'], NG_DEFAULT['period']
         ),
     }
     return handlers
@@ -310,11 +310,11 @@ def format_usage_string():
     -B | --base-currency COIN      Base currency to be used in crypto and currency
        |                           exchanges and graphs.
 
-    -E | --exchange-currency COIN  Exchange currency to be used in crypto and
+    -E | --quote-currency COIN     Exchange currency to be used in crypto and
        |                           currency exchanges and graphs.
 
     -X | --crypto-topx NUMBER     Number of records to display when view-ing
-       |                           top crypto coin stats.
+       |                          top crypto coin stats.
 
     '''
     return usage
@@ -396,7 +396,7 @@ def action_display_ratesx_data(targets=[], ticker_obj=ticker, **kwargs):
     log.debug('')
     failures = 0
     prefix_header_tag = '[ ' + str(NG_DEFAULT['base-currency']) + '/' \
-        + str(NG_DEFAULT['exchange-currency'])
+        + str(NG_DEFAULT['quote-currency'])
     url_targets = fetch_ratesx_targets()
     for target in targets:
         if target not in url_targets.keys():
@@ -416,7 +416,7 @@ def action_display_ratesx_data(targets=[], ticker_obj=ticker, **kwargs):
                 )
         if target == 'currency-convertor':
             os.system('echo -n \'{} \'; curl {} 2>/dev/null; echo'.format(
-                '\n[ ' + NG_DEFAULT['exchange-currency'] + ' ]:', url_targets[target]
+                '\n[ ' + NG_DEFAULT['quote-currency'] + ' ]:', url_targets[target]
             ))
         else:
             os.system('curl {} 2>/dev/null; echo'.format(url_targets[target]))
@@ -425,7 +425,7 @@ def action_display_ratesx_data(targets=[], ticker_obj=ticker, **kwargs):
                 target = target + '-plain'
             if target == 'currency-convertor':
                 command = 'echo -n \'{} \'; curl \'{}\' 2>/dev/null >> {}'.format(
-                    '[ ' + NG_DEFAULT['exchange-currency'] + ' ]:',
+                    '[ ' + NG_DEFAULT['quote-currency'] + ' ]:',
                     url_targets[target], NG_DEFAULT['out-file']
                 )
             else:
@@ -1040,15 +1040,15 @@ def process_base_currency_argument(parser, options):
     )
     return True
 
-def process_exchange_currency_argument(parser, options):
+def process_quote_currency_argument(parser, options):
     global NG_DEFAULT
     log.debug('')
-    currency = options.exchange_currency
+    currency = options.quote_currency
     if currency == None:
         return False
-    NG_DEFAULT['exchange-currency'] = currency
+    NG_DEFAULT['quote-currency'] = currency
     stdout_msg(
-        '[ + ]: Exchange Currency ({})'.format(currency)
+        '[ + ]: Quote Currency ({})'.format(currency)
     )
     return True
 
@@ -1088,7 +1088,7 @@ def process_command_line_options(parser):
         'period_interval': process_period_interval_argument(parser, options),
         'action_target': process_action_target_argument(parser, options),
         'base_currency': process_base_currency_argument(parser, options),
-        'exchange_currency': process_exchange_currency_argument(parser, options),
+        'quote_currency': process_quote_currency_argument(parser, options),
         'crypto_topx': process_crypto_topx_argument(parser, options),
         'quantity': process_quantity_argument(parser, options),
     }
@@ -1154,7 +1154,7 @@ def create_command_line_parser():
             -a  | --action currency-chart\\
             -T  | --action-target currency\\
             -B  | --base-currency USD\\
-            -E  | --exchange-currency ETH\\
+            -E  | --quote-currency ETH\\
             -p  | --period 6d\\
             -W  | --write\\
             -o  | --out-file nomads-gold.out
@@ -1164,7 +1164,7 @@ def create_command_line_parser():
             -a  | --action currency-convertor\\
             -T  | --action-target currency\\
             -B  | --base-currency EUR\\
-            -E  | --exchange-currency BTC\\
+            -E  | --quote-currency BTC\\
             -q  | --quantity 100
     '''
     parser = optparse.OptionParser(help_msg)
@@ -1277,8 +1277,8 @@ def add_command_line_parser_options(parser):
         metavar='CURRENCY'
     )
     parser.add_option(
-        '-E', '--exchange-currency', dest='exchange_currency', type='string',
-        help='Exchange currency to use in line charts and exchanges.',
+        '-E', '--quote-currency', dest='quote_currency', type='string',
+        help='Quote currency to use in line charts and exchanges.',
         metavar='CURRENCY'
     )
     parser.add_option(

@@ -66,7 +66,7 @@ function format_display_project_settings_args () {
         'out-file'
         'action-target'
         'base-currency'
-        'exchange-currency'
+        'quote-currency'
         'crypto-topx'
         'quantity'
     )
@@ -79,7 +79,7 @@ function format_display_analysis_ctrl_settings_args() {
         'action' 'ticker-symbol' 'watch-interval' 'watch-flag' 'period-end'
         'watch-anchor-file' 'period' 'period-interval' 'period-start'
         'action-header' 'write-flag' 'write-mode' 'out-file' 'action-target'
-        'base-currency' 'exchange-currency' 'crypto-topx' 'quantity'
+        'base-currency' 'quote-currency' 'crypto-topx' 'quantity'
     )
     echo ${ARGUMENTS[@]}
     return $?
@@ -91,7 +91,7 @@ function format_currency_convertor_cargo_args() {
         '--action currency-convertor'
         '--action-target currency'
         "--base-currency ${MD_DEFAULT['base-currency']}"
-        "--exchange-currency ${MD_DEFAULT['exchange-currency']}"
+        "--quote-currency ${MD_DEFAULT['quote-currency']}"
         "--quantity ${MD_DEFAULT['quantity']}"
     )
     echo -n "${ARGUMENTS[@]}"
@@ -120,7 +120,7 @@ function format_currency_chart_cargo_args() {
         '--action currency-chart'
         '--action-target currency'
         "--base-currency ${MD_DEFAULT['base-currency']}"
-        "--exchange-currency ${MD_DEFAULT['exchange-currency']}"
+        "--quote-currency ${MD_DEFAULT['quote-currency']}"
         "--period ${MD_DEFAULT['period']}"
         "--period-interval ${MD_DEFAULT['period-interval']}"
         "--period-start ${MD_DEFAULT['period-start']}"
@@ -375,7 +375,7 @@ function format_config_json_file_content() {
          "rate-sx-url":          "${MD_DEFAULT['rate-sx-url']}",
          "action-target":        "${MD_DEFAULT['action-target']}",
          "base-currency":        "${MD_DEFAULT['base-currency']}",
-         "exchange-currency":    "${MD_DEFAULT['exchange-currency']}",
+         "quote-currency":       "${MD_DEFAULT['quote-currency']}",
          "quantity":             "${MD_DEFAULT['quantity']}"
     },
     "NG_CARGO": {
