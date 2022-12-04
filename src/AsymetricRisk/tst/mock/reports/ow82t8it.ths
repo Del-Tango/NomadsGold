@@ -1,0 +1,10 @@
+{
+    "timestamp": "01/12/2022-01:57:02",
+    "report-id": "ow82t8it",
+    "report-location": "./data/reports",
+    "report-extension": ".ths",
+    "report-type": "Trade History",
+    "report": {
+        "BTCUSDT": []
+    }
+}

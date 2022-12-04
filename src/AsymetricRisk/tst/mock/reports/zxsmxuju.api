@@ -1,0 +1,29 @@
+{
+    "timestamp": "01/12/2022-01:57:04",
+    "report-id": "zxsmxuju",
+    "report-location": "./data/reports",
+    "report-extension": ".api",
+    "report-type": "Api Permissions",
+    "report": {
+        "ipRestrict": true,
+        "createTime": 1667239846000,
+        "enableReading": true,
+        "enableMargin": false,
+        "enableFutures": false,
+        "enableVanillaOptions": true,
+        "enableSpotAndMarginTrading": true,
+        "enableWithdrawals": false,
+        "enableInternalTransfer": false,
+        "permitsUniversalTransfer": true,
+        "data": {
+            "isLocked": false,
+            "plannedRecoverTime": 0,
+            "triggerCondition": {
+                "UFR": 300,
+                "IFER": 150,
+                "GCR": 150
+            },
+            "updateTime": 0
+        }
+    }
+}

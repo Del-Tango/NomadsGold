@@ -1,0 +1,93 @@
+#!/bin/bash
+#
+# Excellent Regards, the Alveare Solutions #!/Society -x
+#
+# STRATEGY
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Asymetric Risk  *                         *
+    ________________________________________________________v1.0AR15___________
+                Excellent Regards, the Alveare Solutions #!/Society -x
+
+
+[ FUNCTIONS ]: src/ar_strategy.py:TradingStrategy
+
+    # STRATEGY
+    strategy_intuition_reversal(self, *args, **kwargs):
+    strategy_ma(self, *args, **kwargs):
+    strategy_ema(self, *args, **kwargs):
+    strategy_vwap(self, *args, **kwargs):
+    strategy_rsi(self, *args, **kwargs):
+    strategy_macd(self, *args, **kwargs):
+    strategy_adx(self, *args, **kwargs):
+    strategy_volume(self, *args, **kwargs):
+    strategy_price(self, *args, **kwargs):
+
+    # SETTERS
+    set_risk_tolerance(self, risk_index):
+
+    # CHECKERS
+    check_vwap_crossover(self, *args, direction='bullish', **kwargs):
+    check_ma_bullish_trend(self, *args, **kwargs):
+    check_ma_bearish_trend(self, *args, **kwargs):
+    check_ma_trend(self, *args, direction='bullish', **kwargs):
+    check_ema_bullish_trend(self, *args, **kwargs):
+    check_ema_bearish_trend(self, *args, **kwargs):
+    check_ema_trend(self, *args, direction='bullish', **kwargs):
+    check_vwap_bullish_trend_confirmation(self, *args, **kwargs):
+    check_vwap_bearish_trend_confirmation(self, *args, **kwargs):
+    check_rsi_bullish_divergence(self, *args, **kwargs):
+    check_rsi_bearish_divergence(self, *args, **kwargs):
+    check_rsi_divergence(self, *args, direction='bullish', **kwargs):
+    check_macd_bullish_divergence(self, *args, **kwargs):
+    check_macd_bearish_divergence(self, *args, **kwargs):
+    check_macd_divergence(self, *args, direction='bullish', **kwargs):
+    check_macd_bullish_crossover(self, *args, **kwargs):
+    check_macd_bearish_crossover(self, *args, **kwargs):
+    check_macd_crossover(self, *args, **kwargs):
+    check_adx_crossover(self, *args, **kwargs):
+    check_adx_bullish_crossover(self, *args, **kwargs):
+    check_adx_bearish_crossover(self, *args, **kwargs):
+    check_price_movement_confirmed_by_volume(self, price_dict, **kwargs):
+    check_large_volume_movement(*args, **kwargs):
+    check_large_price_movement(self, *args, **kwargs):
+
+    # GENERAL
+    load_strategy(self, **kwargs):
+
+    # FILTERS
+    filter_signals_from_strategy_evaluation(self, evaluations_dict, *args, **kwargs):
+
+    # SCANNERS
+    scan_strategy_evaluation_for_signals(self, evaluations_dict, *args,
+    scan_strategy_evaluation_for_buy_signals(self, evaluations_dict,
+    scan_strategy_evaluation_for_sell_signals(self, evaluations_dict,
+
+    # ACTIONS
+    analyze_risk(self, strategy='vwap', side='auto', **kwargs):
+
+    # COMPUTERS
+    compute_intuition_reversal_trade_risk(self, return_dict, *args, **kwargs):
+    compute_ma_trade_risk(self, return_dict, **kwargs):
+    compute_ema_trade_risk(self, return_dict, **kwargs):
+    compute_vwap_trade_risk(self, return_dict, **kwargs):
+    compute_rsi_trade_risk(self, return_dict, **kwargs):
+    compute_macd_trade_risk(self, return_dict, **kwargs):
+    compute_adx_trade_risk(self, return_dict, **kwargs):
+    compute_volume_trade_risk(self, return_dict, **kwargs):
+    compute_price_trade_risk(self, return_dict, **kwargs):
+
+    # EVALUATORS
+    evaluate_buy(self, evaluations_dict, **kwargs):
+    evaluate_sell(self, evaluations_dict, **kwargs):
+    evaluate_risk(self, evaluations_dict, signal='buy', **kwargs):
+    evaluate_trade(self, evaluations_dict, **kwargs):
+    evaluate_low_risk_tolerance(self, evaluations_dict, **kwargs):
+    evaluate_low_mid_risk_tolerance(self, evaluations_dict, **kwargs):
+    evaluate_mid_risk_tolerance(self, evaluations_dict, **kwargs):
+    evaluate_mid_high_risk_tolerance(self, evaluations_dict, **kwargs):
+    evaluate_high_risk_tolerance(self, evaluations_dict, **kwargs):
+
+EOF

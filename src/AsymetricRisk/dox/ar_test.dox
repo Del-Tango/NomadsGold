@@ -1,0 +1,140 @@
+#!/bin/bash
+#
+# Excellent Regards, the Alveare Solutions #!/Society -x
+#
+# TEST
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Asymetric Risk  *                         *
+    ________________________________________________________v1.0AR15___________
+                Excellent Regards, the Alveare Solutions #!/Society -x
+
+
+[ MANUAL ]: Testing
+
+    [ MT ]: Test trading bot using Binance simulator
+        * Create binance.com account
+        * Create binance API keys
+        * Create taapi.io account
+        * Create taapi API keys
+        * Point TradingBot to account simulator via config file
+        * Put your game face on, select strategy and start trading bot
+
+    [ MT ]: CLI Interface Actions
+
+        * Start Watchdog and generate all reports after bot is terminated
+
+            $ ./asymetric_risk.py \\
+                --log-file ./log/asymetric_risk.log \\
+                --conf-file ./conf/asymetric_risk.conf.json \\
+                --action start-watchdog,report \\
+                --strategy price,volume,intuition-reversal \\
+                --base-currency BTC \\
+                --quote-currency USDT \\
+                --market-open "08:00" \\
+                --market-close "22:00" \\
+                --max-trades 3 \\               # 3 trades per day max
+                --profit-baby 10 \\             # Stop trading when profit hits 10% of account value
+                --stop-loss 10 \\               # Cut losses when price dips 10% below purchase price
+                --take-profit 30 \\             # Take profit when price rises 30% above purchase price
+                --side auto \\                  # Allow bot to take both long and short trades
+                --interval 5m \\                # Timframe for each candle in chart
+                --period 14 \\                  # Number of interval candles when backtracking
+                --risk-tolerance high \\        # Allow trades evaluated with maximum risk (5)
+                --analyze-risk                  # Analyze trading risk before performing a trade and take into account risk tolerance
+
+        * Stop Watchdog
+
+            $ ./asymetric_risk.py \\
+                --log-file ./log/asymetric_risk.log \\
+                --conf-file ./conf/asymetric_risk.conf.json \\
+                --action stop-watchdog
+
+        * Report Everything
+
+            $ ./asymetric_risk.py \\
+                --log-file ./log/asymetric_risk.log \\
+                --conf-file ./conf/asymetric_risk.conf.json \\
+                --action report                 # Generate all possible reports
+
+        * Report Trade History
+
+            $ ./asymetric_risk.py \\
+                --log-file ./log/asymetric_risk.log \\
+                --conf-file ./conf/asymetric_risk.conf.json \\
+                --action trade-report
+
+        * Report Withdrawal History
+
+            $ ./asymetric_risk.py \\
+                --log-file ./log/asymetric_risk.log \\
+                --conf-file ./conf/asymetric_risk.conf.json \\
+                --action withdrawal-report
+
+        * Report Deposit History
+
+            $ ./asymetric_risk.py \\
+                --log-file ./log/asymetric_risk.log \\
+                --conf-file ./conf/asymetric_risk.conf.json \\
+                --action deposit-report
+
+        * Expose Config
+
+            $ ./asymetric_risk.py \\
+                --log-file ./log/asymetric_risk.log \\
+                --conf-file ./conf/asymetric_risk.conf.json \\
+                --action get-config             # Display content of config file
+
+        * View Report
+
+            $ ./asymetric_risk.py \\
+                --log-file ./log/asymetric_risk.log \\
+                --conf-file ./conf/asymetric_risk.conf.json \\
+                --action view-report \\         # Display content of report file
+                --report-id zxsmxuju,ow82t8it,n0vkgii8
+
+        * Remove Report
+
+            $ ./asymetric_risk.py \\
+                --log-file ./log/asymetric_risk.log \\
+                --conf-file ./conf/asymetric_risk.conf.json \\
+                --action remove-report \\         # Display content of report file
+                --report-id zxsmxuju,ow82t8it
+
+[ AUTO ]: Testing
+
+    [ SETUP ]: (A)Risk Auto-Tester (A)RAT
+
+        Before you can start using the autotester, you need to add your keys
+        to the ./tst/test_asymetric_risk.sh file by updating the following array:
+
+        $ vim ./tst/test_asymetric_risk.sh
+
+        AR_DEFAULT=(
+            ...
+            ['log-file']='./log/asymetric_risk.log'
+            ['conf-file']='./conf/asymetric_risk.conf.json'
+            ....
+            ['api-key']='<binance-api-key>'
+            ['api-secret']='<binance-secret-key>'
+            ['taapi-key']='<taapi-api-key>'
+            ...
+        )
+
+        _ESC :wq___________________________
+
+    [ AT ]: Start (A)RAT for AsymetricRisk init script interface testing
+
+        $ ./tst/test_asymetric_risk.sh
+
+    [ AT ]: Run (A)Risk auto-testers as well as the Python3 test suit -
+
+        $ ./tst/test_asymetric_risk.sh full
+
+    [ AT ]: Functional/unit python3 tests
+
+        $ python3 -m unittest
+
+EOF

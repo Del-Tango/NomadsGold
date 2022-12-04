@@ -1,0 +1,626 @@
+#!/bin/bash
+#
+# Excellent Regards, the Alveare Solutions #!/Society -x
+#
+# AsymetricRisk - (A)Risk - Binance Crypto Trading Bot Interface
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Asymetric Risk  *                         *
+    ________________________________________________________v1.0AR15___________
+                Excellent Regards, the Alveare Solutions #!/Society -x
+
+[ FUNCTIONS ]:
+
+    # FETCHERS
+    fetch_watchdog_pid():
+    fetch_action_handlers():
+
+    # CHECKERS
+    check_preconditions(**kwargs):
+    check_trading_bot(**kwargs):
+    check_config_file(**kwargs):
+
+    # ACTIONS
+    action_report(*args, **kwargs):
+    action_trade_report(*args, **kwargs):
+    action_withdrawal_report(*args, **kwargs):
+    action_deposit_report(*args, **kwargs):
+    action_view_report(*args, **kwargs):
+    action_remove_report(*args, **kwargs):
+    action_list_reports(*args, **kwargs):
+    action_get_config(*args, **kwargs):
+    action_market_details(*args, **kwargs):
+    action_account_details(*args, **kwargs):
+    action_supported_coins(*args, **kwargs):
+    action_supported_tickers(*args, **kwargs):
+    action_single_trade(*args, **kwargs):
+    action_stop_watchdog(*args, **kwargs):
+    action_start_watchdog(*args, **kwargs):
+
+    # HANDLERS
+    handle_actions(actions=[], *args, **kwargs):
+
+    # CREATORS
+    create_trading_bot(**kwargs):
+    create_command_line_parser():
+
+    # PROCESSORS
+    process_command_line_options(parser):
+    process_max_trades_argument(parser, options):
+    process_market_open_argument(parser, options):
+    process_market_close_argument(parser, options):
+    process_price_period_argument(parser, options):
+    process_price_backtrack_argument(parser, options):
+    process_price_backtracks_argument(parser, options):
+    process_price_chart_argument(parser, options):
+    process_price_interval_argument(parser, options):
+    process_backtrack_argument(parser, options):
+    process_backtracks_argument(parser, options):
+    process_price_movement_argument(parser, options):
+    process_profit_baby_argument(parser, options):
+    process_report_id_argument(parser, options):
+    process_silence_argument(parser, options):
+    process_action_csv_argument(parser, options):
+    process_base_currency_argument(parser, options):
+    process_quote_currency_argument(parser, options):
+    process_ticker_symbol_argument(parser, options):
+    process_risk_tolerance_argument(parser, options):
+    process_api_key_argument(parser, options):
+    process_api_secret_argument(parser, options):
+    process_taapi_key_argument(parser, options):
+    process_api_url_argument(parser, options):
+    process_taapi_url_argument(parser, options):
+    process_strategy_argument(parser, options):
+    process_debug_argument(parser, options):
+    process_analyze_risk_argument(parser, options):
+    process_side_argument(parser, options):
+    process_interval_argument(parser, options):
+    process_period_argument(parser, options):
+    process_stop_loss_argument(parser, options):
+    process_take_profit_argument(parser, options):
+    process_trailing_stop_argument(parser, options):
+    process_test_argument(parser, options):
+    process_rsi_top_argument(parser, options):
+    process_rsi_bottom_argument(parser, options):
+    process_rsi_period_argument(parser, options):
+    process_rsi_backtrack_argument(parser, options):
+    process_rsi_backtracks_argument(parser, options):
+    process_rsi_chart_argument(parser, options):
+    process_rsi_interval_argument(parser, options):
+    process_volume_movement_argument(parser, options):
+    process_volume_interval_argument(parser, options):
+    process_ma_period_argument(parser, options):
+    process_ma_backtrack_argument(parser, options):
+    process_ma_backtracks_argument(parser, options):
+    process_ma_chart_argument(parser, options):
+    process_ma_interval_argument(parser, options):
+    process_ema_period_argument(parser, options):
+    process_ema_backtrack_argument(parser, options):
+    process_ema_backtracks_argument(parser, options):
+    process_ema_chart_argument(parser, options):
+    process_ema_interval_argument(parser, options):
+    process_macd_backtrack_argument(parser, options):
+    process_macd_backtracks_argument(parser, options):
+    process_macd_chart_argument(parser, options):
+    process_macd_fast_period_argument(parser, options):
+    process_macd_slow_period_argument(parser, options):
+    process_macd_signal_period_argument(parser, options):
+    process_macd_interval_argument(parser, options):
+    process_adx_period_argument(parser, options):
+    process_adx_backtrack_argument(parser, options):
+    process_adx_backtracks_argument(parser, options):
+    process_adx_chart_argument(parser, options):
+    process_adx_interval_argument(parser, options):
+    process_vwap_period_argument(parser, options):
+    process_vwap_backtrack_argument(parser, options):
+    process_vwap_backtracks_argument(parser, options):
+    process_vwap_chart_argument(parser, options):
+    process_vwap_interval_argument(parser, options):
+    process_config_file_argument(parser, options):
+    process_debug_mode_argument(parser, options):
+    process_warning(warning):
+    process_error(error):
+
+    # GENERAL
+    add_command_line_parser_options(parser):
+    load_config_json():
+
+    # PARSERS
+    parse_command_line_arguments():
+
+    # CLEANERS
+    cleanup(*args, **kwargs):
+    cleanup_watchdog_pid_file(*args, **kwargs):
+    cleanup_watchdog_anchor_file(*args, **kwargs):
+
+    # SETUP
+    setup_trading_bot(**kwargs):
+
+    # FORMATTERS
+    format_header_string():
+
+    # DISPLAY
+    display_header():
+
+    # INIT
+    init_asymetric_risk(*args, **kwargs):
+
+
+[ CLI Interface ]: Usage (also displayed using the (-h|--help) argument)
+
+    [ EXAMPLE ]: View reports -
+
+        ~$ asymetric_risk.py \
+            -a  | --action "view-trade-report" \
+            -r  | --report-id '0,1,2,3,4,5'
+
+    [ EXAMPLE ]: Stop (A)Risk trading bot -
+
+        ~$ asymetric_risk.py \
+            -a  | --action "stop-watchdog"
+
+    [ EXAMPLE ]: Start (A)Risk trading bot -
+
+        ~$ asymetric_risk.py \
+            -a  | --action "start-watchdog,trade-report,account-details" \
+            -c  | --config-file /etc/conf/asymetric_risk.conf.json \
+            -l  | --log-file /etc/log/asymetric_risk.log \
+            -U  | --api-url "https://testnet.binance.vision/api" \
+            -u  | --taapi-url "https://api.taapi.io" \
+            -K  | --api-key "*************************************************" \
+            -S  | --api-secret "**********************************************" \
+            -k  | --taapi-key "***********************************************" \
+            -T  | --strategy "vwap,rsi,macd,adx,ma,ema,price,volume" \
+            -D  | --debug \
+            -s  | --silence \
+            -A  | --analyze-risk \             # Do risk analysis before trading
+            -t  | --side "auto" \              # Trade side (buy | sell | auto)
+            -i  | --interval "5m" \            # Time interval represented by a single candle
+            -p  | --period 14 \                # Number of candles
+            -R  | --risk-tolerance High \      # Implies (-A | --analyze-risk)
+            -b  | --base-currency BTC \        # Measure value of -
+            -q  | --quote-currency USDT \      # Measure base currency value in -
+            -Z  | --ticker-symbol BTC/USDT \   # Market identifier
+            -P  | --profit-baby 10 \           # Stop trading bot at X% gains of start account value
+            -x  | --max-trades 3 \             # Maximum number of trades allowed per trading day
+                | --history-backtrack 14 \     # General period backtrack value for indicator history
+                | --history-backtracks 14 \    # General period backtracks value for indicator history
+                | --stop-loss 10 \             # Set trading stop loss at X% of amount
+                | --take-profit 30 \           # Set trading take profit at X% of amount
+                | --trailing-stop 10 \         # Set trailing stop at X% of amount
+                | --market-open "08:00" \      # HH:MM time when the bot can start trading
+                | --market-close "22:00" \     # HH:MM time when the bot should stop trading
+                | --price-movement 5 \         # Set price movement trigger at X% per interval
+                | --rsi-top 70 \               # Specify strong RSI value (1-100)
+                | --rsi-bottom 30 \            # Specify low RSI value (1-100)
+                | --rsi-period 14 \
+                | --rsi-backtrack 5 \
+                | --rsi-backtracks 12 \
+                | --rsi-chart "candles" \
+                | --rsi-interval "5m" \
+                | --volume-movement 5 \
+                | --volume-interval "5m" \
+                | --ma-period 30 \
+                | --ma-backtrack 5 \
+                | --ma-backtracks 12 \
+                | --ma-chart "candles" \
+                | --ma-interval "5m" \
+                | --ema-period 30 \
+                | --ema-backtrack 5 \
+                | --ema-backtracks 12 \
+                | --ema-chart "candles" \
+                | --ema-interval "5m" \
+                | --macd-backtrack 5 \
+                | --macd-backtracks 12 \
+                | --macd-chart "candles" \
+                | --macd-fast-period 12 \
+                | --macd-slow-period 26 \
+                | --macd-signal-period 9 \
+                | --macd-interval "5m" \
+                | --adx-period 14 \
+                | --adx-backtrack 5 \
+                | --adx-backtracks 12 \
+                | --adx-chart "candles" \
+                | --adx-interval "5m" \
+                | --vwap-period 14 \
+                | --vwap-backtrack 5 \
+                | --vwap-backtracks 12 \
+                | --vwap-chart "candles" \
+                | --vwap-interval "5m" \
+                | --price-period 14 \
+                | --price-backtrack 5 \
+                | --price-backtracks 12 \
+                | --price-chart "candles" \
+                | --price-interval "5m"
+
+Options:
+
+  -h, --help            show this help message and exit
+
+  -c FILE_PATH, --config-file=FILE_PATH
+                        Configuration file to load default values from.
+
+  -D, --debug           Display more verbose output and log messages.
+
+  -l FILE_PATH, --log-file=FILE_PATH
+                        Path to the log file.
+
+  -Z SYMBOL, --ticker-symbol=SYMBOL
+                        Ticker symbol to use for action. Symbol names are
+                        always uppercase, with the coin separated by a forward
+                        slash and the market: COIN/MARKET. For example:
+                        BTC/USDT Bitcoin to Tether, or LTC/BTC Litecoin to
+                        Bitcoin...
+
+  -q SYMBOL, --quote-currency=SYMBOL
+                        Quote currency to use for action.
+
+  -b SYMBOL, --base-currency=SYMBOL
+                        Base currency to use for action.
+
+  -p PERIOD, --period=PERIOD
+                        Period/Number of candles to use when calculating
+                        indicators for action (trading or reporting).
+
+  -i INTERVAL, --interval=INTERVAL
+                        General interval or time frame for action. Supported
+                        time frames: 1m, 5m, 15m, 30m, 1h, 2h, 4h, 12h, 1d,
+                        1w. So if you re interested in values on hourly
+                        candles, use interval=1h, for daily values use
+                        interval=1d, etc..
+
+  -t SIDE, --side=SIDE  Trading side to be used for action - valid values
+                        include (buy, sell, auto). Default is auto
+
+  -A, --analyze-risk    Flag to enable risk analysis with the specified risk
+                        tolerance before commiting to a trade, either manual
+                        or automatic.
+
+  -s, --silence         Flag to enable suppression of STDOUT messages.
+
+  -T CSV, --strategy=CSV
+                        Strategies to apply when taking into consideration the
+                        generation of buy and sell signals. Default is
+                        vwap,rsi,macd,adx,ma,ema,price,volume WARNING: The
+                        more trading strategies you chain, the weaker their
+                        signal strength as the final decision lies in the
+                        average of all strategy signals.
+
+  -u URL, --taapi-url=URL
+                        Taapi API URL target. Default is https://api.taapi.io
+
+  -U URL, --api-url=URL
+                        Binance API URL target. Default is
+                        https://testnet.binance.vision/api
+
+  -k KEY, --taapi-key=KEY
+                        Taapi API Key - trading indicators wont work without
+                        it..
+
+  -S KEY, --api-secret=KEY
+                        Binance API Secret Key - nothing works without it.
+
+  -K KEY, --api-key=KEY
+                        Binance API Key - nothing works without it.
+
+  -r CSV, --report-id=CSV
+                        Report IDs given as a CSV string to use for action.
+
+  -R LEVEL, --risk-tolerance=LEVEL
+                        Risk tolerance taken into account during the risk
+                        analysis process. Valid values include (low or 1 |
+                        low-mid or 2 | mid or 3 | mid-high or 4 | high or 5).
+                        Default is 1
+
+  -P PERCENTAGE, --profit-baby=PERCENTAGE
+                        Stop trading when hitting this profit target, relative
+                        to the account value when the bot was initialized.
+                        Default is 1%
+
+  -x COUNT, --max-trades=COUNT
+                        Maximum number of trades allowed per trading day.
+
+  -a CSV, --action=CSV  Action to execute - valid values include one or more
+                        of the following labels given as a CSV string: (start-
+                        watchdog | stop-watchdog | trade-report | withdrawal-
+                        report | deposit-report | single-trade | view-report |
+                        account-details | market-details | supported-coins |
+                        supported-tickers | list-reports | remove-report |
+                        report | get-config)
+
+  --history-backtrack=PERIOD
+                        General backtrack value for indicator history.
+                        Backtrack returns a single candle value from X periods
+                        back. Given value can be overwritten for specific
+                        indicators if that indicator value is also given.
+
+  --history-backtracks=PERIOD
+                        General backtracks value for indicator history.
+                        Backtracks returns all candle values from X periods
+                        back. Given value can be overwritten for specific
+                        indicators if that indicator value is also given.
+
+  --stop-loss=PERCENTAGE
+                        Price percentage of when to cut your losses in a
+                        trade.
+
+  --trailing-stop=PERCENTAGE
+                        Percentage to continuously take profit from a trade
+                        before hitting the --take-profit value.
+
+  --take-profit=PERCENTAGE
+                        Price percentage of when to cash in on a trade.
+
+  --market-open=HH:MM   Hour at which the market opens and the trading bot is
+                        allowed to start trading.
+
+  --market-close=HH:MM  Hour at which the market closes and the trading bot
+                        has to stop trading.
+
+  --vwap-interval=INTERVAL
+                        Time interval used when computing the Volume-Weighted
+                        Average Price. Supported time frames: 1m, 5m, 15m,
+                        30m, 1h, 2h, 4h, 12h, 1d, 1w.
+
+  --vwap-chart=TYPE     Type of chart used when computing the Relative
+                        Strength Index. The chart parameter accepts one of two
+                        values: candles or heikinashi. Candles is the default,
+                        but if you set this to heikinashi, the indicator
+                        values will be calculated using Heikin Ashi candles.
+
+  --vwap-period=PERIOD  Period/Number of candles used when computing the
+                        Volume-Weighted Average Price.
+
+  --vwap-backtracks=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Volume-Weighted Average Price history. The backtracks
+                        parameter returns the indicator value calculated on
+                        every candle for the past X candles. For example, if
+                        you want to know what the indicator was every hour for
+                        the past 12 hours, you use backtracks=12. As a result,
+                        you will get 12 values back.
+
+  --vwap-backtrack=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Volume-Weighted Average Price history. The backtrack
+                        parameter removes candles from the data set and
+                        calculates the indicator value X amount of candles
+                        back. So, if you’re fetching the indicator on the
+                        hourly and you want to know what the indicator was 5
+                        hours ago, set backtrack=5. The default is 0 and a
+                        maximum is 50.
+
+  --adx-chart=TYPE      Type of chart used when computing the Relative
+                        Strength Index. The chart parameter accepts one of two
+                        values: candles or heikinashi. Candles is the default,
+                        but if you set this to heikinashi, the indicator
+                        values will be calculated using Heikin Ashi candles.
+
+  --adx-interval=INTERVAL
+                        Time interval used when computing the Average
+                        Directional IndeX. Supported time frames: 1m, 5m, 15m,
+                        30m, 1h, 2h, 4h, 12h, 1d, 1w.
+
+  --adx-period=PERIOD   Period/Number of candles used when computing the
+                        Average Directional IndeX.
+
+  --adx-backtrack=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Average Directional IndeX history. The backtrack
+                        parameter removes candles from the data set and
+                        calculates the indicator value X amount of candles
+                        back. So, if you’re fetching the indicator on the
+                        hourly and you want to know what the indicator was 5
+                        hours ago, set backtrack=5. The default is 0 and a
+                        maximum is 50.
+
+  --adx-backtracks=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Average Directional IndeX history. The backtracks
+                        parameter returns the indicator value calculated on
+                        every candle for the past X candles. For example, if
+                        you want to know what the indicator was every hour for
+                        the past 12 hours, you use backtracks=12. As a result,
+                        you will get 12 values back.
+
+  --macd-interval=INTERVAL
+                        Time interval used when computing the Moving Average
+                        Divergence Convergence. Supported time frames: 1m, 5m,
+                        15m, 30m, 1h, 2h, 4h, 12h, 1d, 1w.
+
+  --macd-signal-period=PERIOD
+                        Period/Number of candles used when computing the
+                        Moving Average Divergence Convergence signal.
+
+  --macd-slow-period=PERIOD
+                        Slow Period used when computing the Moving Average
+                        Divergence Convergence.
+
+  --macd-fast-period=PERIOD
+                        Fast Period used when computing the Moving Average
+                        Divergence Convergence.
+
+  --macd-chart=TYPE     Type of chart used when computing the Relative
+                        Strength Index. The chart parameter accepts one of two
+                        values: candles or heikinashi. Candles is the default,
+                        but if you set this to heikinashi, the indicator
+                        values will be calculated using Heikin Ashi candles.
+
+  --macd-backtracks=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Moving Average Divergence Convergence history. The
+                        backtracks parameter returns the indicator value
+                        calculated on every candle for the past X candles. For
+                        example, if you want to know what the indicator was
+                        every hour for the past 12 hours, you use
+                        backtracks=12. As a result, you will get 12 values
+                        back.
+
+  --macd-backtrack=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Moving Average Divergence Convergence history. The
+                        backtrack parameter removes candles from the data set
+                        and calculates the indicator value X amount of candles
+                        back. So, if you’re fetching the indicator on the
+                        hourly and you want to know what the indicator was 5
+                        hours ago, set backtrack=5. The default is 0 and a
+                        maximum is 50.
+
+  --ema-interval=INTERVAL
+                        Time interval used when computing the Estimated Moving
+                        Average. Supported time frames: 1m, 5m, 15m, 30m, 1h,
+                        2h, 4h, 12h, 1d, 1w.
+
+  --ema-chart=TYPE      Type of chart used when computing the Estimated Moving
+                        Average. The chart parameter accepts one of two
+                        values: candles or heikinashi. Candles is the default,
+                        but if you set this to heikinashi, the indicator
+                        values will be calculated using Heikin Ashi candles.
+
+  --ema-period=PERIOD   Period/Number of candles used when computing the
+                        Estimated Moving Average.
+
+  --ema-backtracks=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Estimated Moving Average history. The backtracks
+                        parameter returns the indicator value calculated on
+                        every candle for the past X candles. For example, if
+                        you want to know what the indicator was every hour for
+                        the past 12 hours, you use backtracks=12. As a result,
+                        you will get 12 values back.
+
+  --ema-backtrack=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Estimated Moving Average history. The backtrack
+                        parameter removes candles from the data set and
+                        calculates the indicator value X amount of candles
+                        back. So, if you’re fetching the indicator on the
+                        hourly and you want to know what the indicator was 5
+                        hours ago, set backtrack=5. The default is 0 and a
+                        maximum is 50.
+
+  --ma-interval=INTERVAL
+                        Time interval used when computing the Moving Average.
+                        Supported time frames: 1m, 5m, 15m, 30m, 1h, 2h, 4h,
+                        12h, 1d, 1w.
+
+  --ma-chart=TYPE       Type of chart used when computing the Moving Average.
+                        The chart parameter accepts one of two values: candles
+                        or heikinashi. Candles is the default, but if you set
+                        this to heikinashi, the indicator values will be
+                        calculated using Heikin Ashi candles.
+
+  --ma-period=PERIOD    Period/Number of candles used when computing the
+                        Moving Average.
+
+  --ma-backtracks=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Moving Average history. The backtracks parameter
+                        returns the indicator value calculated on every candle
+                        for the past X candles. For example, if you want to
+                        know what the indicator was every hour for the past 12
+                        hours, you use backtracks=12. As a result, you will
+                        get 12 values back.
+
+  --ma-backtrack=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        Moving Average history. The backtrack parameter
+                        removes candles from the data set and calculates the
+                        indicator value X amount of candles back. So, if
+                        you’re fetching the indicator on the hourly and you
+                        want to know what the indicator was 5 hours ago, set
+                        backtrack=5. The default is 0 and a maximum is 50.
+
+  --volume-interval=INTERVAL
+                        Time interval used when looking for volume
+                        movements.Supported time frames: 1m, 5m, 15m, 30m, 1h,
+                        2h, 4h, 12h, 1d, 1w.
+
+  --volume-movement=PERCENTAGE
+                        Volume percentage that triggers a large volume
+                        movement for specified interval.
+
+  --rsi-interval=INTERVAL
+                        Time interval used when computing the Relative
+                        Strength Index.Supported time frames: 1m, 5m, 15m,
+                        30m, 1h, 2h, 4h, 12h, 1d, 1w.
+
+  --rsi-chart=TYPE      Type of chart used when computing the Relative
+                        Strength Index. The chart parameter accepts one of two
+                        values: candles or heikinashi. Candles is the default,
+                        but if you set this to heikinashi, the indicator
+                        values will be calculated using Heikin Ashi candles.
+
+  --rsi-period=PERIOD   Period/Number of candles used when computing the
+                        Relative Strength Index.
+
+  --rsi-bottom=PERCENTAGE
+                        Relative Strength Index percentage value considered to
+                        be low.
+
+  --rsi-top=PERCENTAGE  Relative Strength Index percentage value considered to
+                        be high.
+
+  --rsi-backtracks=PERIOD
+                        Number of candles/periods to backtrack. The backtracks
+                        parameter returns the indicator value calculated on
+                        every candle for the past X candles. For example, if
+                        you want to know what the indicator was every hour for
+                        the past 12 hours, you use backtracks=12. As a result,
+                        you will get 12 values back.
+
+  --rsi-backtrack=PERIOD
+                        Number of candles/periods to backtrack. The backtrack
+                        parameter removes candles from the data set and
+                        calculates the indicator value X amount of candles
+                        back. So, if you’re fetching the indicator on the
+                        hourly and you want to know what the indicator was 5
+                        hours ago, set backtrack=5. The default is 0 and a
+                        maximum is 50.
+
+  --price-period=PERIOD
+                        Period/Number of candles used when computing the asset
+                        Price.
+
+  --price-backtrack=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        the Price history. The backtrack parameter removes
+                        candles from the data set and calculates the indicator
+                        value X amount of candles back. So, if you’re fetching
+                        the indicator on the hourly and you want to know what
+                        the indicator was 5 hours ago, set backtrack=5. The
+                        default is 0 and a maximum is 50.
+
+  --price-backtracks=PERIOD
+                        Number of candles/periods to backtrack when computing
+                        the Price history. The backtracks parameter returns
+                        the indicator value calculated on every candle for the
+                        past X candles. For example, if you want to know what
+                        the indicator was every hour for the past 12 hours,
+                        you use backtracks=12. As a result, you will get 12
+                        values back.
+
+  --price-chart=TYPE    Type of chart used when computing the Price. The chart
+                        parameter accepts one of two values: candles or
+                        heikinashi. Candles is the default, but if you set
+                        this to heikinashi, the indicator values will be
+                        calculated using Heikin Ashi candles.
+
+  --price-interval=INTERVAL
+                        Time interval used when computing the Price. Supported
+                        time frames: 1m, 5m, 15m, 30m, 1h, 2h, 4h, 12h, 1d,
+                        1w.
+
+  --price-movement=PERCENTAGE
+                        Price percentage that triggers a large price movement
+                        for specified interval.
+
+  --test                Run actions in test mode. When creating a new order,
+                        creation and signature/recvWindow long is tested.
+                        Creates and validates a new order but does not send it
+                        into the matching engine..
+
+EOF
+

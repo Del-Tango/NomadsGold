@@ -1,0 +1,486 @@
+{
+    "timestamp": "01/12/2022-01:57:03",
+    "report-id": "n0vkgii8",
+    "report-location": "./data/reports",
+    "report-extension": ".mks",
+    "report-type": "Market Snapshot",
+    "report": {
+        "ticker-symbol": "BTC/USDT",
+        "interval": "5m",
+        "indicators": {
+            "adx": 52.580991278062335,
+            "+di": 25.8897370990353,
+            "-di": 7.510127302994422,
+            "macd": 33.41038322068562,
+            "macd-signal": 29.364292297810245,
+            "macd-hist": 4.046090922875372,
+            "ma": 17120.99333333334,
+            "ema": 17127.793523662935,
+            "rsi": 58.04786057527246,
+            "vwap": 16899.189918996355
+        },
+        "history": {
+            "price": [
+                {
+                    "value": 17189.16,
+                    "backtrack": 0
+                },
+                {
+                    "value": 17203.21,
+                    "backtrack": 1
+                },
+                {
+                    "value": 17222.12,
+                    "backtrack": 2
+                },
+                {
+                    "value": 17183.44,
+                    "backtrack": 3
+                },
+                {
+                    "value": 17145.74,
+                    "backtrack": 4
+                },
+                {
+                    "value": 17177.06,
+                    "backtrack": 5
+                },
+                {
+                    "value": 17163.3,
+                    "backtrack": 6
+                },
+                {
+                    "value": 17163.01,
+                    "backtrack": 7
+                },
+                {
+                    "value": 17169.93,
+                    "backtrack": 8
+                },
+                {
+                    "value": 17124.79,
+                    "backtrack": 9
+                },
+                {
+                    "value": 17152.97,
+                    "backtrack": 10
+                },
+                {
+                    "value": 17148.29,
+                    "backtrack": 11
+                }
+            ],
+            "volume": [
+                {
+                    "value": "348.38359000",
+                    "backtrack": 0
+                },
+                {
+                    "value": "651.45796000",
+                    "backtrack": 1
+                },
+                {
+                    "value": "2941.27575000",
+                    "backtrack": 2
+                },
+                {
+                    "value": "2081.77280000",
+                    "backtrack": 3
+                },
+                {
+                    "value": "1245.26511000",
+                    "backtrack": 4
+                },
+                {
+                    "value": "1014.47499000",
+                    "backtrack": 5
+                },
+                {
+                    "value": "1256.53744000",
+                    "backtrack": 6
+                },
+                {
+                    "value": "1007.50941000",
+                    "backtrack": 7
+                },
+                {
+                    "value": "911.88710000",
+                    "backtrack": 8
+                },
+                {
+                    "value": "1081.80371000",
+                    "backtrack": 9
+                },
+                {
+                    "value": "1209.29556000",
+                    "backtrack": 10
+                },
+                {
+                    "value": "1588.04246000",
+                    "backtrack": 11
+                },
+                {
+                    "value": "1158.78430000",
+                    "backtrack": 12
+                },
+                {
+                    "value": "1241.55650000",
+                    "backtrack": 13
+                }
+            ],
+            "price-support": 17124.79,
+            "price-resistance": 17222.12,
+            "adx": [
+                {
+                    "adx": 51.901355849061474,
+                    "plusdi": 24.61502060003877,
+                    "minusdi": 8.311985604219744,
+                    "backtrack": 0
+                },
+                {
+                    "adx": 52.08510206539891,
+                    "plusdi": 25.490600182017705,
+                    "minusdi": 8.936025232398162,
+                    "backtrack": 1
+                },
+                {
+                    "adx": 52.39268332723664,
+                    "plusdi": 27.266763075342684,
+                    "minusdi": 6.992602969045493,
+                    "backtrack": 2
+                },
+                {
+                    "adx": 51.870701656874424,
+                    "plusdi": 29.18723671277388,
+                    "minusdi": 7.514327228421564,
+                    "backtrack": 3
+                },
+                {
+                    "adx": 51.31831464327078,
+                    "plusdi": 24.861858879145586,
+                    "minusdi": 8.289183650740771,
+                    "backtrack": 4
+                },
+                {
+                    "adx": 51.42038385113267,
+                    "plusdi": 26.809142608840332,
+                    "minusdi": 8.938426836216287,
+                    "backtrack": 5
+                },
+                {
+                    "adx": 51.5303045365224,
+                    "plusdi": 29.47521253596253,
+                    "minusdi": 5.570746150618015,
+                    "backtrack": 6
+                },
+                {
+                    "adx": 50.24733489290941,
+                    "plusdi": 30.625954719736104,
+                    "minusdi": 5.939157164128662,
+                    "backtrack": 7
+                },
+                {
+                    "adx": 48.91908193683639,
+                    "plusdi": 30.605147516228616,
+                    "minusdi": 6.412168859708799,
+                    "backtrack": 8
+                },
+                {
+                    "adx": 47.654715808632396,
+                    "plusdi": 32.607488527330524,
+                    "minusdi": 6.831684847047115,
+                    "backtrack": 9
+                },
+                {
+                    "adx": 46.29309074748963,
+                    "plusdi": 33.453378593054055,
+                    "minusdi": 7.553173942489967,
+                    "backtrack": 10
+                },
+                {
+                    "adx": 44.99554876096629,
+                    "plusdi": 36.872607531451536,
+                    "minusdi": 6.910817679322949,
+                    "backtrack": 11
+                }
+            ],
+            "macd": [
+                {
+                    "valueMACD": 29.731306570502056,
+                    "valueMACDSignal": 29.152685475602173,
+                    "valueMACDHist": 0.5786210948998836,
+                    "backtrack": 0
+                },
+                {
+                    "valueMACD": 31.62907268775598,
+                    "valueMACDSignal": 29.0080302018772,
+                    "valueMACDHist": 2.621042485878778,
+                    "backtrack": 1
+                },
+                {
+                    "valueMACD": 33.43241674741148,
+                    "valueMACDSignal": 28.352769580407507,
+                    "valueMACDHist": 5.079647167003973,
+                    "backtrack": 2
+                },
+                {
+                    "valueMACD": 32.31854073995419,
+                    "valueMACDSignal": 27.082857788656515,
+                    "valueMACDHist": 5.235682951297672,
+                    "backtrack": 3
+                },
+                {
+                    "valueMACD": 28.501360225127428,
+                    "valueMACDSignal": 25.773937050832096,
+                    "valueMACDHist": 2.727423174295332,
+                    "backtrack": 4
+                },
+                {
+                    "valueMACD": 27.153011855654768,
+                    "valueMACDSignal": 25.092081257258265,
+                    "valueMACDHist": 2.060930598396503,
+                    "backtrack": 5
+                },
+                {
+                    "valueMACD": 28.87562158253786,
+                    "valueMACDSignal": 24.576848607659137,
+                    "valueMACDHist": 4.298772974878723,
+                    "backtrack": 6
+                },
+                {
+                    "valueMACD": 27.46534350182992,
+                    "valueMACDSignal": 23.50215536393946,
+                    "valueMACDHist": 3.9631881378904623,
+                    "backtrack": 7
+                },
+                {
+                    "valueMACD": 26.666838118795567,
+                    "valueMACDSignal": 22.511358329466844,
+                    "valueMACDHist": 4.155479789328723,
+                    "backtrack": 8
+                },
+                {
+                    "valueMACD": 25.289300875443587,
+                    "valueMACDSignal": 21.472488382134664,
+                    "valueMACDHist": 3.816812493308923,
+                    "backtrack": 9
+                },
+                {
+                    "valueMACD": 22.458636235744052,
+                    "valueMACDSignal": 20.518285258807435,
+                    "valueMACDHist": 1.9403509769366174,
+                    "backtrack": 10
+                },
+                {
+                    "valueMACD": 23.11508047764437,
+                    "valueMACDSignal": 20.03319751457328,
+                    "valueMACDHist": 3.081882963071088,
+                    "backtrack": 11
+                }
+            ],
+            "ma": [
+                {
+                    "value": 17124.82833333334,
+                    "backtrack": 0
+                },
+                {
+                    "value": 17120.459000000006,
+                    "backtrack": 1
+                },
+                {
+                    "value": 17115.95733333334,
+                    "backtrack": 2
+                },
+                {
+                    "value": 17110.648333333338,
+                    "backtrack": 3
+                },
+                {
+                    "value": 17104.93233333334,
+                    "backtrack": 4
+                },
+                {
+                    "value": 17100.460000000006,
+                    "backtrack": 5
+                },
+                {
+                    "value": 17097.935333333342,
+                    "backtrack": 6
+                },
+                {
+                    "value": 17095.27300000001,
+                    "backtrack": 7
+                },
+                {
+                    "value": 17091.36800000001,
+                    "backtrack": 8
+                },
+                {
+                    "value": 17087.19933333334,
+                    "backtrack": 9
+                },
+                {
+                    "value": 17082.98633333334,
+                    "backtrack": 10
+                },
+                {
+                    "value": 17080.50900000001,
+                    "backtrack": 11
+                }
+            ],
+            "ema": [
+                {
+                    "value": 17129.84282802289,
+                    "backtrack": 0
+                },
+                {
+                    "value": 17127.625781679642,
+                    "backtrack": 1
+                },
+                {
+                    "value": 17124.397214898927,
+                    "backtrack": 2
+                },
+                {
+                    "value": 17118.961850409196,
+                    "backtrack": 3
+                },
+                {
+                    "value": 17111.847495265003,
+                    "backtrack": 4
+                },
+                {
+                    "value": 17106.91008114535,
+                    "backtrack": 5
+                },
+                {
+                    "value": 17104.232155707097,
+                    "backtrack": 6
+                },
+                {
+                    "value": 17099.209545755864,
+                    "backtrack": 7
+                },
+                {
+                    "value": 17094.78951442868,
+                    "backtrack": 8
+                },
+                {
+                    "value": 17090.0846533548,
+                    "backtrack": 9
+                },
+                {
+                    "value": 17084.578077724094,
+                    "backtrack": 10
+                },
+                {
+                    "value": 17081.804841705067,
+                    "backtrack": 11
+                }
+            ],
+            "rsi": [
+                {
+                    "value": 57.98217364714946,
+                    "backtrack": 0
+                },
+                {
+                    "value": 67.3475296840462,
+                    "backtrack": 1
+                },
+                {
+                    "value": 65.0441719602707,
+                    "backtrack": 2
+                },
+                {
+                    "value": 64.99584830405244,
+                    "backtrack": 3
+                },
+                {
+                    "value": 67.04965786419089,
+                    "backtrack": 4
+                },
+                {
+                    "value": 59.25005792209732,
+                    "backtrack": 5
+                },
+                {
+                    "value": 68.67316718869291,
+                    "backtrack": 6
+                },
+                {
+                    "value": 67.88552967575939,
+                    "backtrack": 7
+                },
+                {
+                    "value": 62.29539052637073,
+                    "backtrack": 8
+                },
+                {
+                    "value": 59.27663547963186,
+                    "backtrack": 9
+                },
+                {
+                    "value": 55.036195374107386,
+                    "backtrack": 10
+                },
+                {
+                    "value": 53.57719536239689,
+                    "backtrack": 11
+                }
+            ],
+            "vwap": [
+                {
+                    "value": 16899.685273894782,
+                    "backtrack": 0
+                },
+                {
+                    "value": 16898.909951695394,
+                    "backtrack": 1
+                },
+                {
+                    "value": 16897.280165952045,
+                    "backtrack": 2
+                },
+                {
+                    "value": 16896.107038174552,
+                    "backtrack": 3
+                },
+                {
+                    "value": 16894.47909290463,
+                    "backtrack": 4
+                },
+                {
+                    "value": 16893.36749050831,
+                    "backtrack": 5
+                },
+                {
+                    "value": 16892.420632294976,
+                    "backtrack": 6
+                },
+                {
+                    "value": 16891.557290891382,
+                    "backtrack": 7
+                },
+                {
+                    "value": 16890.63032799699,
+                    "backtrack": 8
+                },
+                {
+                    "value": 16889.49260009884,
+                    "backtrack": 9
+                },
+                {
+                    "value": 16888.582092748,
+                    "backtrack": 10
+                },
+                {
+                    "value": 16887.553435005055,
+                    "backtrack": 11
+                }
+            ]
+        },
+        "buy-price": 17189.16,
+        "sell-price": 17190.03,
+        "volume": 301765.53826
+    }
+}

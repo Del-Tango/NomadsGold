@@ -1,0 +1,99 @@
+#!/bin/bash
+#
+# Excellent Regards, the Alveare Solutions #!/Society -x
+#
+# TRADING BOT
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Asymetric Risk  *                         *
+    ________________________________________________________v1.0AR15___________
+                Excellent Regards, the Alveare Solutions #!/Society -x
+
+
+[ FUNCTIONS ]: src/ar_bot.py:TradingBot()
+
+    # FETCHERS
+    fetch_symbol_current_price(self, **kwargs):
+    fetch_account_value(self, currency='base', **kwargs):
+    fetch_market_currency(self):
+    fetch_valid_report_types(self):
+    fetch_supported_trading_strategies(self):
+    fetch_active_market(self):
+    fetch_report_data_scrapers(self):
+
+    # SETTERS
+    set_market(self, ticker_symbol, market_obj):
+    set_trading_strategy(self, strategy):
+
+    # CHECKERS
+    check_market_hours(self, opening=[8, 00], closing=[22, 00]):
+    check_new_day(self, **kwargs):
+    check_trade_count(self, *args, **kwargs):
+
+    # UPDATERS
+    update_trades(self, trade_dict, target='today', **kwargs):
+    update_current_account_value(self, currency='quote', **kwargs):
+
+    # ENSURANCE
+    ensure_trading_market_setup(self, **kwargs):
+
+    # SCRAPERS
+    scrape_coin_details_report_data(self, *args, **kwargs):
+    scrape_api_permissions_report_data(self, *args, **kwargs):
+    scrape_deposit_history_report_data(self, *args, **kwargs):
+    scrape_withdrawal_history_report_data(self, *args, **kwargs):
+    scrape_market_snapshot_report_data(self, *args, **kwargs):
+    scrape_account_snapshot_report_data(self, *args, **kwargs):
+    scrape_trade_history_report_data(self, *args, **kwargs):
+    scrape_current_trades_report_data(self, *args, **kwargs):
+    scrape_success_rate_report_data(self, *args, **kwargs):
+
+    # ACTIONS
+    generate_nightly_reports(self, *args, **kwargs):
+    generate_report(self, *args, **kwargs):
+    remove_report(self, *args, **kwargs):
+    list_reports(self, *args, **kwargs):
+    trade_watchdog(self, *args, **kwargs):
+    trade(self, *args, **kwargs):
+    close_trade(self, *args, **kwargs):
+    select_market(self, ticker_symbol, **kwargs):
+    enter_market(self, **kwargs):
+    exit_market(self, *args, **kwargs):
+
+    # COMPUTERS
+    compute_trade_values(self, details, **kwargs):
+    compute_order_price(self, order_price, **kwargs):
+    compute_order_stop_price(self, stop_price, **kwargs):
+    compute_order_stop_limit_price(self, stop_limit_price, **kwargs):
+    compute_quote_amount(self, percentage, **kwargs):
+    compute_trade_amount(self, percentage, **kwargs):
+    compute_profit_baby(self, percentage, **kwargs):
+
+    # GENERAL
+    bot_cooldown(self, cool_down_seconds, silent=False):
+    reset_trading_day(self, **kwargs):
+    archive_current_day_trades(self, *args, **kwargs):
+    mission_accomplished(self):
+
+    # VIEWERS
+    view_coin_details(self, *args, **kwargs):
+    view_api_details(self, *args, **kwargs):
+    view_deposit_details(self, *args, **kwargs):
+    view_withdrawal_details(self, *args, **kwargs):
+    view_report(self, *args, **kwargs):
+    view_market_details(self, *args, **kwargs):
+    view_account_details(self, *args, **kwargs):
+    view_asset_balance(self, *args, **kwargs):
+    view_trades(self, *args, **kwargs):
+    view_trade_history(self, *args, **kwargs):
+    view_supported_tickers(self, *args, **kwargs):
+    view_supported_coins(self, *args, **kwargs):
+
+    # SETUP
+    setup_analyzer(self, **kwargs):
+    setup_reporter(self, **kwargs):
+    setup_market(self, **kwargs):
+
+EOF

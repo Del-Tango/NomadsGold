@@ -1,0 +1,272 @@
+#!/bin/bash
+#
+# Excellent Regards, the Alveare Solutions #!/Society -x
+#
+# REPORTER
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Asymetric Risk  *                         *
+    ________________________________________________________v1.0AR15___________
+                Excellent Regards, the Alveare Solutions #!/Society -x
+
+
+[ FUNCTIONS ]: src/ar_reporter.py:TradingReporter
+
+    # ACTIONS
+    src/ar_reporter.py:60:    def view(self, *args, **kwargs):
+    src/ar_reporter.py:95:    def remove(self, *args, **kwargs):
+    src/ar_reporter.py:125:    def read(self, *args, **kwargs):
+    src/ar_reporter.py:146:    def generate(self, *args, **kwargs):
+
+    # GENERAL
+    src/ar_reporter.py:247:    def display_report_content(self, report_id, file_path, **kwargs):
+    src/ar_reporter.py:256:    def write_report_to_file(self, return_dict, *args, **kwargs):
+
+    # GENERATORS
+    src/ar_reporter.py:275:    def generate_coin_details_report(self, *args, **kwargs):
+    src/ar_reporter.py:288:    def generate_api_permissions_report(self, *args, **kwargs):
+    src/ar_reporter.py:301:    def generate_market_snapshot_report(self, *args, **kwargs):
+    src/ar_reporter.py:314:    def generate_account_snapshot_report(self, *args, **kwargs):
+    src/ar_reporter.py:327:    def generate_withdrawal_history_report(self, *args, **kwargs):
+    src/ar_reporter.py:340:    def generate_deposit_history_report(self, *args, **kwargs):
+    src/ar_reporter.py:353:    def generate_current_trades_report(self, *args, **kwargs):
+    src/ar_reporter.py:366:    def generate_success_rate_report(self, *args, **kwargs):
+    src/ar_reporter.py:379:    def generate_trade_history_report(self, *args, **kwargs):
+    src/ar_reporter.py:392:    def generate_default_report_details(self, *args, **kwargs):
+
+    # FORMATTERS
+    src/ar_reporter.py:405:    def format_api_permissions_report_details(self, *args, **kwargs):
+    src/ar_reporter.py:414:    def format_coin_details_report_details(self, *args, **kwargs):
+    src/ar_reporter.py:423:    def format_market_snapshot_report_details(self, *args, **kwargs):
+    src/ar_reporter.py:432:    def format_account_snapshot_report_details(self, *args, **kwargs):
+    src/ar_reporter.py:441:    def format_withdrawal_report_details(self, *args, **kwargs):
+    src/ar_reporter.py:450:    def format_deposit_report_details(self, *args, **kwargs):
+    src/ar_reporter.py:459:    def format_current_trades_report_details(self, *args, **kwargs):
+    src/ar_reporter.py:468:    def format_success_rate_report_details(self, *args, **kwargs):
+    src/ar_reporter.py:477:    def format_trade_history_report_details(self, *args, **kwargs):
+
+[ FORMAT ]: Deposit History Report
+
+    {
+        "timestamp": "01/12/2022-01:57:02",
+        "report-id": "0gftjo5n",
+        "report-location": "./data/reports",
+        "report-extension": ".dep",
+        "report-type": "Deposits",
+        "report": [{}, ...]
+    }
+
+[ FORMAT ]: Withdrawal History Report
+
+    {
+        "timestamp": "01/12/2022-01:57:02",
+        "report-id": "mroxr03c",
+        "report-location": "./data/reports",
+        "report-extension": ".wdr",
+        "report-type": "Withdrawals",
+        "report": [{}, ...]
+    }
+
+[ FORMAT ]: Trade History Report
+
+    {
+        "timestamp": "01/12/2022-01:57:02",
+        "report-id": "ow82t8it",
+        "report-location": "./data/reports",
+        "report-extension": ".ths",
+        "report-type": "Trade History",
+        "report": {
+            "BTCUSDT": [{}, ...]
+        }
+    }
+
+[ FORMAT ]: Current Trades Report
+
+    {
+        "timestamp": "01/12/2022-01:57:02",
+        "report-id": "ea3xib8n",
+        "report-location": "./data/reports",
+        "report-extension": ".ctd",
+        "report-type": "Current Trades",
+        "report": {
+            "BTCUSDT": [{}, ...]
+        }
+    }
+
+[ FORMAT ]: Success Rate Report
+
+    {
+        "timestamp": "01/12/2022-01:57:03",
+        "report-id": "94b8jsx8",
+        "report-location": "./data/reports",
+        "report-extension": ".srt",
+        "report-type": "Success Rate",
+        "report": {
+            "BTCUSDT": [{}, ...]
+        }
+    }
+
+[ FORMAT ]: Account Snapshot Report
+
+    {
+        "timestamp": "01/12/2022-01:57:03",
+        "report-id": "m3n6nj9e",
+        "report-location": "./data/reports",
+        "report-extension": ".acs",
+        "report-type": "Account Snapshot",
+        "report": {
+            "data": "Normal",
+            "makerCommission": 10,
+            "takerCommission": 10,
+            "buyerCommission": 0,
+            "sellerCommission": 0,
+            "canTrade": true,
+            "canWithdraw": true,
+            "canDeposit": true,
+            "brokered": false,
+            "updateTime": 1631690627197,
+            "accountType": "SPOT",
+            "balances": [
+                {
+                    "asset": "BTC",
+                    "free": "0.00000000",
+                    "locked": "0.00000000"
+                },
+                ...
+            ],
+            "permissions": [
+                "SPOT"
+            ]
+        }
+    }
+
+[ FORMAT ]: Market Snapshot Report
+
+    {
+        "timestamp": "01/12/2022-01:57:03",
+        "report-id": "n0vkgii8",
+        "report-location": "./data/reports",
+        "report-extension": ".mks",
+        "report-type": "Market Snapshot",
+        "report": {
+            "ticker-symbol": "BTC/USDT",
+            "interval": "5m",
+            "indicators": {
+                "adx": 52.580991278062335,
+                "+di": 25.8897370990353,
+                "-di": 7.510127302994422,
+                "macd": 33.41038322068562,
+                "macd-signal": 29.364292297810245,
+                "macd-hist": 4.046090922875372,
+                "ma": 17120.99333333334,
+                "ema": 17127.793523662935,
+                "rsi": 58.04786057527246,
+                "vwap": 16899.189918996355
+            },
+            "history": {
+                "price": [
+                    {
+                        "value": 17189.16,
+                        "backtrack": 0
+                    },
+                    ...
+                ],
+                ...
+            }
+            "buy-price": 17189.16,
+            "sell-price": 17190.03,
+            "volume": 301765.53826
+        }
+    }
+
+[ FORMAT ]: API Permissions Report
+
+    {
+        "timestamp": "01/12/2022-01:57:04",
+        "report-id": "zxsmxuju",
+        "report-location": "./data/reports",
+        "report-extension": ".api",
+        "report-type": "Api Permissions",
+        "report": {
+            "ipRestrict": true,
+            "createTime": 1667239846000,
+            "enableReading": true,
+            "enableMargin": false,
+            "enableFutures": false,
+            "enableVanillaOptions": true,
+            "enableSpotAndMarginTrading": true,
+            "enableWithdrawals": false,
+            "enableInternalTransfer": false,
+            "permitsUniversalTransfer": true,
+            "data": {
+                "isLocked": false,
+                "plannedRecoverTime": 0,
+                "triggerCondition": {
+                    "UFR": 300,
+                    "IFER": 150,
+                    "GCR": 150
+                },
+                "updateTime": 0
+            }
+        }
+    }
+
+[ FORMAT ]: Coin Details Report
+
+    {
+        "timestamp": "01/12/2022-01:57:04",
+        "report-id": "3d92m43s",
+        "report-location": "./data/reports",
+        "report-extension": ".cdt",
+        "report-type": "Coin Details",
+        "report": {
+            "AGLD": {
+                "coin": "AGLD",
+                "depositAllEnable": true,
+                "withdrawAllEnable": true,
+                "name": "Adventure Gold",
+                "free": "0",
+                "locked": "0",
+                "freeze": "0",
+                "withdrawing": "0",
+                "ipoing": "0",
+                "ipoable": "0",
+                "storage": "0",
+                "isLegalMoney": false,
+                "trading": true,
+                "networkList": [
+                    {
+                        "network": "ETH",
+                        "coin": "AGLD",
+                        "withdrawIntegerMultiple": "0.00000001",
+                        "isDefault": true,
+                        "depositEnable": true,
+                        "withdrawEnable": true,
+                        "depositDesc": "",
+                        "withdrawDesc": "",
+                        "specialTips": "",
+                        "specialWithdrawTips": "",
+                        "name": "Ethereum (ERC20)",
+                        "resetAddressStatus": false,
+                        "addressRegex": "^(0x)[0-9A-Fa-f]{40}$",
+                        "addressRule": "",
+                        "memoRegex": "",
+                        "withdrawFee": "11",
+                        "withdrawMin": "22",
+                        "withdrawMax": "9999999",
+                        "minConfirm": 12,
+                        "unLockConfirm": 0,
+                        "sameAddress": false,
+                        "estimatedArrivalTime": 5,
+                        "busy": false,
+                        "country": "AE,BINANCE_BAHRAIN_BSC,custody"
+                    }
+                ]
+            },
+            ...
+        }
+    }
+
+EOF

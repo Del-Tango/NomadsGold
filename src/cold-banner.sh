@@ -21,6 +21,10 @@ function display_cold_banner () {
     figlet -f lean -w 1000 "$SCRIPT_NAME" > "$TMP_FILE"
     clear; echo -n "${BLUE}`cat $TMP_FILE`${RESET}
 " && rm $TMP_FILE &> /dev/null
+    cat <<EOF
+${BLUE}____________________________________                                      __
+                                    I ${BLACK}don't ${BLUE}have ${BLACK}answers, I have ${RED}questions${RESET}
+EOF
     return 0
 }
 

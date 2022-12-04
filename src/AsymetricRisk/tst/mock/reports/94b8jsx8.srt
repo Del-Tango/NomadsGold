@@ -1,0 +1,10 @@
+{
+    "timestamp": "01/12/2022-01:57:03",
+    "report-id": "94b8jsx8",
+    "report-location": "./data/reports",
+    "report-extension": ".srt",
+    "report-type": "Success Rate",
+    "report": {
+        "BTCUSDT": []
+    }
+}

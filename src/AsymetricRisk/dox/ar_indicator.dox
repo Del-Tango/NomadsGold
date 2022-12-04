@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# Excellent Regards, the Alveare Solutions #!/Society -x
+#
+# INDICATOR
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Asymetric Risk  *                         *
+    ________________________________________________________v1.0AR15___________
+                Excellent Regards, the Alveare Solutions #!/Society -x
+
+
+[ FUNCTIONS ]: src/ar_indicator.py:TradingIndicator
+
+    # SETTERS
+    src/ar_indicator.py:23:    def set_api_url(self, api_url):
+    src/ar_indicator.py:28:    def set_api_secret_key(self, api_key):
+
+    # FORMATTERS
+    src/ar_indicator.py:36:    def format_target_url(self, indicator_label, *args, **kwargs):
+
+    # GENERAL
+    src/ar_indicator.py:65:    def api_call(self, url_target, **kwargs):
+    src/ar_indicator.py:77:    def ping(self, **kwargs):
+
+    # INDICATORS
+    src/ar_indicator.py:91:    def adx(self, **kwargs):
+    src/ar_indicator.py:122:    def macd(self, **kwargs):
+    src/ar_indicator.py:140:    def ma(self, **kwargs):
+    src/ar_indicator.py:156:    def ema(self, **kwargs):
+    src/ar_indicator.py:172:    def rsi(self, **kwargs):
+    src/ar_indicator.py:188:    def vwap(self, **kwargs):
+    src/ar_indicator.py:204:    def price(self, **kwargs):
+
+EOF

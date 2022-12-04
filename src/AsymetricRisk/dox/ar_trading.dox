@@ -1,0 +1,840 @@
+#!/bin/bash
+#
+# Excellent Regards, the Alveare Solutions #!/Society -x
+#
+# TRADING
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Asymetric Risk  *                         *
+    ________________________________________________________v1.0AR15___________
+                Excellent Regards, the Alveare Solutions #!/Society -x
+
+[ IDontHaveAnswersIHaveQuestionsButAlsoAnswers ]:
+
+    [ Q/A ]: What is an OCO order?
+
+        A One-Cancels-the-Other (OCO) order combines one stop limit order
+        and one limit order, where if one is fully or partially fulfilled,
+        the other is canceled.
+
+        An OCO order on Binance consists of a stop-limit order and a limit
+        order with the same order quantity. Both orders must be either buy
+        or sell orders. If you cancel one of the orders, the entire OCO
+        order pair will be canceled.
+
+    [ Q/A ]: What is a limit order?
+
+        A limit order is an order that you place on the order book with a
+        specific limit price. It will not be executed immediately like a
+        market order. Instead, the limit order will only be executed if the
+        market price reaches your limit price (or better). Therefore, you
+        may use limit orders to buy at a lower price or sell at a higher
+        price than the current market price.
+
+        For example, you place a buy limit order for 1 BTC at $60,000, and
+        the current BTC price is 50,000. Your limit order will be filled
+        immediately at $50,000, as it is a better price than the one you
+        set ($60,000).
+
+        Similarly, if you place a sell limit order for 1 BTC at $40,000 and
+        the current BTC price is $50,000. The order will be filled
+        immediately at $50,000 because it is a better price than $40,000.
+
+    [ Q/A ]: What is a stop-limit order?
+
+        A stop-limit order has a stop price and a limit price. You can set
+        the minimum amount of profit you’re happy to take or the maximum
+        you’re willing to spend or lose on a trade. When the trigger price
+        is reached, a limit order will be placed automatically.
+
+        Stop-limit orders are good tools for limiting the losses that may
+        incur in a trade. For example, BTC is trading at $40,000, and you
+        set up a stop-limit order at a stop price of $39,500 and a limit
+        price of $39,000. A limit order at $39,000 will be placed when the
+        price drops from $40,000 to $39,500.
+
+[ NOTE ]: Implications of order types -
+
+    [ Market Order ]:
+        * Purchases an asset at the market price
+        * Fills immediately
+        * Manual
+
+    [ Limit Order ]:
+        * Purchases an asset at a set price or better
+        * Fills only at the limit order’s price or better
+        * Can be set in advance
+
+[ STRATEGY ]: Intuition Reversal
+
+    [ NOTE ]: Converts all generated signals by the other strategies into
+                their opposites.
+
+        [ Ex ]: Strategy evaluation - {
+            "volume": {
+                "value": 267248.64735,
+                "volume-movement": {
+                    "flag": true,
+                    "start-value": 365.86029,
+                    "stop-value": 1090.25285,
+                    "min-value": 365.86029,
+                    "max-value": 1226.2393,
+                    "period-average": 624.7122678571429,
+                    "volume-direction": "up",
+                    "start-candle": 13,
+                    "stop-candle": 0,
+                    "min-candle": 13,
+                    "max-candle": 9,
+                    "side": "buy",
+                    "moved": 860.3790099999999,
+                    "moved-percentage": 137.72404581572079,
+                    "trigger-percentage": 5
+                },
+                "interval": "5m",
+                "period": 14,
+                "risk": 3,
+                "side": "buy",
+                "trade": true,
+                "description": "Volume Strategy"
+            },
+            "price": {
+                "price-movement": {
+                    "flag": false,
+                    "start-value": 17158.1,
+                    "stop-value": 17147.21,
+                    "min-value": 17144.38,
+                    "max-value": 17165.74,
+                    "period-average": 17153.4225,
+                    "price-direction": "down",
+                    "start-candle": 11,
+                    "stop-candle": 0,
+                    "min-candle": 7,
+                    "max-candle": 3,
+                    "moved": 21.360000000000582,
+                    "side": "up",
+                    "moved-percentage": 0.12452325476155317,
+                    "trigger-percentage": 5
+                },
+                "confirmed-by-volume": {},
+                "interval": "5m",
+                "period": 14,
+                "value": 17146.7,
+                "risk": 0,
+                "side": "",
+                "trade": false,
+                "description": "Price Action Strategy"
+            },
+            "interval": "5m",
+            "period": 14,
+            "risk": 0,
+            "side": "sell",
+            "trade": true,
+            "description": "Intuition Reversal"
+        }
+
+[ STRATEGY ]: Moving Average
+
+    [ NOTE ]: Technical indicator that sums up the data points of a financial
+                security over a specific time period and divides the total by
+                the number of data points to arrive at an average.
+
+                It's called a "Moving" Average because it is continually
+                recalculated based on the latest price data.
+
+    [ NOTE ]: Used to examine support and resistance by evaluating the
+                movements of an assets price.
+
+    [ NOTE ]: The general rule is that if the price trades above the moving
+                average, we’re in an uptrend. As long as we stay above the
+                exponential moving average, we should expect higher prices.
+
+                Conversely, if we’re trading below, we’re in a downtrend.
+                As long as we trade below the moving average, we should expect
+                lower prices.
+
+        [ Ex ]: Strategy evaluation - {
+            "value": 17146.045859373233,
+            "bullish-trend": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "ema-direction": "down",
+                "price-direction": "up",
+                "side": "",
+                "values": {
+                    "ma": [
+                        17146.26392388936,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 17146.26392388936,
+                    "start2": 17140.79,
+                    "end1": 17138.297735142347,
+                    "end2": 17147.55,
+                    "direction1": "down",
+                    "direction2": "up",
+                    "above": [
+                        17140.79,
+                        ...
+                    ],
+                    "below": [
+                        17146.26392388936,
+                        ...
+                    ]
+                }
+            },
+            "bearish-trend": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "ema-direction": "up",
+                "price-direction": "down",
+                "side": "",
+                "values": {
+                    "ma": [
+                        17146.26392388936,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 17146.26392388936,
+                    "start2": 17140.79,
+                    "end1": 17138.297735142347,
+                    "end2": 17147.55,
+                    "direction1": "down",
+                    "direction2": "up",
+                    "above": [
+                        17140.79,
+                        ...
+                    ],
+                    "below": [
+                        17146.26392388936,
+                        ...
+                    ]
+                }
+            },
+            "interval": "5m",
+            "period": 30,
+            "risk": 0,
+            "side": "",
+            "trade": false,
+            "description": "Moving Average Strategy"
+        }
+
+[ STRATEGY ]: Exponential Moving Average
+
+    [ NOTE ]: A Moving Average which gives more weight to the most recent
+                price points to make it more responsive to recent data points.
+
+        [ Ex ]: Strategy evaluation - {
+            "value": 17146.045859373233,
+            "bullish-trend": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "ema-direction": "down",
+                "price-direction": "up",
+                "side": "",
+                "values": {
+                    "ema": [
+                        17146.26392388936,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 17146.26392388936,
+                    "start2": 17140.79,
+                    "end1": 17138.297735142347,
+                    "end2": 17147.55,
+                    "direction1": "down",
+                    "direction2": "up",
+                    "above": [
+                        17140.79,
+                        ...
+                    ],
+                    "below": [
+                        17146.26392388936,
+                        ...
+                    ]
+                }
+            },
+            "bearish-trend": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "ema-direction": "up",
+                "price-direction": "down",
+                "side": "",
+                "values": {
+                    "ema": [
+                        17146.26392388936,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 17146.26392388936,
+                    "start2": 17140.79,
+                    "end1": 17138.297735142347,
+                    "end2": 17147.55,
+                    "direction1": "down",
+                    "direction2": "up",
+                    "above": [
+                        17140.79,
+                    ],
+                    "below": [
+                        17146.26392388936,
+                    ]
+                }
+            },
+            "interval": "5m",
+            "period": 30,
+            "risk": 0,
+            "side": "",
+            "trade": false,
+            "description": "Exponential Moving Average Strategy"
+        }
+
+[ STRATEGY ]: Volume Weighted Average Price
+
+    [ NOTE ]: Buy when price is trading below VWAP and then breaks to begin
+                to trade above it - Bullish Trend Confirmation
+
+    [ NOTE ]: Sell when price is trading above VWAP and the breaks to begin
+                to trade below it - Bearish Trend Confirmation
+
+        [ Ex ]: Strategy evaluation - {
+            "value": 16962.345951788855,
+            "bullish-crossover": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "vwap-direction": "down",
+                "price-direction": "up",
+                "side": "",
+                "values": {
+                    "vwap": [
+                        16962.424729374143,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 16962.424729374143,
+                    "start2": 17140.79,
+                    "end1": 16957.93805366157,
+                    "end2": 17147.55,
+                    "crossovers": [],
+                    "confirmed": true,
+                    "direction1": "down",
+                    "direction2": "up"
+                }
+            },
+            "bearish-crossover": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "vwap-direction": "up",
+                "price-direction": "down",
+                "side": "",
+                "values": {
+                    "vwap": [
+                        16962.424729374143,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 16962.424729374143,
+                    "start2": 17140.79,
+                    "end1": 16957.93805366157,
+                    "end2": 17147.55,
+                    "crossovers": [],
+                    "confirmed": true,
+                    "direction1": "down",
+                    "direction2": "up"
+                }
+            },
+            "interval": "5m",
+            "period": 14,
+            "risk": 0,
+            "side": "",
+            "trade": false,
+            "description": "Volume Weighted Average Price Strategy"
+        }
+
+[ STRATEGY ]: Relative Strength Index
+
+    [ NOTE ]: When to buy? When a Bullish Divergence occurs (when price
+                makes lower lows but RSI makes higher lows).
+
+                This could be a sign that downward momentum is waining and a
+                bullish reversal may follow.
+
+                After spotting a Bullish Divergence an investor might use a
+                crossback above 30 as an entry signal.
+
+    [ NOTE ]: When to sell? When a Bearish Divergence occurs (when price
+                makes higher highs, but RSI makes lower highs).
+
+                This could be a sign that upward momentum is slowing, and a
+                Bearish Reversal may occur.
+
+                After spotting a Bearish Divergence an investor might use a
+                crossback below 70 as an exit signal.
+
+        [ Ex ]: Strategy evaluation - {
+            "value": 49.33564764353903,
+            "bullish-divergence": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "rsi-direction": "up",
+                "price-direction": "up",
+                "values": {
+                    "rsi": [
+                        53.25475801754539,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 53.25475801754539,
+                    "start2": 17140.79,
+                    "end1": 61.059220461846486,
+                    "end2": 17147.55,
+                    "direction1": "up",
+                    "direction2": "up"
+                }
+            },
+            "bearish-divergence": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "rsi-direction": "up",
+                "price-direction": "up",
+                "values": {
+                    "rsi": [
+                        53.25475801754539,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 17140.79,
+                    "start2": 53.25475801754539,
+                    "end1": 17147.55,
+                    "end2": 61.059220461846486,
+                    "direction1": "up",
+                    "direction2": "up"
+                }
+            },
+            "interval": "5m",
+            "period": 14,
+            "risk": 0,
+            "trade": false,
+            "side": "",
+            "description": "Relative Strength Index Strategy"
+        }
+
+[ STRATEGY ]: Moving Average Convergence Divergence
+
+    [ NOTE ]: When to buy? Glad you asked!
+                When a Bullish Crossover occurs (when MACD crosses above its
+                signal line following a brief downside correction within a
+                long-term uptrend)
+
+                or when a Bullish Divergence occurs (when MACD makes two rising
+                lows corresponding with two falling lows in the price).
+
+    [ NOTE ]: When to sell?... well ok, guess we're doing this now -
+                When a Bearish Crossover occurs (when MACD crosses below it's
+                signal line following a brief move higher withing a long-term
+                downtrend)
+
+                or when a Bearish Divergence occurs (when MACD forms a series
+                of two falling highs that correspond with two rising highs in
+                the price).
+
+    [ NOTE ]: A Bearish Divergence that appears during a long-term bearish
+                trend is considered confirmation that the trend is likely to
+                continue.
+
+        [ Ex ]: Strategy evaluation - {
+            "value": 3.144200577709853,
+            "signal": 4.928255612084131,
+            "history": -1.784055034374278,
+            "bullish-crossover": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "macd-direction": "up",
+                "signal-direction": "down",
+                "values": {
+                    "macd": [
+                        3.794343027853756,
+                        ...
+                    ],
+                    "signal": [
+                        5.0582841021129115,
+                        ...
+                    ],
+                    "history": [
+                        -1.2639410742591553,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": true,
+                    "start1": 3.794343027853756,
+                    "start2": 5.0582841021129115,
+                    "end1": 4.397334244989906,
+                    "end2": 1.721729092498208,
+                    "crossovers": [
+                        2
+                    ],
+                    "confirmed": true,
+                    "direction1": "up",
+                    "direction2": "down"
+                }
+            },
+            "bearish-crossover": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "macd-direction": "up",
+                "signal-direction": "down",
+                "values": {
+                    "macd": [
+                        3.794343027853756,
+                        ...
+                    ],
+                    "signal": [
+                        5.0582841021129115,
+                        ...
+                    ],
+                    "history": [
+                        -1.2639410742591553,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": true,
+                    "start1": 3.794343027853756,
+                    "start2": 5.0582841021129115,
+                    "end1": 4.397334244989906,
+                    "end2": 1.721729092498208,
+                    "crossovers": [
+                        2
+                    ],
+                    "confirmed": true,
+                    "direction1": "up",
+                    "direction2": "down"
+                }
+            },
+            "bullish-divergence": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "macd-direction": "up",
+                "price-direction": "up",
+                "values": {
+                    "macd": [
+                        3.794343027853756,
+                        ...
+                    ],
+                    "signal": [
+                        5.0582841021129115,
+                        ...
+                    ],
+                    "history": [
+                        -1.2639410742591553,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 3.794343027853756,
+                    "start2": 17140.79,
+                    "end1": 4.397334244989906,
+                    "end2": 17147.55,
+                    "direction1": "up",
+                    "direction2": "up",
+                    "peaks": [],
+                    "peaks1": [],
+                    "peaks2": []
+                }
+            },
+            "bearish-divergence": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "macd-direction": "up",
+                "price-direction": "up",
+                "values": {
+                    "macd": [
+                        3.794343027853756,
+                        ...
+                    ],
+                    "signal": [
+                        5.0582841021129115,
+                        ...
+                    ],
+                    "history": [
+                        -1.2639410742591553,
+                        ...
+                    ],
+                    "price": [
+                        17140.79,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": false,
+                    "start1": 17140.79,
+                    "start2": 3.794343027853756,
+                    "end1": 17147.55,
+                    "end2": 4.397334244989906,
+                    "direction1": "up",
+                    "direction2": "up",
+                    "peaks": [],
+                    "peaks1": [],
+                    "peaks2": []
+                }
+            },
+            "interval": "5m",
+            "period": 14,
+            "risk": 0,
+            "trade": false,
+            "side": "",
+            "description": "Moving Average Convergence Divergence Strategy"
+        }
+
+[ STRATEGY ]: Average Directional Index
+
+    [ NOTE ]: When a Bullish Crossover occurs (when the ADX line is above
+                25 and the +DI line moves upward, which is from below to above
+                the -DI line), we must buy at the next candle after the
+                Crossover and place the stop-loss lower than the previous candle.
+
+    [ NOTE ]: When a Bearish Crossover occurs (when the ADX line is above 25
+                and the +DI line moves downward, which is from above to below
+                the -DI line), we must sell at the next candle after the
+                Crossover and place the stop-loss higher than the previous candle.
+
+        [ Ex ]: Strategy evaluation - {
+            "value": 10.84888017068431,
+            "bullish-crossover": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "side": "buy",
+                "values": {
+                    "adx": [
+                        10.84888017068431,
+                        ...
+                    ],
+                    "+di": [
+                        16.512527812401217,
+                        ...
+                    ],
+                    "-di": [
+                        22.490938314939196,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": true,
+                    "start1": 16.512527812401217,
+                    "start2": 22.490938314939196,
+                    "end1": 21.291752515701056,
+                    "end2": 17.52912413181928,
+                    "crossovers": [
+                        2
+                    ],
+                    "confirmed": true,
+                    "direction1": "up",
+                    "direction2": "down"
+                }
+            },
+            "bearish-crossover": {
+                "flag": false,
+                "start-candle": 11,
+                "stop-candle": 0,
+                "side": "sell",
+                "values": {
+                    "adx": [
+                        10.84888017068431,
+                        ...
+                    ],
+                    "+di": [
+                        16.512527812401217,
+                        ...
+                    ],
+                    "-di": [
+                        22.490938314939196,
+                        ...
+                    ]
+                },
+                "scan": {
+                    "flag": true,
+                    "start1": 16.512527812401217,
+                    "start2": 22.490938314939196,
+                    "end1": 21.291752515701056,
+                    "end2": 17.52912413181928,
+                    "crossovers": [
+                        2
+                    ],
+                    "confirmed": true,
+                    "direction1": "up",
+                    "direction2": "down"
+                }
+            },
+            "interval": "5m",
+            "period": 14,
+            "side": "",
+            "risk": 0,
+            "trade": false,
+            "description": "Average Directional Index Strategy"
+        }
+
+[ STRATEGY ]: Trading Volume
+
+    [ NOTE ]: A large volume movement upwards can validate a large price
+                movement either side.
+
+        [ Ex ]: Strategy evaluation - {
+            "value": 267248.64735,
+            "volume-movement": {
+                "flag": true,
+                "start-value": 365.86029,
+                "stop-value": 1090.25285,
+                "min-value": 365.86029,
+                "max-value": 1226.2393,
+                "period-average": 624.7122678571429,
+                "volume-direction": "up",
+                "start-candle": 13,
+                "stop-candle": 0,
+                "min-candle": 13,
+                "max-candle": 9,
+                "side": "buy",
+                "moved": 860.3790099999999,
+                "moved-percentage": 137.72404581572079,
+                "trigger-percentage": 5
+            },
+            "interval": "5m",
+            "period": 14,
+            "risk": 3,
+            "side": "buy",
+            "trade": true,
+            "description": "Volume Strategy"
+        }
+
+[ STRATEGY ]: Price Action
+
+    [ NOTE ]: Generates weak buy signal when it detects a large price
+                movement up, and a sell signal when it detects a large price
+                movement down. The signal is strengthened when the price
+                movement is confirmed by a large volume movement up.
+
+        [ Ex ]: Strategy evaluation - {
+            "price-movement": {
+                "flag": false,
+                "start-value": 17147.55,
+                "stop-value": 17140.79,
+                "min-value": 17140.79,
+                "max-value": 17165.74,
+                "period-average": 17153.74,
+                "price-direction": "down",
+                "start-candle": 11,
+                "stop-candle": 0,
+                "min-candle": null,
+                "max-candle": 6,
+                "moved": 24.950000000000728,
+                "side": "down",
+                "moved-percentage": 0.14544933058330559,
+                "trigger-percentage": 5
+            },
+            "confirmed-by-volume": {},
+            "interval": "5m",
+            "period": 14,
+            "value": 17140.15,
+            "risk": 0,
+            "side": "",
+            "trade": false,
+            "description": "Price Action Strategy"
+        }
+
+[ EXAMPLE ]: OCO order -
+    * Symbol - ticker symbol for the order.
+    * Quantity - is the amount of crypto you want to purchase.
+    * Side - whether to buy or sell.
+    * stopLimitTimeInForce -
+        * GTC (Good-Till-Cancel): the order will last until it is
+            completed or you cancel it.
+
+        * IOC (Immediate-Or-Cancel): the order will attempt to execute
+            all or part of it immediately at the price and quantity
+            available, then cancel any remaining, unfilled part of the
+            order. If no quantity is available at the chosen price when
+            you place the order, it will be canceled immediately. Please
+            note that Iceberg orders are not supported.
+
+        * FOK (Fill-Or-Kill): the order is instructed to execute in full
+            immediately (filled), otherwise it will be canceled (killed).
+            Please note that Iceberg orders are not supported.
+
+    [ Limit order ]:
+        * Price - The price of your limit order.
+            This order will be visible on the order book.
+
+    [ Stop-Limit order ]:
+        * StopPrice - The price at which your stop-limit order will be
+            triggered (e.g., 0.0024950 BTC).
+
+        * StopLimitPrice - The actual price of your limit order after
+            the stop is triggered (e.g., 0.0024900 BTC).
+
+EOF

@@ -1,0 +1,85 @@
+#!/bin/bash
+#
+# Excellent Regards, the Alveare Solutions #!/Society -x
+#
+# MARKET
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Asymetric Risk  *                         *
+    ________________________________________________________v1.0AR15___________
+                Excellent Regards, the Alveare Solutions #!/Society -x
+
+
+[ FUNCTIONS ]: src/ar_market.py:TradingMarket
+
+    # FETCHERS
+    fetch_deposit_details(self, *args, **kwargs):
+    fetch_withdrawal_details(self, *args, **kwargs):
+    fetch_api_permissions_details(self, *args, **kwargs):
+    fetch_server_time(self, *args, **kwargs):
+    fetch_adx_value(self, **kwargs):
+    fetch_candle_info_column_labels(self):
+    fetch_candle_info(self, *args, **kwargs):
+    fetch_details(self, *args, **kwargs):
+    fetch_account(self, *args, **kwargs):
+    fetch_asset_balance(self, *args, **kwargs):
+    fetch_supported_coins(self, *args, **kwargs):
+    fetch_supported_tickers(self, *args, **kwargs):
+    fetch_active_trades(self, *args, **kwargs):
+    fetch_all_trades(self, *args, **kwargs):
+    fetch_price_value(self, **kwargs):
+    fetch_macd_values(self, **kwargs):
+    fetch_ma_value(self, **kwargs):
+    fetch_ema_value(self, **kwargs):
+    fetch_rsi_value(self, **kwargs):
+    fetch_vwap_value(self, **kwargs):
+
+    # CHECKERS
+    check_minimum_required_quantity_for_trade(self, quantity=0, **kwargs):
+
+    # FORMATTERS
+    format_trading_order_general_args_kwargs(self, label, trade_amount=None,
+    format_trading_order_spot_account_args_kwargs(self, label, trade_amount=None,
+    format_trading_order_args_kwargs(self, label, trade_amount=None,
+    format_price_indicator_kwargs(self, **kwargs):
+    format_adx_indicator_kwargs(self, **kwargs):
+    format_general_indicator_kwargs(self, **kwargs):
+    format_macd_indicator_kwargs(self, **kwargs):
+    format_ma_indicator_kwargs(self, **kwargs):
+    format_ema_indicator_kwargs(self, **kwargs):
+    format_rsi_indicator_kwargs(self, **kwargs):
+    format_vwap_indicator_kwargs(self, **kwargs):
+
+    # ACTIONS
+    trade(self, trade_amount, *args, take_profit=None, stop_loss=None,
+    buy(self, trade_amount, *args, take_profit=None, stop_loss=None,
+    sell(self, trade_amount, *args, take_profit=None, stop_loss=None,
+    build_candle_info_data_frame(self, *args, **kwargs):
+    raw_api_response_convertor(self, raw_value):
+    truncate_cache(cache_dict, size_limit):
+    synced(self, func_name, **args):
+    close_position(self, *args, **kwargs):
+
+    # COMPUTERS
+    compute_volume_history_from_candle_info(self, candle_info, **kwargs):
+    compute_price_history_support(self, price_history):
+    compute_price_history_resistance(self, price_history):
+    compute_ticker_symbol(self, base=None, quote=None):
+
+    # ENSURANCE
+    ensure_indicator_delay(self):
+
+    # UPDATERS
+    update_price_volume_history(self, *update_targets,
+    update_indicator_history(self, *update_targets,
+    update_indicator_timestamp(self):
+    update_cache(self, element, cache_dict, **kwargs):
+    update_coin_details(self, timestamp=str(time.time()), **kwargs):
+    update_trade_fee_details(self, timestamp=str(time.time()), **kwargs):
+    update_price_volume_details(self, *update_targets,
+    update_indicator_details(self, *update_targets,
+    update_details(self, *args, **kwargs):
+
+EOF

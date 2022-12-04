@@ -1,0 +1,251 @@
+#!/bin/bash
+#
+# Excellent Regards, the Alveare Solutions #!/Society -x
+#
+# CONFIG
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Asymetric Risk  *                         *
+    ________________________________________________________v1.0AR15___________
+                Excellent Regards, the Alveare Solutions #!/Society -x
+
+{
+    "AR_SCRIPT_NAME":                "AsymetricRisk",
+    "AR_SCRIPT_DESCRIPTION":         "Crypto Trading Bot",
+    "AR_VERSION":                    "AR15",
+    "AR_VERSION_NO":                 "1.0",
+    "AR_DEFAULT": {
+        "log-dir":                  "log",
+        "conf-dir":                 "conf",
+        "log-file":                 "asymetric_risk.log",
+        "conf-file":                "asymetric_risk.conf.json",
+        "watchdog-anchor-file":     ".ar-bot.anchor",
+        "log-format":               "[ %(asctime)s ] %(name)s [ %(levelname)s ] %(thread)s - %(filename)s - %(lineno)d: %(funcName)s - %(message)s",
+        "timestamp-format":         "%d/%m/%Y-%H:%M:%S",
+        "api-key":                  "<SoMuchNopeGetYourOwn>",
+        "api-secret":               "<SoMuchNopeGetYourOwn>",
+        "taapi-key":                "<SoMuchNopeGetYourOwn>",
+        "api-url":                  "https://api.binance.com/api",
+        "taapi-url":                "https://api.taapi.io",
+            [ NOTE ]: Obvious block is obvious, trust us... we built it.
+
+        "profit-baby":              20,
+            [ NOTE ]: MD coding standards dont make this thing justice, it
+                should be more like "Profit-BABEY!!" if you ask us, but
+                whateva.
+
+                Anyway, it indicates when the trading bot reached it's profit
+                goal and should stop trading in order to celebrate.
+
+                Value is a percentage, so a value of 20 mean 20% of the
+                initial account value when the trading bot was turned ON.
+
+        "max-trades":               3,
+            [ NOTE ]: Maximum number of trades allowed per day.
+
+        "base-currency":            "BTC",
+            [ NOTE ]: Coin you want to trade.
+
+        "quote-currency":           "USDT",
+            [ NOTE ]: Currency you want to measure value of coin and buy with.
+
+        "ticker-symbol":            "BTC/USDT",
+            [ NOTE ]: Maybe this belongs to the obvious block too, don't
+                know. But since it's here, it's used when setting up the
+                trading market and when filling the trading orders. The
+                ticker symbol is composed of the base and quote currency
+                values.
+
+                If left blank, computed automatically from specified currencies.
+
+        "order-time-in-force":      "GTC",
+            [ NOTE ]: Used when filling in trading orders -
+
+            * GTC (Good-Till-Cancel): the order will last until it is
+                completed or you cancel it.
+
+            * IOC (Immediate-Or-Cancel): the order will attempt to execute
+                all or part of it immediately at the price and quantity
+                available, then cancel any remaining, unfilled part of the
+                order. If no quantity is available at the chosen price when
+                you place the order, it will be canceled immediately. Please
+                note that Iceberg orders are not supported.
+
+            * FOK (Fill-Or-Kill): the order is instructed to execute in full
+                immediately (filled), otherwise it will be canceled (killed).
+                Please note that Iceberg orders are not supported.
+
+        "order-response-type":      "JSON",
+            [ NOTE ]: This version only supports JSON communication with the
+                Binance API, I don't even know why this is an option honestly.
+                A glimpse of the future, maybe.
+
+        "order-recv-window":        60000,
+            [ NOTE ]: Time to wait when receivign response from Binance.
+                Maximum value is 60000.
+
+        "order-price":              0,
+            [ NOTE ]: Percentage of current price at which the order will
+                be placed at.
+
+        "order-amount":             1,
+            [ NOTE ]: Percentage of account value to use on every trade.
+
+        "stop-loss":                10,
+            [ NOTE ]: Percentage purchase price allowed to rise/fall before
+                cutting our losses short.
+
+        "take-profit":              30,
+            [ NOTE ]: Percentage purchase price is expected to rise/fall
+                before cashing in
+
+        "test":                     false,
+            [ NOTE ]: When running in test mode, no real orders will be
+                created or used.
+
+        "debug":                    false,
+            [ NOTE ]: Running in debug mode log's A LOT more information to
+                the log file, and in some cases, displays more information
+                to STDOUT too.
+
+        "silence":                  false,
+            [ NOTE ]: Boolean flag - dictates if STDOUT messages should be
+                suppresed.
+
+        "indicator-update-delay":   18,
+            [ NOTE ]: This is basically a self-limiting belief. Let us explain -
+                This value is applied for requests to taapi.io.
+
+                If you used one of the free API keys, you should leave the
+                value of 18 seconds here, as delay between API requests.
+                A value smaller than this might result in errors.
+
+                If you have a payment plan, change this delay accordingly.
+                In case of infinite requests, set this to 0 and enjoy the
+                bump in trade evaluation speed.
+
+        "risk-tolerance":           5,
+            [ NOTE ]: How high are you? I mean your risk tolerance? I'm just
+                asking because this scale is only 1-5 and 5 is the most
+                tolerant to stupid decisions.
+
+        "analyze-risk":             true,
+            [ NOTE ]: Boolean flag that dictates if the bot should care about
+                your risk tolerance when analyzing each trade opportunity.
+
+        "strategy":                 "vwap,rsi,macd,adx,ma,ema,price,volume",
+            [ NOTE ]: A CSV string of all the strategies you want to user
+                when analyzing each trade opportunity.
+
+        "side":                     "auto",
+            [ NOTE ]: What side is (A)Risk allowed to trade? He could be set
+                to only buy, only sell, or decide by itself if it should buy
+                or sell (auto).
+
+        "interval":                 "5m",
+            [ NOTE ]: Default value for chart candle time interval (how much
+                time does one chart candle represent)
+
+            [ NOTE ]: When computing indicator data this value is used unless
+                specified otherwise.
+
+                [ Ex ]: --adx-interval '1h'
+
+        "period":                   14,
+            [ NOTE ]: Number of candles when forming a chart. A period of 14
+                contains 14 candles from candle 1 (now) to 14 in the past.
+
+        "market-open":              "08:00",
+            [ NOTE ]: Time and minute when the market opens and the bot can
+                start trading.
+
+        "market-close":             "22:00",
+            [ NOTE ]: Time and minute when the market closes and the bot can
+                no longer trade for the day, and starts generating reports.
+
+        "price-movement":           5,
+            [ NOTE ]: Percentage price has to move up or down over specified
+                period in order to trigger a large price action movement.
+
+        "rsi-top":                  70,
+        "rsi-bottom":               30,
+        "rsi-period":               14,
+        "rsi-backtracks":           12,
+        "rsi-chart":                "candles",
+        "rsi-interval":             "5m",
+            [ NOTE ]: Values used when evaluating RSI strategy.
+            [ NOTE ]: If not set, default values are used.
+
+        "volume-movement":          5,
+        "volume-interval":          "5m",
+            [ NOTE ]: Values used when evaluating Volume strategy.
+            [ NOTE ]: If not set, default values are used.
+
+        "ma-period":                30,
+        "ma-backtrack":             5,
+        "ma-backtracks":            12,
+        "ma-chart":                 "candles",
+        "ma-interval":              "5m",
+            [ NOTE ]: Values used when evaluating Moving Average strategy.
+            [ NOTE ]: If not set, default values are used.
+
+        "ema-period":               30,
+        "ema-backtrack":            5,
+        "ema-backtracks":           12,
+        "ema-chart":                "candles",
+        "ema-interval":             "5m",
+            [ NOTE ]: Values used when evaluating Exponential Moving Average
+                strategy.
+            [ NOTE ]: If not set, default values are used.
+
+        "macd-backtrack":           5,
+        "macd-backtracks":          12,
+        "macd-chart":               "candles",
+        "macd-fast-period":         12,
+        "macd-slow-period":         26,
+        "macd-signal-period":       9,
+        "macd-interval":            "5m",
+            [ NOTE ]: Values used when evaluating Moving Average Convergence
+                Divergence strategy.
+            [ NOTE ]: If not set, default values are used.
+
+        "adx-period":               14,
+        "adx-backtrack":            5,
+        "adx-backtracks":           12,
+        "adx-chart":                "candles",
+        "adx-interval":             "5m",
+            [ NOTE ]: Values used when evaluating Average Directional Index
+                strategy.
+            [ NOTE ]: If not set, default values are used.
+
+        "vwap-period":              14,
+        "vwap-backtrack":           5,
+        "vwap-backtracks":          12,
+        "vwap-chart":               "candles",
+        "vwap-interval":            "5m",
+            [ NOTE ]: Values used when evaluating Volume Weighted Average
+                Price strategy.
+            [ NOTE ]: If not set, default values are used.
+
+        "price-period":              14,
+        "price-backtrack":           5,
+        "price-backtracks":          12,
+        "price-chart":               "candles",
+        "price-interval":            "5m",
+            [ NOTE ]: Values used when evaluating Price Action strategy.
+            [ NOTE ]: If not set, default values are used.
+
+        "report-id-length":          8,
+            [ NOTE ]: Number of characters the report ID's should have.
+
+        "report-id-characters":      "abcdefghijklmnopqrstuvwxyz0123456789",
+            [ NOTE ]: Allowed characters when randomly generating report ID's
+
+        "report-location":           "./data/reports"
+            [ NOTE ]: Directory where reports will be generated.
+    }
+}
+
+EOF

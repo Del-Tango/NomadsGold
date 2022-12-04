@@ -1,0 +1,10 @@
+{
+    "timestamp": "01/12/2022-01:57:02",
+    "report-id": "ea3xib8n",
+    "report-location": "./data/reports",
+    "report-extension": ".ctd",
+    "report-type": "Current Trades",
+    "report": {
+        "BTCUSDT": []
+    }
+}
