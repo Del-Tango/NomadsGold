@@ -325,7 +325,7 @@ def format_header_string():
 
       *                          *  Nomad's Gold  *                          *
     _____________________________________________________v1.0Stonks____________
-                    Regards, the Alveare Solutions #!/Society -x
+               Excellent Regards, the Alveare Solutions #!/Society -x
     '''
     return header
 

@@ -6,12 +6,24 @@
 
 function create_project_menu_controllers () {
     create_main_menu_controller
+    create_ar_bot_ctrl_menu_controller
     create_bot_ctrl_menu_controller
     create_analysis_ctrl_menu_controller
     create_log_viewer_menu_cotroller
     create_settings_menu_controller
     done_msg "${BLUE}$SCRIPT_NAME${RESET} controller construction complete."
     return 0
+}
+
+function create_ar_bot_ctrl_menu_controller() {
+    create_menu_controller "$AR_CONTROLLER_LABEL" \
+        "${CYAN}$AR_CONTROLLER_DESCRIPTION${RESET}" \
+        "$AR_CONTROLLER_OPTIONS"
+    info_msg "Setting ${CYAN}$AR_CONTROLLER_LABEL${RESET} extented"\
+        "banner function ${MAGENTA}display_ar_bot_ctrl_settings${RESET}..."
+    set_menu_controller_extended_banner "$AR_CONTROLLER_LABEL" \
+        'display_ar_bot_ctrl_settings'
+    return $?
 }
 
 function create_bot_ctrl_menu_controller () {

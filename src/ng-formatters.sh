@@ -4,13 +4,220 @@
 #
 # FORMATTERS
 
-# TODO
+
+# TODO - Move to Machine Dialogue
+function format_config_json_flag() {
+    local FLAG_VALUE="$1"
+    case "$FLAG_VALUE" in
+        'on'|'On'|'ON')
+            echo 'true'
+            ;;
+        'off'|'Off'|'OFF')
+            echo 'false'
+            ;;
+        *)
+            echo $FLAG_VALUE
+            return 1
+            ;;
+    esac
+    return 0
+}
+
+function format_display_arisk_ctrl_settings_args() {
+    local ARGUMENTS=(
+        'ar-pid' 'ticker-symbol' 'base-currency' 'quote-currency' "ar-conf-file"
+        "ar-profit-baby" "ar-watchdog-pid-file"
+        "ar-watchdog-anchor-file" "ar-api-key" "ar-api-secret" "ar-taapi-key"
+        "ar-api-url" "ar-taapi-url" "ar-max-trades" "ar-trading-account-type"
+        "ar-trading-order-type" "ar-order-time-in-force" "ar-stop-loss"
+        "ar-take-profit" "ar-trailing-stop" "ar-test" "ar-debug" "ar-silence"
+        "ar-analyze-risk" "ar-risk-tolerance" "ar-indicator-update-delay"
+        "ar-strategy" "ar-side" "ar-interval" "ar-period" "ar-market-open"
+        "ar-market-close" "ar-backtrack" "ar-backtracks"
+        "ar-price-movement" "ar-report-id" "ar-report-id-length"
+        "ar-report-id-characters" "ar-report-location"
+    )
+    echo ${ARGUMENTS[@]}
+}
+
+function format_arisk_start_trading_bot_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action start-watchdog"
+        "--strategy ${MD_DEFAULT['ar-strategy']}"
+        "--ticker-symbol ${MD_DEFAULT['ticker-symbol']}"
+        "--base-currency ${MD_DEFAULT['base-currency']}"
+        "--quote-currency ${MD_DEFAULT['exchange-currency']}"
+        "--market-open ${MD_DEFAULT['ar-market-open']}"
+        "--market-close ${MD_DEFAULT['ar-market-close']}"
+        "--max-trades ${MD_DEFAULT['ar-max-trades']}"
+        "--profit-baby ${MD_DEFAULT['ar-profit-baby']}"
+        "--stop-loss ${MD_DEFAULT['ar-stop-loss']}"
+        "--take-profit ${MD_DEFAULT['ar-take-profit']}"
+        "--side ${MD_DEFAULT['ar-side']}"
+        "--interval ${MD_DEFAULT['ar-interval']}"
+        "--period ${MD_DEFAULT['ar-period']}"
+        "--history-backtrack ${MD_DEFAULT['ar-backtrack']}"
+        "--history-backtracks ${MD_DEFAULT['ar-backtracks']}"
+        "--price-movement ${MD_DEFAULT['ar-price-movement']}"
+        "--rsi-top ${MD_DEFAULT['ar-rsi-top']}"
+        "--rsi-bottom ${MD_DEFAULT['ar-rsi-bottom']}"
+        "--rsi-period ${MD_DEFAULT['ar-period']}"
+        "--rsi-backtrack ${MD_DEFAULT['ar-rsi-backtrack']}"
+        "--rsi-backtracks ${MD_DEFAULT['ar-rsi-backtracks']}"
+        "--rsi-chart ${MD_DEFAULT['ar-rsi-chart']}"
+        "--rsi-interval ${MD_DEFAULT['ar-rsi-interval']}"
+        "--volume-movement ${MD_DEFAULT['ar-volume-movement']}"
+        "--volume-interval ${MD_DEFAULT['ar-volume-interval']}"
+        "--ma-period ${MD_DEFAULT['ar-ma-period']}"
+        "--ma-backtrack ${MD_DEFAULT['ar-ma-backtrack']}"
+        "--ma-backtracks ${MD_DEFAULT['ar-ma-backtracks']}"
+        "--ma-chart ${MD_DEFAULT['ar-ma-chart']}"
+        "--ma-interval ${MD_DEFAULT['ar-ma-interval']}"
+        "--ema-period ${MD_DEFAULT['ar-ema-period']}"
+        "--ema-backtrack ${MD_DEFAULT['ar-ema-backtrack']}"
+        "--ema-backtracks ${MD_DEFAULT['ar-ema-backtracks']}"
+        "--ema-chart ${MD_DEFAULT['ar-ema-chart']}"
+        "--ema-interval ${MD_DEFAULT['ar-ema-interval']}"
+        "--macd-backtrack ${MD_DEFAULT['ar-macd-backtrack']}"
+        "--macd-backtracks ${MD_DEFAULT['ar-macd-backtracks']}"
+        "--macd-chart ${MD_DEFAULT['ar-macd-chart']}"
+        "--macd-fast-period ${MD_DEFAULT['ar-macd-fast-period']}"
+        "--macd-slow-period ${MD_DEFAULT['ar-macd-slow-period']}"
+        "--macd-signal-period ${MD_DEFAULT['ar-macd-signal-period']}"
+        "--macd-interval ${MD_DEFAULT['ar-macd-interval']}"
+        "--adx-period ${MD_DEFAULT['ar-adx-period']}"
+        "--adx-backtrack ${MD_DEFAULT['ar-adx-backtrack']}"
+        "--adx-backtracks ${MD_DEFAULT['ar-adx-backtracks']}"
+        "--adx-chart ${MD_DEFAULT['ar-adx-chart']}"
+        "--adx-interval ${MD_DEFAULT['ar-adx-interval']}"
+        "--vwap-period ${MD_DEFAULT['ar-vwap-period']}"
+        "--vwap-backtrack ${MD_DEFAULT['ar-vwap-backtrack']}"
+        "--vwap-backtracks ${MD_DEFAULT['ar-vwap-backtracks']}"
+        "--vwap-chart ${MD_DEFAULT['ar-vwap-chart']}"
+        "--vwap-interval ${MD_DEFAULT['ar-vwap-interval']}"
+        "--price-period ${MD_DEFAULT['ar-price-period']}"
+        "--price-backtrack ${MD_DEFAULT['ar-price-backtrack']}"
+        "--price-backtracks ${MD_DEFAULT['ar-price-backtracks']}"
+        "--price-chart ${MD_DEFAULT['ar-price-chart']}"
+        "--price-interval ${MD_DEFAULT['ar-price-interval']}"
+        )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_stop_trading_bot_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action stop-watchdog"
+    )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_report_list_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action list-reports"
+    )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_report_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action report"
+    )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_report_trade_history_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action trade-report"
+    )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_report_deposit_history_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action deposit-report"
+    )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_report_withdrawal_history_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action withdrawal-report"
+    )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_view_report_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action view-report"
+        "--report-id ${MD_DEFAULT['ar-report-id']}"
+    )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_view_market_details_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action market-details"
+    )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_view_account_details_cargo_args() {
+    local ARGUMENTS=(
+        `format_arisk_cargo_constant_args`
+        "--action account-details"
+    )
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
+function format_arisk_cargo_constant_args() {
+    local ARGUMENTS=(
+        "--log-file ${MD_DEFAULT['log-file']}"
+        "--config-file ${MD_DEFAULT['conf-dir']}/${MD_DEFAULT['ar-conf-file']}"
+    )
+    if [[ ${MD_DEFAULT['ar-analyze-risk']} == 'on' ]]; then
+        local ARGUMENTS=(
+            ${ARGUMENTS[@]} '--analyze-risk'
+            "--risk-tolerance ${MD_DEFAULT['ar-risk-tolerance']}"
+        )
+    fi
+    if [[ ${MD_DEFAULT['ar-silence']} == 'on' ]]; then
+        local ARGUMENTS=( ${ARGUMENTS[@]} '--silence' )
+    fi
+
+    if [[ ${MD_DEFAULT['ar-debug']} == 'on' ]]; then
+        local ARGUMENTS=( ${ARGUMENTS[@]} '--debug' )
+    fi
+    if [[ ${MD_DEFAULT['ar-test']} == 'on' ]]; then
+        local ARGUMENTS=( ${ARGUMENTS[@]} '--test' )
+    fi
+    echo -n "${ARGUMENTS[@]}"
+    return $?
+}
+
 function format_display_bot_ctrl_settings_args() {
-    echo "[ WARNING ]: Under construction, building..."
-#   local ARGUMENTS=(
-#
-#   )
-#   echo ${ARGUMENTS[@]}
+    local ARGUMENTS=(
+         'local-ip' 'external-ip'
+    )
+    echo ${ARGUMENTS[@]}
     return $?
 }
 
@@ -303,23 +510,115 @@ function format_nomadsgold_cargo_constant_args() {
     return $?
 }
 
-function format_config_json_flag() {
-    local FLAG_VALUE="$1"
-    case "$FLAG_VALUE" in
-        'on'|'On'|'ON')
-            echo 'true'
-            ;;
-        'off'|'Off'|'OFF')
-            echo 'false'
-            ;;
-        *)
-            echo $FLAG_VALUE
-            return 1
-            ;;
-    esac
-    return 0
+function format_ar_config_json_file_content() {
+    cat<<EOF
+{
+    "AR_SCRIPT_NAME":                "AsymetricRisk",
+    "AR_SCRIPT_DESCRIPTION":         "Crypto Trading Bot",
+    "AR_VERSION":                    "AR15",
+    "AR_VERSION_NO":                 "1.0",
+    "_useless_yet_engaging_comment": "Tweak me babeyy!! It's the only path to enlightenment.",
+    "AR_DEFAULT": {
+         "project-path":             "${MD_DEFAULT['ar-project-path']}",
+         "log-dir":                  "${MD_DEFAULT['log-dir']}",
+         "conf-dir":                 "${MD_DEFAULT['conf-dir']}",
+         "src-dir":                  "${MD_DEFAULT['src-dir']}/AsymetricRisk/src",
+         "dox-dir":                  "${MD_DEFAULT['src-dir']}/AsymetricRisk/dox",
+         "dta-dir":                  "${MD_DEFAULT['src-dir']}/AsymetricRisk/data",
+         "log-file":                 "${MD_DEFAULT['log-file']}",
+         "conf-file":                "${MD_DEFAULT['ar-conf-file']}",
+         "profit-baby":              ${MD_DEFAULT['ar-profit-baby']},
+         "watchdog-pid-file":        "${MD_DEFAULT['ar-watchdog-pid-file']}",
+         "watchdog-anchor-file":     "${MD_DEFAULT['ar-watchdog-anchor-file']}",
+         "log-format":               "${MD_DEFAULT['log-format']}",
+         "timestamp-format":         "${MD_DEFAULT['timestamp-format']}",
+         "api-key":                  "${MD_DEFAULT['ar-api-key']}",
+         "api-secret":               "${MD_DEFAULT['ar-api-secret']}",
+         "taapi-key":                "${MD_DEFAULT['ar-taapi-key']}",
+         "api-url":                  "${MD_DEFAULT['ar-api-url']}",
+         "taapi-url":                "${MD_DEFAULT['ar-taapi-url']}",
+         "max-trades":               ${MD_DEFAULT['ar-max-trades']},
+         "trading-account-type":     "${MD_DEFAULT['ar-trading-account-type']}",
+         "trading-order-type":       "${MD_DEFAULT['ar-trading-order-type']}",
+         "base-currency":            "${MD_DEFAULT['base-currency']}",
+         "quote-currency":           "${MD_DEFAULT['quote-currency']}",
+         "ticker-symbol":            "${MD_DEFAULT['ticker-symbol']}",
+         "order-time-in-force":      "${MD_DEFAULT['ar-order-time-in-force']}",
+         "order-response-type":      "${MD_DEFAULT['ar-order-response-type']}",
+         "order-recv-window":        ${MD_DEFAULT['ar-order-recv-window']},
+         "order-price":              ${MD_DEFAULT['ar-order-price']},
+         "order-amount":             ${MD_DEFAULT['ar-order-amount']},
+         "stop-loss":                ${MD_DEFAULT['ar-stop-loss']},
+         "take-profit":              ${MD_DEFAULT['ar-take-profit']},
+         "test":                     `format_config_json_flag ${MD_DEFAULT['ar-test']}`,
+         "debug":                    `format_config_json_flag ${MD_DEFAULT['ar-debug']}`,
+         "silence":                  `format_config_json_flag ${MD_DEFAULT['ar-silence']}`,
+         "analyze-risk":             `format_config_json_flag ${MD_DEFAULT['ar-analyze-risk']}`,
+         "risk-tolerance":           ${MD_DEFAULT['ar-risk-tolerance']},
+         "indicator-update-delay":   ${MD_DEFAULT['ar-indicator-update-delay']},
+         "strategy":                 "${MD_DEFAULT['ar-strategy']}",
+         "side":                     "${MD_DEFAULT['ar-side']}",
+         "interval":                 "${MD_DEFAULT['ar-interval']}",
+         "period":                   ${MD_DEFAULT['ar-period']},
+         "market-open":              "${MD_DEFAULT['ar-market-open']}",
+         "market-close":             "${MD_DEFAULT['ar-market-close']}",
+         "backtrack":                ${MD_DEFAULT['ar-backtrack']},
+         "backtracks":               ${MD_DEFAULT['ar-backtracks']},
+         "stop-limit":               ${MD_DEFAULT['ar-stop-limit']},
+         "stop-price":               ${MD_DEFAULT['ar-stop-price']},
+         "stop-limit-price":         ${MD_DEFAULT['ar-stop-limit-price']},
+         "stop-limit-time-in-force": "${MD_DEFAULT['ar-stop-limit-time-in-force']}",
+         "price-movement":           ${MD_DEFAULT['ar-price-movement']},
+         "rsi-top":                  ${MD_DEFAULT['ar-rsi-top']},
+         "rsi-bottom":               ${MD_DEFAULT['ar-rsi-bottom']},
+         "rsi-period":               ${MD_DEFAULT['ar-rsi-period']},
+         "rsi-backtrack":            ${MD_DEFAULT['ar-backtrack']},
+         "rsi-backtracks":           ${MD_DEFAULT['ar-backtracks']},
+         "rsi-chart":                "${MD_DEFAULT['ar-chart']}",
+         "rsi-interval":             "${MD_DEFAULT['ar-interval']}",
+         "volume-movement":          ${MD_DEFAULT['ar-volume-movement']},
+         "volume-interval":          "${MD_DEFAULT['ar-volume-interval']}",
+         "ma-period":                ${MD_DEFAULT['ar-ma-period']},
+         "ma-backtrack":             ${MD_DEFAULT['ar-ma-backtrack']},
+         "ma-backtracks":            ${MD_DEFAULT['ar-ma-backtracks']},
+         "ma-chart":                 "${MD_DEFAULT['ar-ma-chart']}",
+         "ma-interval":              "${MD_DEFAULT['ar-ma-interval']}",
+         "ema-period":               ${MD_DEFAULT['ar-ema-period']},
+         "ema-backtrack":            ${MD_DEFAULT['ar-ema-backtrack']},
+         "ema-backtracks":           ${MD_DEFAULT['ar-ema-backtracks']},
+         "ema-chart":                "${MD_DEFAULT['ar-ema-chart']}",
+         "ema-interval":             "${MD_DEFAULT['ar-ema-interval']}",
+         "macd-backtrack":           ${MD_DEFAULT['ar-macd-backtrack']},
+         "macd-backtracks":          ${MD_DEFAULT['ar-macd-backtracks']},
+         "macd-chart":               "${MD_DEFAULT['ar-macd-chart']}",
+         "macd-fast-period":         ${MD_DEFAULT['ar-macd-fast-period']},
+         "macd-slow-period":         ${MD_DEFAULT['ar-macd-slow-period']},
+         "macd-signal-period":       ${MD_DEFAULT['ar-macd-signal-period']},
+         "macd-interval":            "${MD_DEFAULT['ar-macd-interval']}",
+         "adx-period":               ${MD_DEFAULT['ar-adx-period']},
+         "adx-backtrack":            ${MD_DEFAULT['ar-adx-backtrack']},
+         "adx-backtracks":           ${MD_DEFAULT['ar-adx-backtracks']},
+         "adx-chart":                "${MD_DEFAULT['ar-adx-chart']}",
+         "adx-interval":             "${MD_DEFAULT['ar-adx-interval']}",
+         "vwap-period":              ${MD_DEFAULT['ar-vwap-period']},
+         "vwap-backtrack":           ${MD_DEFAULT['ar-vwap-backtrack']},
+         "vwap-backtracks":          ${MD_DEFAULT['ar-vwap-backtracks']},
+         "vwap-chart":               "${MD_DEFAULT['ar-vwap-chart']}",
+         "vwap-interval":            "${MD_DEFAULT['ar-vwap-interval']}",
+         "price-period":             ${MD_DEFAULT['ar-price-period']},
+         "price-backtrack":          ${MD_DEFAULT['ar-price-backtrack']},
+         "price-backtracks":         ${MD_DEFAULT['ar-price-backtracks']},
+         "price-chart":              "${MD_DEFAULT['ar-price-chart']}",
+         "price-interval":           "${MD_DEFAULT['ar-price-interval']}",
+         "report-id":                "${MD_DEFAULT['ar-report-id']}",
+         "report-id-length":         ${MD_DEFAULT['ar-report-id-length']},
+         "report-id-characters":     "${MD_DEFAULT['ar-report-id-characters']}",
+         "report-location":          "${MD_DEFAULT['ar-report-location']}"
+    }
 }
-
+EOF
+    return $?
+}
 function format_config_json_file_content() {
     cat<<EOF
 {
@@ -385,5 +684,46 @@ function format_config_json_file_content() {
 EOF
     return $?
 }
+
+# CODE DUMP
+
+#       "ar-rsi-top" "ar-rsi-bottom" "ar-rsi-period" "ar-rsi-backtrack"
+#       "ar-rsi-backtracks"
+#       "ar-rsi-chart"
+#       "ar-rsi-interval"
+#       "ar-volume-movement"
+#       "ar-volume-interval"
+#       "ar-ma-period"
+#       "ar-ma-backtrack"
+#       "ar-ma-backtracks"
+#       "ar-ma-chart"
+#       "ar-ma-interval"
+#       "ar-ema-period"
+#       "ar-ema-backtrack"
+#       "ar-ema-backtracks"
+#       "ar-ema-chart"
+#       "ar-ema-interval"
+#       "ar-macd-backtrack"
+#       "ar-macd-backtracks"
+#       "ar-macd-chart"
+#       "ar-macd-fast-period"
+#       "ar-macd-slow-period"
+#       "ar-macd-signal-period"
+#       "ar-macd-interval"
+#       "ar-adx-period"
+#       "ar-adx-backtrack"
+#       "ar-adx-backtracks"
+#       "ar-adx-chart"
+#       "ar-adx-interval"
+#       "ar-vwap-period"
+#       "ar-vwap-backtrack"
+#       "ar-vwap-backtracks"
+#       "ar-vwap-chart"
+#       "ar-vwap-interval"
+#       "ar-price-period"
+#       "ar-price-backtrack"
+#       "ar-price-backtracks"
+#       "ar-price-chart"
+#       "ar-price-interval"
 
 

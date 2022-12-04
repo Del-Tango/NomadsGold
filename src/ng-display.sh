@@ -26,148 +26,286 @@ EOF
     return $?
 }
 
-function display_ng_settings () {
-    local SETTING_LABELS=( $@ )
-    for setting in ${SETTING_LABELS[@]}; do
-        case "$setting" in
-            'project-path')
-                display_setting_project_path; continue
-                ;;
-            'log-dir')
-                display_setting_log_dir_path; continue
-                ;;
-            'conf-dir')
-                display_setting_conf_dir_path; continue
-                ;;
-            'cron-dir')
-                display_setting_cron_dir_path; continue
-                ;;
-            'log-file')
-                display_setting_log_file_path; continue
-                ;;
-            'conf-file')
-                display_setting_conf_file_path; continue
-                ;;
-            'conf-json-file')
-                display_setting_conf_json_file_path; continue
-                ;;
-            'log-lines')
-                display_setting_log_lines; continue
-                ;;
-            'system-user')
-                display_setting_system_user; continue
-                ;;
-            'system-pass')
-                display_setting_system_pass; continue
-                ;;
-            'system-perms')
-                display_setting_system_perms; continue
-                ;;
-            'hostname-file')
-                display_setting_hostname_file; continue
-                ;;
-            'hosts-file')
-                display_setting_hosts_file; continue
-                ;;
-            'wpa-file')
-                display_setting_wpa_file; continue
-                ;;
-            'cron-file')
-                display_setting_cron_file; continue
-                ;;
-            'bashrc-file')
-                display_setting_bashrc_file; continue
-                ;;
-            'bashaliases-file')
-                display_setting_bashaliases_file; continue
-                ;;
-            'bashrc-template')
-                display_setting_bashrc_template; continue
-                ;;
-            'silence')
-                display_setting_silence_flag; continue
-                ;;
-            'local-ip')
-                display_local_ipv4_address; continue
-                ;;
-            'external-ip')
-                display_external_ipv4_address; continue
-                ;;
-            'wifi-essid')
-                display_setting_wifi_essid; continue
-                ;;
-            'wifi-pass')
-                display_setting_wifi_pass; continue
-                ;;
-            'wpa-dir')
-                display_wpa_supplicant_dir; continue
-                ;;
-            'hosts-dir')
-                display_hosts_dir; continue
-                ;;
-            'hostname-dir')
-                display_hostname_dir; continue
-                ;;
-            'data-dir')
-                display_data_dir; continue
-                ;;
-            'action')
-                display_action; continue
-                ;;
-            'ticker-symbol')
-                display_stock_symbol; continue
-                ;;
-            'watch-interval')
-                display_watch_interval; continue
-                ;;
-            'watch-flag')
-                display_watch_flag; continue
-                ;;
-            'watch-anchor-file')
-                display_watch_anchor_file; continue
-                ;;
-            'period')
-                display_period; continue
-                ;;
-            'period-interval')
-                display_period_interval; continue
-                ;;
-            'period-start')
-                display_period_start; continue
-                ;;
-            'period-end')
-                display_period_end; continue
-                ;;
-            'action-header')
-                display_action_header; continue
-                ;;
-            'write-flag')
-                display_write_flag; continue
-                ;;
-            'write-mode')
-                display_write_mode; continue
-                ;;
-            'out-file')
-                display_out_file; continue
-                ;;
-            'action-target')
-                display_action_target; continue
-                ;;
-            'base-currency')
-                display_base_currency; continue
-                ;;
-            'exchange-currency')
-                display_exchange_currency; continue
-                ;;
-            'crypto-topx')
-                display_crypto_topx; continue
-                ;;
-            'quantity')
-                display_quantity; continue
-                ;;
-        esac
-    done
+function display_bot_ctrl_settings() {
+    local ARGUMENTS=( `format_display_bot_ctrl_settings_args` )
+    debug_msg "Displaying settings: (${MAGENTA}${ARGUMENTS[@]}${RESET})"
+    display_ng_settings ${ARGUMENTS[@]}; echo
+    return $?
+}
+
+function display_ar_bot_ctrl_settings() {
+    local ARGUMENTS=( `format_display_arisk_ctrl_settings_args` )
+    debug_msg "Displaying settings: (${MAGENTA}${ARGUMENTS[@]}${RESET})"
+    display_ng_settings ${ARGUMENTS[@]} | column; echo
+    return $?
+}
+
+function display_ar_bot_pid() {
+    if [ -f "${MD_DEFAULT['ar-watchdog-pid-file']}" ]; then
+        local BOT_PID=`cat ${MD_DEFAULT['ar-watchdog-pid-file']} 2> /dev/null`
+        if [ ! -z "$BOT_PID" ]; then
+            local DISPLAY_VALUE="${WHITE}${BOT_PID}${RESET}"
+        else
+            local DISPLAY_VALUE="${RED}Not Running${RESET}"
+        fi
+    else
+        local DISPLAY_VALUE="${RED}Not Running${RESET}"
+    fi
+    printf "[ ${BLUE}(A)${RED}Risk${CYAN} Bot PID${RESET}          ]: ${DISPLAY_VALUE}\t\n"
     return 0
+}
+
+function display_ar_reports() {
+    local COUNT=1
+    for file_name in `ls ${MD_DEFAULT['ar-report-location']}`; do
+        echo "${WHITE}${COUNT}. ${BLUE}${MD_DEFAULT['ar-report-location']}/${YELLOW}${file_name}${RESET}"
+        local COUNT=$((COUNT+1))
+    done
+}
+
+function display_ar_api_key() {
+    if [ -z "${MD_DEFAULT['ar-api-key']}" ]; then
+        local VALUE="${RED}Not Set${RESET}"
+    else
+        local VALUE="${GREEN}Locked'n Loaded${RESET}"
+    fi
+    printf "[ ${CYAN}Binance API KEY${RESET}          ]: ${VALUE}\t\n"
+    return $?
+}
+
+function display_ar_api_secret() {
+    if [ -z "${MD_DEFAULT['ar-api-secret']}" ]; then
+        local VALUE="${RED}Not Set${RESET}"
+    else
+        local VALUE="${GREEN}Locked'n Loaded${RESET}"
+    fi
+    printf "[ ${CYAN}Binance Secret KEY${RESET}       ]: ${VALUE}\t\n"
+    return $?
+}
+
+function display_ar_taapi_key() {
+    if [ -z "${MD_DEFAULT['ar-taapi-key']}" ]; then
+        local VALUE="${RED}Not Set${RESET}"
+    else
+        local VALUE="${GREEN}Locked'n Loaded${RESET}"
+    fi
+    printf "[ ${CYAN}Taapi KEY${RESET}                ]: ${VALUE}\t\n"
+    return $?
+}
+
+function display_ar_rsi_top() {
+    printf "[ ${CYAN}RSI Top${RESET}                  ]: ${WHITE}${MD_DEFAULT['ar-rsi-top']}${RESET}/100\t\n"
+    return $?
+}
+
+function display_ar_rsi_bottom() {
+    printf "[ ${CYAN}RSI Bottom${RESET}               ]: ${WHITE}${MD_DEFAULT['ar-rsi-bottom']}${RESET}/100\t\n"
+    return $?
+}
+
+function display_ar_macd_fast_period() {
+    printf "[ ${CYAN}MACD Fast Period${RESET}         ]: ${WHITE}${MD_DEFAULT['ar-macd-fast-period']}${RESET} candles\t\n"
+    return $?
+}
+
+function display_ar_macd_slow_period() {
+    printf "[ ${CYAN}MACD Slow Period${RESET}         ]: ${WHITE}${MD_DEFAULT['ar-macd-slow-period']}${RESET} candles\t\n"
+    return $?
+}
+
+function display_ar_macd_signal_period() {
+    printf "[ ${CYAN}MACD Signal Period${RESET}       ]: ${WHITE}${MD_DEFAULT['ar-macd-signal-period']}${RESET} candles\t\n"
+    return $?
+}
+
+function display_ar_price_movement() {
+    printf "[ ${CYAN}Price Movement${RESET}           ]: ${WHITE}${MD_DEFAULT['ar-price-movement']}${RESET} percent\t\n"
+    return $?
+}
+
+function display_ar_volume_movement() {
+    printf "[ ${CYAN}Volume Movement${RESET}          ]: ${WHITE}${MD_DEFAULT['ar-volume-movement']}${RESET} percent\t\n"
+    return $?
+}
+
+function display_ar_project_path() {
+    printf "[ ${CYAN}Project Path${RESET}             ]: ${BLUE}${MD_DEFAULT['ar-project-path']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_conf_file() {
+    printf "[ ${CYAN}Config File${RESET}              ]: ${YELLOW}`basename ${MD_DEFAULT['ar-conf-file']}`${RESET}\t\n"
+    return $?
+}
+
+function display_ar_profit_baby() {
+    printf "[ ${CYAN}Profit BABY!!${RESET}            ]: ${WHITE}${MD_DEFAULT['ar-profit-baby']}${RESET} percent\t\n"
+    return $?
+}
+
+function display_ar_watchdog_pid_file() {
+    printf "[ ${CYAN}TradingBot Pid File${RESET}      ]: ${YELLOW}${MD_DEFAULT['ar-watchdog-pid-file']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_watchdog_file() {
+    printf "[ ${CYAN}TradingBot Anchor File${RESET}   ]: ${YELLOW}${MD_DEFAULT['ar-watchdog-anchor-file']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_api_url() {
+    printf "[ ${CYAN}Binance URL${RESET}              ]: ${MAGENTA}${MD_DEFAULT['ar-api-url']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_taapi_url() {
+    printf "[ ${CYAN}Taapi URL${RESET}                ]: ${MAGENTA}${MD_DEFAULT['ar-taapi-url']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_max_trades() {
+    printf "[ ${CYAN}Max Trades${RESET}               ]: ${WHITE}${MD_DEFAULT['ar-max-trades']}${RESET}/day \t\n"
+    return $?
+}
+
+function display_ar_trading_account_type() {
+    printf "[ ${CYAN}Trading Account Type${RESET}     ]: ${MAGENTA}${MD_DEFAULT['ar-trading-account-type']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_trading_order_type() {
+    printf "[ ${CYAN}Trading Order Type${RESET}       ]: ${MAGENTA}${MD_DEFAULT['ar-trading-order-type']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_order_time_in_force() {
+    printf "[ ${CYAN}Order Time in Force${RESET}      ]: ${MAGENTA}${MD_DEFAULT['ar-order-time-in-force']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_order_response_type() {
+    printf "[ ${CYAN}Order Resp Type${RESET}          ]: ${MAGENTA}${MD_DEFAULT['ar-order-response-type']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_order_recv_window() {
+    printf "[ ${CYAN}Order Recv Window${RESET}        ]: ${WHITE}${MD_DEFAULT['ar-order-recv-window']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_order_price() {
+    printf "[ ${CYAN}Order Price${RESET}              ]: ${WHITE}${MD_DEFAULT['ar-order-price']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_order_amount() {
+    printf "[ ${CYAN}Order Amount${RESET}             ]: ${WHITE}${MD_DEFAULT['ar-order-amount']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_stop_loss() {
+    printf "[ ${CYAN}Order Stop Loss${RESET}          ]: ${WHITE}${MD_DEFAULT['ar-stop-loss']}${RESET} percent\t\n"
+    return $?
+}
+
+function display_ar_take_profit() {
+    printf "[ ${CYAN}Order Take Profit${RESET}        ]: ${WHITE}${MD_DEFAULT['ar-take-profit']}${RESET} percent\t\n"
+    return $?
+}
+
+function display_ar_trailing_stop() {
+    printf "[ ${CYAN}Order Trailing Stop${RESET}      ]: ${WHITE}${MD_DEFAULT['ar-trailing-stop']}${RESET} percent\t\n"
+    return $?
+}
+
+function display_ar_test_flag() {
+    printf "[ ${CYAN}Test Flag${RESET}                ]: `format_flag_colors ${MD_DEFAULT['ar-test']}`\t\n"
+    return $?
+}
+
+function display_ar_debug_flag() {
+    printf "[ ${CYAN}Debug Flag${RESET}               ]: `format_flag_colors ${MD_DEFAULT['ar-debug']}`\t\n"
+    return $?
+}
+
+function display_ar_silence_flag() {
+    printf "[ ${CYAN}Silence Flag${RESET}             ]: `format_flag_colors ${MD_DEFAULT['ar-silence']}`\t\n"
+    return $?
+}
+
+function display_ar_analyze_risk_flag() {
+    printf "[ ${CYAN}Risk Analysis Flag${RESET}       ]: `format_flag_colors ${MD_DEFAULT['ar-analyze-risk']}`\t\n"
+    return $?
+}
+
+function display_ar_risk_tolerance() {
+    printf "[ ${CYAN}Trading Risk Tolerance${RESET}   ]: ${MAGENTA}${MD_DEFAULT['ar-risk-tolerance']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_indicator_update_delay() {
+    printf "[ ${CYAN}Indicator API call delay${RESET} ]: ${WHITE}${MD_DEFAULT['ar-indicator-update-delay']} seconds${RESET}\t\n"
+    return $?
+}
+
+function display_ar_strategy() {
+    printf "[ ${CYAN}Trading Strategy${RESET}         ]: ${MAGENTA}${MD_DEFAULT['ar-strategy']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_side() {
+    printf "[ ${CYAN}Trading Side${RESET}             ]: ${MAGENTA}${MD_DEFAULT['ar-side']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_interval() {
+    printf "[ ${CYAN}Chart Candle Interval${RESET}    ]: ${WHITE}${MD_DEFAULT['ar-interval']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_period() {
+    printf "[ ${CYAN}Trading Chart Period${RESET}     ]: ${WHITE}${MD_DEFAULT['ar-period']}${RESET} candles\t\n"
+    return $?
+}
+
+function display_ar_market_open() {
+    printf "[ ${CYAN}Market Open Hours${RESET}        ]: ${MAGENTA}${MD_DEFAULT['ar-market-open']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_market_close() {
+    printf "[ ${CYAN}Market Close Hours${RESET}       ]: ${MAGENTA}${MD_DEFAULT['ar-market-close']}${RESET}\t\n"
+    return $?
+}
+
+function display_ar_backtrack() {
+    printf "[ ${CYAN}History Backtrack${RESET}        ]: ${WHITE}${MD_DEFAULT['ar-backtrack']}${RESET} candles\t\n"
+    return $?
+}
+
+function display_ar_backtracks() {
+    printf "[ ${CYAN}History Backtracks${RESET}       ]: ${WHITE}${MD_DEFAULT['ar-backtracks']}${RESET} candles\t\n"
+    return $?
+}
+
+function display_ar_stop_limit() {
+    printf "[ ${CYAN}STOP Limit${RESET}               ]: ${WHITE}${MD_DEFAULT['ar-stop-limit']}${RESET} percent\t\n"
+    return $?
+}
+
+function display_ar_stop_price() {
+    printf "[ ${CYAN}STOP Price${RESET}               ]: ${WHITE}${MD_DEFAULT['ar-stop-price']}${RESET} percent\t\n"
+    return $?
+}
+
+function display_ar_stop_limit_price() {
+    printf "[ ${CYAN}STOP LIMIT Time Price${RESET}    ]: ${WHITE}${MD_DEFAULT['ar-stop-limit-time-price']}${RESET}\t\n"
+    return $?
+}
+
+function displAY_AR_stop_limit_time_in_force() {
+    printf "[ ${CYAN}STOP LIMIT Time in Force${RESET} ]: ${MAGENTA}${MD_DEFAULT['ar-stop-limit-time-in-force']}${RESET}\t\n"
+    return $?
 }
 
 function display_action() {
@@ -176,7 +314,7 @@ function display_action() {
 }
 
 function display_stock_symbol() {
-    printf "[ ${CYAN}Stock Symbol${RESET}             ]: ${GREEN}${MD_DEFAULT['ticker-symbol']}${RESET}\t\n"
+    printf "[ ${CYAN}Ticker Symbol${RESET}            ]: ${GREEN}${MD_DEFAULT['ticker-symbol']}${RESET}\t\n"
     return $?
 }
 
@@ -420,13 +558,6 @@ function display_data_dir() {
     return $?
 }
 
-function display_bot_ctrl_settings() {
-    local ARGUMENTS=( `format_display_bot_ctrl_settings_args` )
-    debug_msg "Displaying settings: (${MAGENTA}${ARGUMENTS[@]}${RESET})"
-    display_ng_settings ${ARGUMENTS[@]} && echo
-    return $?
-}
-
 function display_analysis_ctrl_settings() {
     local ARGUMENTS=( `format_display_analysis_ctrl_settings_args` )
     debug_msg "Displaying settings: (${MAGENTA}${ARGUMENTS[@]}${RESET})"
@@ -476,7 +607,290 @@ EOF
     return $?
 }
 
+function display_ng_settings () {
+    local SETTING_LABELS=( $@ )
+    for setting in ${SETTING_LABELS[@]}; do
+        case "$setting" in
+            'project-path')
+                display_setting_project_path; continue
+                ;;
+            'log-dir')
+                display_setting_log_dir_path; continue
+                ;;
+            'conf-dir')
+                display_setting_conf_dir_path; continue
+                ;;
+            'cron-dir')
+                display_setting_cron_dir_path; continue
+                ;;
+            'log-file')
+                display_setting_log_file_path; continue
+                ;;
+            'conf-file')
+                display_setting_conf_file_path; continue
+                ;;
+            'conf-json-file')
+                display_setting_conf_json_file_path; continue
+                ;;
+            'log-lines')
+                display_setting_log_lines; continue
+                ;;
+            'system-user')
+                display_setting_system_user; continue
+                ;;
+            'system-pass')
+                display_setting_system_pass; continue
+                ;;
+            'system-perms')
+                display_setting_system_perms; continue
+                ;;
+            'hostname-file')
+                display_setting_hostname_file; continue
+                ;;
+            'hosts-file')
+                display_setting_hosts_file; continue
+                ;;
+            'wpa-file')
+                display_setting_wpa_file; continue
+                ;;
+            'cron-file')
+                display_setting_cron_file; continue
+                ;;
+            'bashrc-file')
+                display_setting_bashrc_file; continue
+                ;;
+            'bashaliases-file')
+                display_setting_bashaliases_file; continue
+                ;;
+            'bashrc-template')
+                display_setting_bashrc_template; continue
+                ;;
+            'silence')
+                display_setting_silence_flag; continue
+                ;;
+            'local-ip')
+                display_local_ipv4_address; continue
+                ;;
+            'external-ip')
+                display_external_ipv4_address; continue
+                ;;
+            'wifi-essid')
+                display_setting_wifi_essid; continue
+                ;;
+            'wifi-pass')
+                display_setting_wifi_pass; continue
+                ;;
+            'wpa-dir')
+                display_wpa_supplicant_dir; continue
+                ;;
+            'hosts-dir')
+                display_hosts_dir; continue
+                ;;
+            'hostname-dir')
+                display_hostname_dir; continue
+                ;;
+            'data-dir')
+                display_data_dir; continue
+                ;;
+            'action')
+                display_action; continue
+                ;;
+            'ticker-symbol')
+                display_stock_symbol; continue
+                ;;
+            'watch-interval')
+                display_watch_interval; continue
+                ;;
+            'watch-flag')
+                display_watch_flag; continue
+                ;;
+            'watch-anchor-file')
+                display_watch_anchor_file; continue
+                ;;
+            'period')
+                display_period; continue
+                ;;
+            'period-interval')
+                display_period_interval; continue
+                ;;
+            'period-start')
+                display_period_start; continue
+                ;;
+            'period-end')
+                display_period_end; continue
+                ;;
+            'action-header')
+                display_action_header; continue
+                ;;
+            'write-flag')
+                display_write_flag; continue
+                ;;
+            'write-mode')
+                display_write_mode; continue
+                ;;
+            'out-file')
+                display_out_file; continue
+                ;;
+            'action-target')
+                display_action_target; continue
+                ;;
+            'base-currency')
+                display_base_currency; continue
+                ;;
+            'exchange-currency')
+                display_exchange_currency; continue
+                ;;
+            'crypto-topx')
+                display_crypto_topx; continue
+                ;;
+            'quantity')
+                display_quantity; continue
+                ;;
+            "ar-project-path")
+                display_ar_project_path; continue
+                ;;
+            "ar-conf-file")
+                display_ar_conf_file; continue
+                ;;
+            "ar-profit-baby")
+                display_ar_profit_baby; continue
+                ;;
+            "ar-watchdog-pid-file")
+                display_ar_watchdog_pid_file; continue
+                ;;
+            "ar-watchdog-anchor-file")
+                display_ar_watchdog_file; continue
+                ;;
+            "ar-api-key")
+                display_ar_api_key; continue
+                ;;
+            "ar-api-secret")
+                display_ar_api_secret; continue
+                ;;
+            "ar-taapi-key")
+                display_ar_taapi_key; continue
+                ;;
+            "ar-api-url")
+                display_ar_api_url; continue
+                ;;
+            "ar-taapi-url")
+                display_ar_taapi_url; continue
+                ;;
+            "ar-max-trades")
+                display_ar_max_trades; continue
+                ;;
+            "ar-trading-account-type")
+                display_ar_trading_account_type; continue
+                ;;
+            "ar-trading-order-type")
+                display_ar_trading_order_type; continue
+                ;;
+            "ar-order-time-in-force")
+                display_ar_order_time_in_force; continue
+                ;;
+            "ar-order-response-type")
+                display_ar_order_response_type; continue
+                ;;
+            "ar-order-recv-window")
+                display_ar_order_recv_window; continue
+                ;;
+            "ar-order-price")
+                display_ar_order_price; continue
+                ;;
+            "ar-order-amount")
+                display_ar_order_amount; continue
+                ;;
+            "ar-stop-loss")
+                display_ar_stop_loss; continue
+                ;;
+            "ar-take-profit")
+                display_ar_take_profit; continue
+                ;;
+            "ar-trailing-stop")
+                display_ar_trailing_stop; continue
+                ;;
+            "ar-test")
+                display_ar_test_flag; continue
+                ;;
+            "ar-debug")
+                display_ar_debug_flag; continue
+                ;;
+            "ar-silence")
+                display_ar_silence_flag; continue
+                ;;
+            "ar-analyze-risk")
+                display_ar_analyze_risk_flag; continue
+                ;;
+            "ar-risk-tolerance")
+                display_ar_risk_tolerance; continue
+                ;;
+            "ar-indicator-update-delay")
+                display_ar_indicator_update_delay; continue
+                ;;
+            "ar-strategy")
+                display_ar_strategy; continue
+                ;;
+            "ar-side")
+                display_ar_side; continue
+                ;;
+            "ar-interval")
+                display_ar_interval; continue
+                ;;
+            "ar-period")
+                display_ar_period; continue
+                ;;
+            "ar-market-open")
+                display_ar_market_open; continue
+                ;;
+            "ar-market-close")
+                display_ar_market_close; continue
+                ;;
+            "ar-backtrack")
+                display_ar_backtrack; continue
+                ;;
+            "ar-backtracks")
+                display_ar_backtracks; continue
+                ;;
+            "ar-stop-limit")
+                display_ar_stop_limit; continue
+                ;;
+            "ar-stop-price")
+                display_ar_stop_price; continue
+                ;;
+            "ar-stop-limit-price")
+                display_ar_stop_limit_price; continue
+                ;;
+            "ar-stop-limit-time-in-force")
+                display_ar_stop_limit_time_in_force; continue
+                ;;
+            'ar-rsi-top')
+                display_ar_rsi_top; continue
+                ;;
+            'ar-rsi-bottom')
+               display_ar_rsi_bottom; continue
+               ;;
+            'ar-macd-fast-period')
+               display_ar_macd_fast_period; continue
+               ;;
+            'ar-macd-slow-period')
+               display_ar_macd_slow_period; continue
+               ;;
+            'ar-macd-signal-period')
+               display_ar_macd_signal_period; continue
+               ;;
+            'ar-price-movement')
+               display_ar_price_movement; continue
+               ;;
+            'ar-volume-movement')
+                display_ar_volume_movement; continue
+                ;;
+            'ar-pid')
+                display_ar_bot_pid; continue
+                ;;
+        esac
+    done
+    return 0
+}
 
 # CODE DUMP
-
 

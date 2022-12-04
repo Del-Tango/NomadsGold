@@ -73,6 +73,7 @@ function setup_project_menu_controllers () {
     fi
     setup_main_menu_controller
     setup_bot_ctrl_menu_controller
+    setup_ar_bot_ctrl_menu_controller
     setup_astrology_ctrl_menu_controller
     setup_log_viewer_menu_controller
     setup_settings_menu_controller
@@ -88,21 +89,169 @@ function setup_project_dependencies () {
     return $?
 }
 
-
 # BOT CTRL SETUP
 
-# TODO
 function setup_bot_ctrl_menu_controller() {
-    echo '[ WARNING ]: Under construction, building...'
+    setup_bot_ctrl_menu_option_asymetric_risk
     setup_bot_ctrl_menu_option_back
-    done_msg "(${CYAN}$ANALYSIS_CONTROLLER_LABEL${RESET}) controller"\
+    done_msg "(${CYAN}$BOT_CONTROLLER_LABEL${RESET}) controller"\
         "option binding complete."
     return 0
 }
 
-function setup_bot_ctrl_menu_option_back () {
+function setup_bot_ctrl_menu_option_asymetric_risk() {
+    setup_menu_controller_menu_option \
+        "$BOT_CONTROLLER_LABEL"  'Asymetric-Risk' \
+        "$AR_CONTROLLER_LABEL"
+    return $?
+}
+
+function setup_bot_ctrl_menu_option_back() {
     setup_menu_controller_action_option \
         "$BOT_CONTROLLER_LABEL"  'Back' 'action_back'
+    return $?
+}
+
+# (A)Risk BOT CTRL SETUP
+
+function setup_ar_bot_ctrl_menu_controller() {
+    setup_ar_bot_ctrl_menu_option_start_bot_foreground
+    setup_ar_bot_ctrl_menu_option_start_bot_background
+    setup_ar_bot_ctrl_menu_option_stop_bot
+    setup_ar_bot_ctrl_menu_option_check_bot_running
+    setup_ar_bot_ctrl_menu_option_report_list
+    setup_ar_bot_ctrl_menu_option_report_all
+    setup_ar_bot_ctrl_menu_option_report_trading_history
+    setup_ar_bot_ctrl_menu_option_report_deposit_history
+    setup_ar_bot_ctrl_menu_option_report_withdrawal_history
+    setup_ar_bot_ctrl_menu_option_report_success_rate
+    setup_ar_bot_ctrl_menu_option_edit_bot_config
+    setup_ar_bot_ctrl_menu_option_view_bot_config
+    setup_ar_bot_ctrl_menu_option_view_report
+    setup_ar_bot_ctrl_menu_option_view_market_details
+    setup_ar_bot_ctrl_menu_option_view_account_details
+    setup_ar_bot_ctrl_menu_option_remove_reports
+    setup_ar_bot_ctrl_menu_option_back
+    done_msg "(${CYAN}$AR_CONTROLLER_LABEL${RESET}) controller"\
+        "option binding complete."
+    return 0
+}
+
+function setup_ar_bot_ctrl_menu_option_remove_reports() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Remove-Reports' \
+        'action_ar_remove_reports'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_edit_bot_config() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Edit-Bot-Config' \
+        'action_ar_edit_bot_config'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_start_bot_foreground() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Start-Bot-Foreground' \
+        'action_ar_start_bot_in_foreground'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_start_bot_background() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Start-Bot-Background' \
+        'action_ar_start_bot_in_background'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_stop_bot() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Stop-Bot' \
+        'action_ar_stop_bot'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_check_bot_running() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Check-Bot-Running' \
+        'action_ar_check_bot_running'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_report_list() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Report-List' \
+        'action_ar_report_list'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_report_all() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Report-All' \
+        'action_ar_report_all'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_report_trading_history() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Report-Trading-History' \
+        'action_ar_report_trading_history'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_report_deposit_history() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Report-Deposit-History' \
+        'action_ar_report_deposit_history'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_report_withdrawal_history() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Report-Withdrawal-History' \
+        'action_ar_report_withdrawal_history'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_report_success_rate() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Report-Success-Rate' \
+        'action_ar_report_success_rate'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_view_bot_config() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'View-Bot-Config' \
+        'action_ar_view_bot_config'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_view_report() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'View-Report' \
+        'action_ar_view_report'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_view_market_details() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'View-Market-Details' \
+        'action_ar_view_market_details'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_view_account_details() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'View-Account-Details' \
+        'action_ar_view_account_details'
+    return $?
+}
+
+function setup_ar_bot_ctrl_menu_option_back() {
+    setup_menu_controller_action_option \
+        "$AR_CONTROLLER_LABEL" 'Back' 'action_back'
     return $?
 }
 
@@ -291,6 +440,7 @@ function setup_settings_menu_controller () {
     setup_settings_menu_option_set_system_password
     setup_settings_menu_option_set_system_permsissions
     setup_settings_menu_option_update_conf_json
+    setup_settings_menu_option_update_bot_conf_json
     setup_settings_menu_option_set_silent_flag
     setup_settings_menu_option_set_log_file
     setup_settings_menu_option_set_log_lines
@@ -300,6 +450,13 @@ function setup_settings_menu_controller () {
     done_msg "(${CYAN}$SETTINGS_CONTROLLER_LABEL${RESET}) controller"\
         "option binding complete."
     return 0
+}
+
+function setup_settings_menu_option_update_bot_conf_json() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Update-Bot-Conf-JSON' \
+        'action_update_bot_config_json_files'
+    return $?
 }
 
 function setup_settings_menu_option_set_quantity() {

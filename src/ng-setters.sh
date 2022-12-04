@@ -4,6 +4,228 @@
 #
 # SETTERS
 
+function set_ar_report_location() {
+    local DIR_PATH=$1
+    MD_DEFAULT['ar-report-location']=$DIR_PATH
+    return 0
+}
+
+function set_ar_report_id_characters() {
+    local CHARACTERS="$1"
+    MD_DEFAULT['ar-report-id-characters']=$CHARACTERS
+    return 0
+}
+
+function set_ar_report_id_length() {
+    local LENGTH=$1
+    MD_DEFAULT['ar-report-id-length']=$LENGTH
+    return 0
+}
+
+function set_ar_volume_movement() {
+    local PERCENT=$1
+    MD_DEFAULT['ar-volume-movement']=$PERCENT
+    return 0
+}
+
+function set_ar_price_movement() {
+    local PERCENT=$1
+    MD_DEFAULT['ar-price-movement']=$PERCENT
+    return 0
+}
+
+function set_ar_macd_signal_period_movement() {
+    local PERIOD=$1
+    MD_DEFAULT['ar-macd-signal-period']=$PERIOD
+    return 0
+}
+
+function set_ar_strategy() {
+    local STRATEGY="$1"
+    MD_DEFAULT['ar-strategy']=$STRATEGY
+    return 0
+}
+
+function set_ar_macd_slow_period() {
+    local PERIOD=$1
+    MD_DEFAULT['ar-macd-slow-period']=$PERIOD
+    return 0
+}
+
+function set_ar_macd_fast_period() {
+    local PERIOD=$1
+    MD_DEFAULT['ar-macd-fast-period']=$PERIOD
+    return 0
+}
+
+function set_ar_rsi_top() {
+    local HIGH_VALUE=$1
+    MD_DEFAULT['ar-rsi-top']=$HIGH_VALUE
+    return 0
+}
+
+function set_ar_rsi_bottom() {
+    local LOW_VALUE=$1
+    MD_DEFAULT['ar-rsi-bottom']=$LOW_VALUE
+    return 0
+}
+
+function set_ar_backtracks() {
+    local CANDLES=$1
+    MD_DEFAULT['ar-backtracks']=$CANDLES
+    return 0
+}
+
+function set_ar_backtrack() {
+    local CANDLES=$1
+    MD_DEFAULT['ar-backtrack']=$CANDLES
+    return 0
+}
+
+function set_ar_period() {
+    local PERIOD="$1"
+    MD_DEFAULT['ar-period']=$PERIOD
+    return 0
+}
+
+function set_ar_indicator_update_delay() {
+    local SECONDS=$1
+    MD_DEFAULT['ar-indicator-update-delay']=$SECONDS
+    return 0
+}
+
+function set_ar_take_profit() {
+    local PERCENT=$1
+    MD_DEFAULT['ar-take-profit']=$PERCENT
+    return 0
+}
+
+function set_ar_stop_loss() {
+    local PERCENT=$1
+    MD_DEFAULT['ar-stop-loss']=$PERCENT
+    return 0
+}
+
+function set_ar_order_amount() {
+    local AMOUNT=$1
+    MD_DEFAULT['ar-order-amount']=$AMOUNT
+    return 0
+}
+
+function set_ar_max_trades() {
+    local MAX_TRADES=$1
+    MD_DEFAULT['ar-max-trades']=$MAX_TRADES
+    return 0
+}
+
+function set_ar_debug_flag() {
+    local FLAG="$1"
+    MD_DEFAULT['ar-debug']=$FLAG
+    return 0
+}
+
+function set_ar_test_flag() {
+    local FLAG="$1"
+    MD_DEFAULT['ar-test']=$FLAG
+    return 0
+}
+
+function set_ar_silence_flag() {
+    local FLAG="$1"
+    MD_DEFAULT['ar-silence']=$FLAG
+    return 0
+}
+
+function set_ar_analyze_risk_flag() {
+    local FLAG="$1"
+    MD_DEFAULT['ar-analyze-risk']=$FLAG
+    return 0
+}
+
+function set_ar_market_close() {
+    local HOUR="$1"
+    MD_DEFAULT['ar-market-close']=$HOUR
+    return 0
+}
+
+function set_ar_market_open() {
+    local HOUR="$1"
+    MD_DEFAULT['ar-market-open']=$HOUR
+    return 0
+}
+
+function set_ar_interval() {
+    local INTERVAL="$1"
+    MD_DEFAULT['ar-interval']=$INTERVAL
+    return 0
+}
+
+function set_ar_side() {
+    local SIDE="$1"
+    MD_DEFAULT['ar-side']=$SIDE
+    return 0
+}
+
+function set_ar_risk_tolerance() {
+    local LEVEL="$1"
+    MD_DEFAULT['ar-risk-tolerance']=$LEVEL
+    return 0
+}
+
+function set_ar_taapi_url() {
+    local URL="$1"
+    MD_DEFAULT['ar-taapi-url']=$URL
+    return 0
+}
+
+function set_ar_api_url() {
+    local URL="$1"
+    MD_DEFAULT['ar-api-url']=$URL
+    return 0
+}
+
+function set_ar_taapi_key() {
+    local KEY="$1"
+    MD_DEFAULT['ar-taapi-key']=$KEY
+    return 0
+}
+
+function set_ar_secret_key() {
+    local KEY="$1"
+    MD_DEFAULT['ar-api-secret']=$KEY
+    return 0
+}
+
+function set_ar_api_key() {
+    local KEY="$1"
+    MD_DEFAULT['ar-api-key']=$KEY
+    return 0
+}
+
+function set_ar_watchdog_anchor_file() {
+    local FILE_PATH="$1"
+    MD_DEFAULT['ar-watchdog-anchor-file']=$FILE_PATH
+    return 0
+}
+
+function set_ar_watchdog_pid_file() {
+    local FILE_PATH="$1"
+    MD_DEFAULT['ar-watchdog-pid-file']=$FILE_PATH
+    return 0
+}
+
+function set_ar_profit_baby() {
+    local PERCENTAGE=$1
+    MD_DEFAULT['ar-profit-baby']=$PERCENTAGE
+    return 0
+}
+
+function set_ar_conf_file() {
+    local FILE_PATH="$1"
+    MD_DEFAULT['ar-conf-file']=$FILE_PATH
+    return 0
+}
+
 function set_action() {
     local ACTION="$1"
     MD_DEFAULT['action']=$ACTION

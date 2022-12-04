@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# TODO - Unimplemented
 #
 # Excellent Regards, the Alveare Solutions #!/Society -x
 #
@@ -75,7 +76,7 @@ AR_DEFAULT = {
     "test":                     True,
     "debug":                    True,
     "silence":                  False,
-    "action":                   '', #(start-watchdog | trade-report | withdrawal-report | deposit-report | stop-watchdog | single-trade | view-report | report | remove-report | get-config)
+    "action":                   '', #(start-watchdog | trade-report | withdrawal-report | deposit-report | stop-watchdog | single-trade | view-report | report | remove-report | get-config | market-details | account-details | list-reports)
     "analyze-risk":             True,
     "strategy":                 "vwap,rsi,macd,adx,ma,ema,price,volume",
     "side":                     "auto",
