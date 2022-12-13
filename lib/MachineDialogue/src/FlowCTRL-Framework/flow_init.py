@@ -52,9 +52,9 @@ def format_header_string():
     header = '''
     ___________________________________________________________________________
 
-      *              *   Flow CTRL * Automation Framework   *               *
+     *                 *  Flow CTRL * Automation Framework  *                *
     ___________________________________________________________________________
-                    Regards, the Alveare Solutions #!/Society -x
+               Excellent Regards, the Alveare Solutions #!/Society -x
     '''
     return header
 

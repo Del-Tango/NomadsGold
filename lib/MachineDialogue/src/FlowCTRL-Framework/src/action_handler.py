@@ -9,7 +9,6 @@ from timeit import default_timer as timer
 from .backpack.bp_shell import shell_cmd as shell
 from .backpack.bp_general import stdout_msg
 from .backpack.bp_checkers import check_file_exists
-from .backpack.bp_threads import ThreadWithReturnValue
 from .abstract_handler import Handler
 
 log = logging.getLogger('FlowCTRL')
