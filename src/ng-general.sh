@@ -50,6 +50,11 @@ function confirm_loaded_action_values_with_user() {
         fi
         break
     done
+    fetch_ultimatum_from_user 'Are you sure about this? [Y/N]'
+    if [ $? -ne 0 ]; then
+        echo; info_msg "Aborting action."
+        return 2
+    fi
     return 0
 }
 

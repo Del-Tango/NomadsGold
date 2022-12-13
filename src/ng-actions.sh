@@ -912,6 +912,9 @@ function action_ar_start_bot_in_foreground() {
     local ARGUMENTS=( `format_arisk_start_trading_bot_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_start_trading_bot_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -921,6 +924,9 @@ function action_ar_start_bot_in_background() {
     local ARGUMENTS=( `format_arisk_start_trading_bot_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_start_trading_bot_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]} &> /dev/null &
     # Fetch proces PID and create anchor
@@ -933,6 +939,9 @@ function action_ar_stop_bot() {
     local ARGUMENTS=( `format_arisk_stop_trading_bot_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_stop_trading_bot_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -942,6 +951,9 @@ function action_ar_report_list() {
     local ARGUMENTS=( `format_arisk_report_list_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_report_list_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -951,6 +963,9 @@ function action_ar_report_all() {
     local ARGUMENTS=( `format_arisk_report_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_report_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -960,6 +975,9 @@ function action_ar_report_trading_history() {
     local ARGUMENTS=( `format_arisk_report_trade_history_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_report_trade_history_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -969,6 +987,9 @@ function action_ar_report_deposit_history() {
     local ARGUMENTS=( `format_arisk_report_deposit_history_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_report_deposit_history_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -978,6 +999,9 @@ function action_ar_report_withdrawal_history() {
     local ARGUMENTS=( `format_arisk_report_withdrawal_history_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_report_withdrawal_history_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -987,6 +1011,9 @@ function action_ar_report_success_rate() {
     local ARGUMENTS=( `format_arisk_report_success_rate_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_report_success_rate_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -996,6 +1023,9 @@ function action_ar_view_report() {
     local ARGUMENTS=( `format_arisk_view_report_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_view_report_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -1005,6 +1035,9 @@ function action_ar_view_market_details() {
     local ARGUMENTS=( `format_arisk_view_market_details_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_view_market_details_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -1014,6 +1047,9 @@ function action_ar_view_account_details() {
     local ARGUMENTS=( `format_arisk_view_account_details_cargo_args` )
     local ACTION_VALUES=( `fetch_arisk_view_account_details_action_value_labels` )
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['asymetric-risk']}` ${ARGUMENTS[@]})"
     action_asymetric_risk_cargo ${ARGUMENTS[@]}
     return $?
@@ -1141,6 +1177,9 @@ function action_crypto_topx() {
     local ACTION_VALUES=( `fetch_show_crypto_topx_action_value_labels` )
     set_action 'crypto-topx'; set_action_target 'crypto'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1151,6 +1190,9 @@ function action_currency_chart() {
     local ACTION_VALUES=( `fetch_show_currency_chart_action_value_labels` )
     set_action 'currency-chart'; set_action_target 'currency'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1161,6 +1203,9 @@ function action_currency_convertor() {
     local ACTION_VALUES=( `fetch_currency_convertor_action_value_labels` )
     set_action 'currency-convertor'; set_action_target 'currency'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1171,6 +1216,9 @@ function action_stock_price_history() {
     local ACTION_VALUES=( `fetch_show_stock_price_history_action_value_labels` )
     set_action 'price-history'; set_action_target 'stock'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1181,6 +1229,9 @@ function action_stock_recommendations() {
     local ACTION_VALUES=( `fetch_show_stock_recommendations_action_value_labels` )
     set_action 'recommendations'; set_action_target 'stock'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1191,6 +1242,9 @@ function action_stock_info() {
     local ACTION_VALUES=( `fetch_show_stock_info_action_value_labels` )
     set_action 'stock-info'; set_action_target 'stock'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1201,6 +1255,9 @@ function action_stock_price_open() {
     local ACTION_VALUES=( `fetch_show_stock_price_open_action_value_labels` )
     set_action 'price-open'; set_action_target 'stock'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1211,6 +1268,9 @@ function action_stock_price_close() {
     local ACTION_VALUES=( `fetch_show_stock_price_close_action_value_labels` )
     set_action 'price-close'; set_action_target 'stock'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1221,6 +1281,9 @@ function action_stock_price_high() {
     local ACTION_VALUES=( `fetch_show_stock_price_high_action_value_labels` )
     set_action 'price-high'; set_action_target 'stock'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1231,6 +1294,9 @@ function action_stock_price_low() {
     local ACTION_VALUES=( `fetch_show_stock_price_low_action_value_labels` )
     set_action 'price-low'; set_action_target 'stock'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1241,6 +1307,9 @@ function action_stock_volume() {
     local ACTION_VALUES=( `fetch_show_stock_volume_action_value_labels` )
     set_action 'volume'; set_action_target 'stock'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1251,6 +1320,9 @@ function action_company_calendar() {
     local ACTION_VALUES=( `fetch_show_company_calendar_action_value_labels` )
     set_action 'company-calendar'; set_action_target 'currency'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1261,6 +1333,9 @@ function action_show_supported_currencies() {
     local ACTION_VALUES=( `fetch_show_supported_currencies_action_value_labels` )
     set_action 'show-currencies'; set_action_target 'currency'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
@@ -1271,6 +1346,9 @@ function action_show_supported_crypto() {
     local ACTION_VALUES=( `fetch_show_supported_crypto_action_value_labels` )
     set_action 'show-crypto'; set_action_target 'crypto'
     confirm_loaded_action_values_with_user ${ACTION_VALUES[@]}
+    if [ $? -ne 0 ]; then
+        return 0
+    fi
     debug_msg "Executing: (./`basename ${NG_CARGO['nomads-gold']}` ${ARGUMENTS[@]})"
     action_nomadsgold_cargo ${ARGUMENTS[@]}
     return $?
