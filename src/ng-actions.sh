@@ -249,7 +249,7 @@ function action_set_ar_risk_tolerance() {
         LEVEL=`fetch_selection_from_user '(Risk)Tolerance' ${VALID_SIDES[@]}`
         if [ $? -ne 0 ]; then
             echo; info_msg "Aborting action."
-            return 1
+            return 0
         fi
         break
     done
@@ -275,7 +275,7 @@ function action_set_ar_side() {
         SIDE=`fetch_selection_from_user 'Side' ${VALID_SIDES[@]}`
         if [ $? -ne 0 ]; then
             echo; info_msg "Aborting action."
-            return 1
+            return 0
         fi
         break
     done
@@ -301,7 +301,7 @@ function action_set_ar_interval() {
         INTERVAL=`fetch_selection_from_user 'Interval' ${VALID_INTERVALS[@]}`
         if [ $? -ne 0 ]; then
             echo; info_msg "Aborting action."
-            return 1
+            return 0
         fi
         break
     done
@@ -361,7 +361,7 @@ function action_set_ar_analyze_risk_off() {
         "${YELLOW}Are you sure about this? Y/N${RESET}"
     if [ $? -ne 0 ]; then
         echo; info_msg "Aborting action."
-        return 1
+        return 0
     fi
     set_ar_analyze_risk_flag 'off'
     local EXIT_CODE=$?
@@ -381,7 +381,7 @@ function action_set_ar_analyze_risk_on() {
         "${YELLOW}Are you sure about this? Y/N${RESET}"
     if [ $? -ne 0 ]; then
         echo; info_msg "Aborting action."
-        return 1
+        return 0
     fi
     set_ar_analyze_risk_flag 'on'
     local EXIT_CODE=$?
@@ -401,7 +401,7 @@ function action_set_ar_test_off() {
         "${YELLOW}Are you sure about this? Y/N${RESET}"
     if [ $? -ne 0 ]; then
         echo; info_msg "Aborting action."
-        return 1
+        return 0
     fi
     set_ar_test_flag 'off'
     local EXIT_CODE=$?
@@ -421,7 +421,7 @@ function action_set_ar_test_on() {
         "${YELLOW}Are you sure about this? Y/N${RESET}"
     if [ $? -ne 0 ]; then
         echo; info_msg "Aborting action."
-        return 1
+        return 0
     fi
     set_ar_test_flag 'on'
     local EXIT_CODE=$?
@@ -441,7 +441,7 @@ function action_set_ar_debug_off() {
         "${YELLOW}Are you sure about this? Y/N${RESET}"
     if [ $? -ne 0 ]; then
         echo; info_msg "Aborting action."
-        return 1
+        return 0
     fi
     set_ar_debug_flag 'off'
     local EXIT_CODE=$?
@@ -461,7 +461,7 @@ function action_set_ar_debug_on() {
         "${YELLOW}Are you sure about this? Y/N${RESET}"
     if [ $? -ne 0 ]; then
         echo; info_msg "Aborting action."
-        return 1
+        return 0
     fi
     set_ar_debug_flag 'on'
     local EXIT_CODE=$?
@@ -481,7 +481,7 @@ function action_set_ar_silence_off() {
         "${YELLOW}Are you sure about this? Y/N${RESET}"
     if [ $? -ne 0 ]; then
         echo; info_msg "Aborting action."
-        return 1
+        return 0
     fi
     set_ar_silence_flag 'off'
     local EXIT_CODE=$?
@@ -501,7 +501,7 @@ function action_set_ar_silence_on() {
         "${YELLOW}Are you sure about this? Y/N${RESET}"
     if [ $? -ne 0 ]; then
         echo; info_msg "Aborting action."
-        return 1
+        return 0
     fi
     set_ar_silence_flag 'on'
     local EXIT_CODE=$?
@@ -1119,13 +1119,21 @@ function action_cargo() {
 function action_asymetric_risk_cargo() {
     local ARGUMENTS=( $@ )
     action_cargo 'asymetric-risk' ${ARGUMENTS[@]}
-    return $?
+    local EXIT_CODE=$?
+    if [ $EXIT_CODE -ne 0 ]; then
+        echo "[ EXIT ]: $EXIT_CODE"
+    fi
+    return 0
 }
 
 function action_nomadsgold_cargo() {
     local ARGUMENTS=( $@ )
     action_cargo 'nomads-gold' ${ARGUMENTS[@]}
-    return $?
+    local EXIT_CODE=$?
+    if [ $EXIT_CODE -ne 0 ]; then
+        echo "[ EXIT ]: $EXIT_CODE"
+    fi
+    return 0
 }
 
 function action_crypto_topx() {
@@ -2069,7 +2077,7 @@ function action_set_wifi_password() {
 }
 
 function action_set_system_user() {
-    echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} head machine user name -"
+    echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} machine user name -"
     info_msg "Type system user name or (${MAGENTA}.back${RESET})."
     local SYS_USER=`fetch_data_from_user 'User'`
     if [ $? -ne 0 ] || [ -z "$SYS_USER" ]; then
@@ -2088,7 +2096,7 @@ function action_set_system_user() {
 }
 
 function action_set_system_password() {
-    echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} head machine password -"
+    echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} machine password -"
     info_msg "Type password or (${MAGENTA}.back${RESET})."
     local SYS_PASS=`fetch_password_from_user 'Password'`
     if [ $? -ne 0 ] || [ -z "$SYS_PASS" ]; then

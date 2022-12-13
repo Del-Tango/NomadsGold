@@ -446,10 +446,146 @@ function setup_settings_menu_controller () {
     setup_settings_menu_option_set_log_lines
     setup_settings_menu_option_set_quantity
     setup_settings_menu_option_install_dependencies
+    setup_settings_menu_option_set_watch_flag
+    setup_settings_menu_option_set_write_flag
+    setup_settings_menu_option_set_action_header_flag
+    setup_settings_menu_option_set_stock_symbol
+    setup_settings_menu_option_set_base_currency
+    setup_settings_menu_option_set_exchange_currency
+    setup_settings_menu_option_set_watch_interval
+    setup_settings_menu_option_set_watch_anchor_file
+    setup_settings_menu_option_set_period
+    setup_settings_menu_option_set_period_interval
+    setup_settings_menu_option_set_period_start
+    setup_settings_menu_option_set_period_end
+    setup_settings_menu_option_set_write_mode
+    setup_settings_menu_option_set_out_file
+    setup_settings_menu_option_set_action_target
+    setup_settings_menu_option_set_crypto_topx
+    setup_settings_menu_option_setup_machine
     setup_settings_menu_option_back
     done_msg "(${CYAN}$SETTINGS_CONTROLLER_LABEL${RESET}) controller"\
         "option binding complete."
     return 0
+}
+
+function setup_settings_menu_option_set_watch_flag() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Watch-FLAG' \
+        'action_set_watch_flag'
+    return $?
+}
+
+function setup_settings_menu_option_set_write_flag() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Write-FLAG' \
+        'action_set_write_flag'
+    return $?
+}
+
+function setup_settings_menu_option_set_action_header_flag() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Action-Header-FLAG' \
+        'action_set_action_header_flag'
+    return $?
+}
+
+function setup_settings_menu_option_set_stock_symbol() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Stock-Symbol' \
+        'action_set_stock_symbol'
+    return $?
+}
+
+function setup_settings_menu_option_set_base_currency() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Base-Currency' \
+        'action_set_base_currency'
+    return $?
+}
+
+function setup_settings_menu_option_set_exchange_currency() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Exchange-Currency' \
+        'action_set_exchange_currency'
+    return $?
+}
+
+function setup_settings_menu_option_set_watch_interval() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Watch-Interval' \
+        'action_set_watch_interval'
+    return $?
+}
+
+function setup_settings_menu_option_set_watch_anchor_file() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Watch-Anchor-File' \
+        'action_set_watch_anchor_file'
+    return $?
+}
+
+function setup_settings_menu_option_set_period() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Period' \
+        'action_set_period'
+    return $?
+}
+
+function setup_settings_menu_option_set_period_interval() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Period-Interval' \
+        'action_set_period_interval'
+    return $?
+}
+
+function setup_settings_menu_option_set_period_start() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Period-Start' \
+        'action_set_period_start'
+    return $?
+}
+
+function setup_settings_menu_option_set_period_end() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Period-End' \
+        'action_set_period_end'
+    return $?
+}
+
+function setup_settings_menu_option_set_write_mode() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Write-Mode' \
+        'action_set_write_mode'
+    return $?
+}
+
+function setup_settings_menu_option_set_out_file() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Out-File' \
+        'action_set_out_file'
+    return $?
+}
+
+function setup_settings_menu_option_set_action_target() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Action-Target' \
+        'action_set_action_target'
+    return $?
+}
+
+function setup_settings_menu_option_set_crypto_topx() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Set-Crypto-TopX' \
+        'action_set_crypto_topx'
+    return $?
+}
+
+function setup_settings_menu_option_setup_machine() {
+    setup_menu_controller_action_option \
+        "$SETTINGS_CONTROLLER_LABEL" 'Setup-Machine' \
+        'action_setup_machine'
+    return $?
 }
 
 function setup_settings_menu_option_update_bot_conf_json() {
@@ -612,10 +748,17 @@ function setup_main_menu_controller() {
     setup_main_menu_option_analysis_ctrl
     setup_main_menu_option_log_viewer
     setup_main_menu_option_control_panel
+    setup_main_menu_option_help
     setup_main_menu_option_back
     done_msg "(${CYAN}$MAIN_CONTROLLER_LABEL${RESET}) controller"\
         "option binding complete."
     return 0
+}
+
+function setup_main_menu_option_help() {
+    setup_menu_controller_action_option \
+        "$MAIN_CONTROLLER_LABEL"  "Help" "action_help"
+    return $?
 }
 
 function setup_main_menu_option_bot_ctrl() {

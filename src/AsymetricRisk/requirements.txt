@@ -1,5 +1,5 @@
 unittest
-binance
+python-binance
 time
 json
 os

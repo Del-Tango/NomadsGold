@@ -1,0 +1,10 @@
+yfinance
+time
+optparse
+os
+json
+crypt
+threading
+pysnooper
+random
+subprocess
