@@ -11,7 +11,7 @@ import pysnooper
 
 from src.backpack.bp_filters import list_intersection
 
-log = logging.getLogger('AsymetricRisk')
+log = logging.getLogger('NomadsGold')
 
 
 #@pysnooper.snoop()

@@ -8,7 +8,7 @@ import os
 import stat
 import logging
 
-log = logging.getLogger('AsymetricRisk')
+log = logging.getLogger('NomadsGold')
 
 
 def list_intersection(values1, values2):

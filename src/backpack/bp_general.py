@@ -11,7 +11,7 @@ from .bp_shell import shell_cmd as shell
 from .bp_convertors import dict2json, json2dict
 from .bp_checkers import *
 
-log = logging.getLogger('AsymetricRisk')
+log = logging.getLogger('NomadsGold')
 
 
 def scan_value_sets(values1, values2, look_for='crossover', **kwargs):

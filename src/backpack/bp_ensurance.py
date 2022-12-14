@@ -8,7 +8,7 @@ import logging
 
 from os import path, makedirs, mkfifo
 
-log = logging.getLogger('AsymetricRisk')
+log = logging.getLogger('NomadsGold')
 
 
 def ensure_fifo_exists(*args):

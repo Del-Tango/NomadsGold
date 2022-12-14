@@ -7,7 +7,7 @@
 import threading
 import logging
 
-log = logging.getLogger('AsymetricRisk')
+log = logging.getLogger('NomadsGold')
 
 
 def threadify(function_obj, *args, join=False, **kwargs):
