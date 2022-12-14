@@ -7,7 +7,7 @@
 import time
 import logging
 
-log = logging.getLogger('')
+log = logging.getLogger('AsymetricRisk')
 
 
 def fetch_time():

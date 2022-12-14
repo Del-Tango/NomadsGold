@@ -7,4 +7,4 @@ from . import bp_shell
 from . import bp_convertors
 from . import bp_general
 from . import bp_threads
-
+from . import bp_computers

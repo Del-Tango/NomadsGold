@@ -8,7 +8,7 @@ import logging
 
 from os import path, makedirs, mkfifo
 
-log = logging.getLogger('')
+log = logging.getLogger('AsymetricRisk')
 
 
 def ensure_fifo_exists(*args):
