@@ -602,7 +602,7 @@ function display_header () {
 
      *                        *   ${BLUE}${NG_SCRIPT_NAME}${RESET}  *                       *
     ___________________________________________________________________________
-                      Regards, the Alveare Solutions #!/Society -x
+               Excellent Regards, the Alveare Solutions #!/Society -x
 EOF
     return $?
 }
