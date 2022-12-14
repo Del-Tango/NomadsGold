@@ -4,6 +4,65 @@
 #
 # ACTIONS
 
+function action_update_config_json_file() {
+    local FILE_CONTENT="`format_config_json_file_content`"
+    debug_msg "Formatted JSON config file content: ${FILE_CONTENT}"
+    if [ $? -ne 0 ] || [ -z "$FILE_CONTENT" ]; then
+        echo; nok_msg 'Something went wrong -'\
+            'Could not format JSON config file content!'
+        return 0
+    fi
+    clear_file "${NG_DEFAULT['conf-json-file']}"
+    write_to_file "${NG_DEFAULT['conf-json-file']}" "$FILE_CONTENT"
+    local EXIT_CODE=$?
+    echo; if [ $EXIT_CODE -ne 0 ]; then
+        nok_msg "Something went wrong -"\
+            "Could not update JSON config file"\
+            "(${RED}${NG_DEFAULT['conf-json-file']}${RESET})"
+    else
+        echo "$FILE_CONTENT
+        "
+        ok_msg "Successfully updated JSON config file"\
+            "(${GREEN}${NG_DEFAULT['conf-json-file']}${RESET})."
+    fi
+    return $EXIT_CODE
+}
+
+function action_update_asymetric_risk_bot_config_json() {
+    local FILE_CONTENT="`format_ar_config_json_file_content`"
+    local FILE_PATH="${MD_DEFAULT['conf-dir']}/${MD_DEFAULT['ar-conf-file']}"
+    echo; info_msg "Updating ${BLUE}(A)${RED}Risk${RESET} config file -"
+    debug_msg "Formatted (A)Risk JSON config file content: ${FILE_CONTENT}"
+    if [ $? -ne 0 ] || [ -z "$FILE_CONTENT" ]; then
+        echo; nok_msg 'Something went wrong -'\
+            'Could not format (A)Risk JSON config file content!'
+        return 0
+    fi
+    clear_file "${FILE_PATH}"
+    write_to_file "${FILE_PATH}" "$FILE_CONTENT"
+    local EXIT_CODE=$?
+    echo; if [ $EXIT_CODE -ne 0 ]; then
+        nok_msg "Something went wrong -"\
+            "Could not update (A)Risk JSON config file"\
+            "(${RED}${FILE_PATH}${RESET})"
+    else
+        echo "$FILE_CONTENT
+        "
+        ok_msg "Successfully updated (A)Risk JSON config file"\
+            "(${GREEN}${FILE_PATH}${RESET})."
+    fi
+    return $EXIT_CODE
+}
+
+function action_update_bot_config_json_files() {
+    local FAILURES=0
+    echo; info_msg "Updating all trading bot config files -"
+    action_update_asymetric_risk_bot_config_json
+    local FAILURES=$((FAILURES+$?))
+    return $FAILURES
+}
+
+
 function action_set_ar_report_id_length() {
     echo; info_msg "Setting Report ID Length -"
     info_msg "Type report ID length or (${MAGENTA}.back${RESET})."
@@ -1074,39 +1133,6 @@ function action_ar_remove_reports() {
     return $EXIT_CODE
 }
 
-function action_update_asymetric_risk_bot_config_json() {
-    local FILE_CONTENT="`format_ar_config_json_file_content`"
-    local FILE_PATH="${MD_DEFAULT['conf-dir']}/${MD_DEFAULT['ar-conf-json-file']}"
-    echo; info_msg "Updating ${BLUE}(A)${RED}Risk${RESET} config file -"
-    debug_msg "Formatted (A)Risk JSON config file content: ${FILE_CONTENT}"
-    if [ $? -ne 0 ] || [ -z "$FILE_CONTENT" ]; then
-        echo; nok_msg 'Something went wrong -'\
-            'Could not format (A)Risk JSON config file content!'
-        return 0
-    fi
-    clear_file "${FILE_PATH}"
-    write_to_file "${FILE_PATH}" "$FILE_CONTENT"
-    local EXIT_CODE=$?
-    echo; if [ $EXIT_CODE -ne 0 ]; then
-        nok_msg "Something went wrong -"\
-            "Could not update (A)Risk JSON config file"\
-            "(${RED}${FILE_PATH}${RESET})"
-    else
-        echo "$FILE_CONTENT
-        "
-        ok_msg "Successfully updated (A)Risk JSON config file"\
-            "(${GREEN}${FILE_PATH}${RESET})."
-    fi
-    return $EXIT_CODE
-}
-
-function action_update_bot_config_json_files() {
-    local FAILURES=0
-    echo; info_msg "Updating all trading bot config files -"
-    action_update_asymetric_risk_bot_config_json
-    local FAILURES=$((FAILURES+$?))
-    return $FAILURES
-}
 
 function action_ar_check_bot_running() {
     local EXIT_CODE=0; echo
@@ -2207,30 +2233,6 @@ function action_set_system_permissions() {
             "Could not set user file permissions (${RED}$SYS_PERMS${RESET})"
     else
         ok_msg "Successfully set user file permissions (${GREEN}$SYS_PERMS${RESET})."
-    fi
-    return $EXIT_CODE
-}
-
-function action_update_config_json_file() {
-    local FILE_CONTENT="`format_config_json_file_content`"
-    debug_msg "Formatted JSON config file content: ${FILE_CONTENT}"
-    if [ $? -ne 0 ] || [ -z "$FILE_CONTENT" ]; then
-        echo; nok_msg 'Something went wrong -'\
-            'Could not format JSON config file content!'
-        return 0
-    fi
-    clear_file "${NG_DEFAULT['conf-json-file']}"
-    write_to_file "${NG_DEFAULT['conf-json-file']}" "$FILE_CONTENT"
-    local EXIT_CODE=$?
-    echo; if [ $EXIT_CODE -ne 0 ]; then
-        nok_msg "Something went wrong -"\
-            "Could not update JSON config file"\
-            "(${RED}${NG_DEFAULT['conf-json-file']}${RESET})"
-    else
-        echo "$FILE_CONTENT
-        "
-        ok_msg "Successfully updated JSON config file"\
-            "(${GREEN}${NG_DEFAULT['conf-json-file']}${RESET})."
     fi
     return $EXIT_CODE
 }
