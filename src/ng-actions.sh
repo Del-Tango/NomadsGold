@@ -1166,7 +1166,7 @@ function action_ar_view_bot_config() {
 
 function action_ar_edit_bot_config() {
     echo; info_msg "Editing ${BLUE}(A)${RED}Risk${RESET} bot config file -"
-    vim "${MD_DEFAULT['conf-dir']}/${MD_DEFAULT['ar-conf-file']}"
+    ${MD_DEFAULT['editor']} "${MD_DEFAULT['conf-dir']}/${MD_DEFAULT['ar-conf-file']}"
     return $?
 }
 
