@@ -4,7 +4,143 @@
 #
 # Nomad's Gold - BOM Screenshot Viewer
 
+declare -A NG_ACTION_BOMS
+
+NG_DOX_DIR="dox"
 NG_SCREENSHOTS_DIR="screenshots"
+NG_ACTION_BOMS=(
+['ngvssactx']='ngvssactx          Crypto-TopX                   (*) -> (1) -> (1 + n + y)'
+['ngvssacch']='ngvssacch          Currency-Chart                (*) -> (1) -> (2 + n + y)'
+['ngvssacco']='ngvssacco          Currency-Convertor            (*) -> (1) -> (3 + n + y)'
+['ngvssasphist']='ngvssasphist       Stock-Price-History           (*) -> (1) -> (4 + n + y)'
+['ngvssasr']='ngvssasr           Stock-Recommendations         (*) -> (1) -> (5 + n + y)'
+['ngvssasi']='ngvssasi           Stock-Info                    (*) -> (1) -> (6 + n + y)'
+['ngvssaspo']='ngvssaspo          Stock-Price-Open              (*) -> (1) -> (7 + n + y)'
+['ngvssaspc']='ngvssaspc          Stock-Price-Close             (*) -> (1) -> (8 + n + y)'
+['ngvssasphigh']='ngvssasphigh       Stock-Price-High              (*) -> (1) -> (9 + n + y)'
+['ngvssaspl']='ngvssaspl          Stock-Price-Low               (*) -> (1) -> (10 + n + y)'
+['ngvssasv']='ngvssasv           Stock-Volume                  (*) -> (1) -> (11 + n + y)'
+['ngvssacca']='ngvssacca          Company-Calendar              (*) -> (1) -> (12 + n + y)'
+['ngvssasscu']='ngvssasscu         Show-Supported-Currencies     (*) -> (1) -> (13 + n + y)'
+['ngvssasscr']='ngvssasscr         Show-Supported-Crypto         (*) -> (1) -> (14 + n + y)'
+['ngvsarsbf']='ngvsarsbf          Start-Bot-Foreground          (*) -> (2) -> (1) -> (1 + n + y)'
+['ngvsarsbb']='ngvsarsbb          Start-Bot-Background          (*) -> (2) -> (1) -> (2 + n + y)'
+['ngvsarsb']='ngvsarsb           Stop-Bot                      (*) -> (2) -> (1) -> (3 + n + y)'
+['ngvsarcbr']='ngvsarcbr          Check-Bot-Running             (*) -> (2) -> (1) -> (4 + n + y)'
+['ngvsarrl']='ngvsarrl           Report-List                   (*) -> (2) -> (1) -> (5 + n + y)'
+['ngvsarra']='ngvsarra           Report-All                    (*) -> (2) -> (1) -> (6 + n + y)'
+['ngvsarrth']='ngvsarrth          Report-Trading-History        (*) -> (2) -> (1) -> (7 + n + y)'
+['ngvsarrdh']='ngvsarrdh          Report-Deposit-History        (*) -> (2) -> (1) -> (8 + n + y)'
+['ngvsarrwh']='ngvsarrwh          Report-Withdrawal-History     (*) -> (2) -> (1) -> (9 + n + y)'
+['ngvsarrsr']='ngvsarrsr          Report-Success-Rate           (*) -> (2) -> (1) -> (10 + n + y)'
+['ngvsarebc']='ngvsarebc          Edit-Bot-Config               (*) -> (2) -> (1) -> (11 + n + y)'
+['ngvsarvbc']='ngvsarvbc          View-Bot-Config               (*) -> (2) -> (1) -> (12 + n + y)'
+['ngvsarvr']='ngvsarvr           View-Report                   (*) -> (2) -> (1) -> (13 + n + y)'
+['ngvsarvmd']='ngvsarvmd          View-Market-Details           (*) -> (2) -> (1) -> (14 + n + y)'
+['ngvsarvad']='ngvsarvad          View-Account-Details          (*) -> (2) -> (1) -> (15 + n + y)'
+['ngvsarrr']='ngvsarrr           Remove-Reports                (*) -> (2) -> (1) -> (16 + n + y)'
+['ngvscpssf']='ngvscpssf          Set-Silence-FLAG              (*) -> (3) -> (1 + y)'
+['ngvscpswatchf']='ngvscpswatchf      Set-Watch-FLAG                (*) -> (3) -> (2 + y)'
+['ngvscpswrf']='ngvscpswrf         Set-Write-FLAG                (*) -> (3) -> (3 + y)'
+['ngvscpsahf']='ngvscpsahf         Set-Action-Header-FLAG        (*) -> (3) -> (4 + y)'
+['ngvscpsss']='ngvscpsss          Set-Stock-Symbol              (*) -> (3) -> (5 + <ticker-symbol>)'
+['ngvscpsbc']='ngvscpsbc          Set-Base-Currency             (*) -> (3) -> (6 + <currency-symbol>)'
+['ngvscpsec']='ngvscpsec          Set-Exchange-Currency         (*) -> (3) -> (7 + <currency-symbol>)'
+['ngvscpsq']='ngvscpsq           Set-Quantity                  (*) -> (3) -> (8 + <currency-quantity>)'
+['ngvscpswi']='ngvscpswi          Set-Watch-Interval            (*) -> (3) -> (9 + <seconds)'
+['ngvscpswanchf']='ngvscpswanchf      Set-Watch-Anchor-File         (*) -> (3) -> (10 + <file-path>)'
+['ngvscpsp']='ngvscpsp           Set-Period                    (*) -> (3) -> (11 + <1d|5d|1w|3mo|1y|ytd|max>)'
+['ngvscpspi']='ngvscpspi          Set-Period-Interval           (*) -> (3) -> (12 + <1d|5d|1w|3mo|1y>)'
+['ngvscpsps']='ngvscpsps          Set-Period-Start              (*) -> (3) -> (13 + <date-(YYYY-MM-DD)>)'
+['ngvscpspe']='ngvscpspe          Set-Period-End                (*) -> (3) -> (14 + <date-(YYYY-MM-DD)>)'
+['ngvscpswm']='ngvscpswm          Set-Write-Mode                (*) -> (3) -> (15 + <write|append>)'
+['ngvscpsof']='ngvscpsof          Set-Out-File                  (*) -> (3) -> (16 + <file-path>)'
+['ngvscpsat']='ngvscpsat          Set-Action-Target             (*) -> (3) -> (17 + <stock|currency|crypto>)'
+['ngvscpsctx']='ngvscpsctx         Set-Crypto-TopX               (*) -> (3) -> (18 + <number-of-top-coins>)'
+['ngvscpsconff']='ngvscpsconff       Set-Conf-File                 (*) -> (3) -> (19 + <file-path>)'
+['ngvscpscj']='ngvscpscj          Set-Conf-JSON                 (*) -> (3) -> (20 + <file-path>)'
+['ngvscpslf']='ngvscpslf          Set-Log-File                  (*) -> (3) -> (21 + <file-path>)'
+['ngvscpsll']='ngvscpsll          Set-Log-Lines                 (*) -> (3) -> (22 + <number-of-lines>)'
+['ngvscpswsf']='ngvscpswsf         Set-WPASupplicant-File        (*) -> (3) -> (23 + <file-path>)'
+['ngvscpsbrf']='ngvscpsbrf         Set-BashRC-File               (*) -> (3) -> (24 + <file-path>)'
+['ngvscpsbrt']='ngvscpsbrt         Set-BashRC-Template           (*) -> (3) -> (25 + <file-path>)'
+['ngvscpsbaf']='ngvscpsbaf         Set-BashAliases-File          (*) -> (3) -> (26 + <file-path>)'
+['ngvscpshnf']='ngvscpshnf         Set-Hostname-File             (*) -> (3) -> (27 + <file-path>)'
+['ngvscpshf']='ngvscpshf          Set-Hosts-File                (*) -> (3) -> (28 + <file-path>)'
+['ngvscpscronf']='ngvscpscronf       Set-Cron-File                 (*) -> (3) -> (29 + <file-path>)'
+['ngvscpswe']='ngvscpswe          Set-Wifi-Essid                (*) -> (3) -> (30 + <ESSID>)'
+['ngvscpswp']='ngvscpswp          Set-Wifi-Password             (*) -> (3) -> (31 + <PSK>)'
+['ngvscpssu']='ngvscpssu          Set-System-User               (*) -> (3) -> (32 + <user-name>)'
+['ngvscpsspa']='ngvscpsspa         Set-System-Password           (*) -> (3) -> (33 + <user-pass>)'
+['ngvscpsspe']='ngvscpsspe         Set-System-Permissions        (*) -> (3) -> (34 + <octal-permissions>)'
+['ngvscpsm']='ngvscpsm           Setup-Machine                 (*) -> (3) -> (35 + y)'
+['ngvscpucj']='ngvscpucj          Update-Conf-JSON              (*) -> (3) -> (36)'
+['ngvscpubcj']='ngvscpubcj         Update-Bot-Conf-JSON          (*) -> (3) -> (37)'
+['ngvscpid']='ngvscpid           Install-Dependencies          (*) -> (3) -> (38 + y)'
+['ngvslvdt']='ngvslvdt           Display-Tail                  (*) -> (4) -> (1)'
+['ngvslvdh']='ngvslvdh           Display-Head                  (*) -> (4) -> (2)'
+['ngvslvdm']='ngvslvdm           Display-More                  (*) -> (4) -> (3)'
+['ngvslvcl']='ngvslvcl           Clear-Log                     (*) -> (4) -> (4)'
+)
+
+function fetch_proc_dir_names() {
+    ls -1 "${NG_DOX_DIR}/${NG_SCREENSHOTS_DIR}"
+    return $?
+}
+
+function selection_menu() {
+    local PROMPT="$1"
+    local OPTIONS=( "${@:2}" "Back" )
+    local OLD_PS3=$PS3
+    PS3="$PROMPT> "
+    select opt in "${OPTIONS[@]}"; do
+        case "$opt" in
+            'Back')
+                PS3="$OLD_PS3"
+                return 1
+                ;;
+            *)
+                echo "$opt"; break
+                ;;
+        esac
+    done
+    PS3="$OLD_PS3"
+    return 0
+}
+
+function view_images_in_directory() {
+    local DIR_PATH="$1"
+    fim --cd-and-readdir ${DIR_PATH}
+    return $?
+}
+
+function view_procedure_screenshots() {
+    local PROCEDURE_DIR_NAMES=( `fetch_proc_dir_names` )
+    local FAILURES=0
+    echo "[ INFO ]: Choose procedure to view the screenshots of -
+    "
+    while :; do
+        local USER_SELECTION=`selection_menu 'N(G)View' ${PROCEDURE_DIR_NAMES[@]}`
+        if [ $? -ne 0 ] || [ -z "${USER_SELECTION}" ]; then
+            break
+        fi
+        local FULL_DIR_PATH="${NG_DOX_DIR}/${NG_SCREENSHOTS_DIR}/${USER_SELECTION}"
+        if [ ! -d "${FULL_DIR_PATH}" ]; then
+            echo "[ NOK ]: Directory not found! (${FULL_DIR_PATH})"
+            local FAILURES=$((FAILURES + 1))
+            continue
+        fi
+        echo; echo "[ VIEW ]: ${NG_ACTION_BOMS[${USER_SELECTION}]}
+        "
+        view_images_in_directory "${FULL_DIR_PATH}"
+        if [ $? -ne 0 ]; then
+            echo "[ NOK ]: Errors detected when viewing procedure screenshots!"
+            local FAILURES=$((FAILURES + 1))
+            continue
+        fi
+    done
+    return $FAILURES
+}
 
 cat <<EOF
     ___________________________________________________________________________
@@ -15,6 +151,5 @@ cat <<EOF
 
 EOF
 
-# TODO - use ($ for dir in dirs; do fim --cd-and-readdir ${dir}; done)
-
+view_procedure_screenshots
 exit $?

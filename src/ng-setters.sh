@@ -4,6 +4,12 @@
 #
 # SETTERS
 
+function set_write_mode() {
+    local MODE="$1"
+    MD_DEFAULT['write-mode']=${MODE:0:1}
+    return 0
+}
+
 function set_ar_report_location() {
     local DIR_PATH=$1
     MD_DEFAULT['ar-report-location']=$DIR_PATH

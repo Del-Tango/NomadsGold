@@ -4,6 +4,45 @@
 #
 # ACTIONS
 
+function action_set_out_file() {
+    echo; info_msg "Setting action out file -"
+    info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
+    if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
+        echo; info_msg 'Aborting action.'
+        return 0
+    fi
+    set_out_file "$FILE_PATH"
+    local EXIT_CODE=$?
+    echo; if [ $EXIT_CODE -ne 0 ]; then
+        nok_msg "Something went wrong."\
+            "Could not set (${RED}$FILE_PATH${RESET}) as"\
+            "(${BLUE}$SCRIPT_NAME${RESET}) out file."
+    else
+        ok_msg "Successfully set out file (${GREEN}$FILE_PATH${RESET})."
+    fi
+    return $EXIT_CODE
+}
+
+function action_set_period() {
+    echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} period -"
+    info_msg "Type interval (1d | 5d | 1w | 3mo | 1y | ytd | max ) or (${MAGENTA}.back${RESET})."
+    local PERIOD=`fetch_data_from_user 'Period'`
+    if [ $? -ne 0 ] || [ -z "$PERIOD" ]; then
+        echo; info_msg 'Aborting action.'
+        return 0
+    fi
+    set_period "$PERIOD"
+    local EXIT_CODE=$?
+    echo; if [ $EXIT_CODE -ne 0 ]; then
+        nok_msg "Something went wrong."\
+            "Could not set period (${RED}$PERIOD${RESET})"
+    else
+        ok_msg "Successfully set period (${GREEN}$PERIOD${RESET})"
+    fi
+    return $EXIT_CODE
+}
+
 function action_update_config_json_file() {
     local FILE_CONTENT="`format_config_json_file_content`"
     debug_msg "Formatted JSON config file content: ${FILE_CONTENT}"
@@ -1563,30 +1602,11 @@ function action_set_watch_anchor_file() {
     return $EXIT_CODE
 }
 
-function action_set_period() {
-    echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} period -"
-    info_msg "Type interval (1d | 5d | 1w | 3mo | 1y | ytd | max ) or (${MAGENTA}.back${RESET})."
-    local PERIOD=`fetch_data_from_user 'Period'`
-    if [ $? -ne 0 ] || [ -z "$DATE" ]; then
-        echo; info_msg 'Aborting action.'
-        return 0
-    fi
-    set_period "$PERIOD"
-    local EXIT_CODE=$?
-    echo; if [ $EXIT_CODE -ne 0 ]; then
-        nok_msg "Something went wrong."\
-            "Could not set period (${RED}$PERIOD${RESET})"
-    else
-        ok_msg "Successfully set period (${GREEN}$PERIOD${RESET})"
-    fi
-    return $EXIT_CODE
-}
-
 function action_set_period_interval() {
     echo; info_msg "Setting ${BLUE}$SCRIPT_NAME${RESET} period interval -"
     info_msg "Type interval (1d | 5d | 1w | 3mo | 1y ) or (${MAGENTA}.back${RESET})."
     local INTERVAL=`fetch_data_from_user 'Interval'`
-    if [ $? -ne 0 ] || [ -z "$DATE" ]; then
+    if [ $? -ne 0 ] || [ -z "$INTERVAL" ]; then
         echo; info_msg 'Aborting action.'
         return 0
     fi
@@ -1635,26 +1655,6 @@ function action_set_period_end() {
             "Could not set period end date (${RED}$DATE${RESET})"
     else
         ok_msg "Successfully set period end date (${GREEN}$DATE${RESET})"
-    fi
-    return $EXIT_CODE
-}
-
-function action_set_out_file() {
-    echo; info_msg "Setting action out file -"
-    info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
-    if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
-        echo; info_msg 'Aborting action.'
-        return 0
-    fi
-    set_out_file "$FILE_PATH"
-    local EXIT_CODE=$?
-    echo; if [ $EXIT_CODE -ne 0 ]; then
-        nok_msg "Something went wrong."\
-            "Could not set (${RED}$FILE_PATH${RESET}) as"\
-            "(${BLUE}$SCRIPT_NAME${RESET}) out file."
-    else
-        ok_msg "Successfully set out file (${GREEN}$FILE_PATH${RESET})."
     fi
     return $EXIT_CODE
 }
@@ -1965,7 +1965,7 @@ function action_set_silence_flag() {
 function action_set_config_file() {
     echo; info_msg "Setting config file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -1985,7 +1985,7 @@ function action_set_config_file() {
 function action_set_config_json_file() {
     echo; info_msg "Setting JSON config file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -2005,7 +2005,7 @@ function action_set_config_json_file() {
 function action_set_wpa_supplicant_file() {
     echo; info_msg "Setting system wpa_supplicant config file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -2025,7 +2025,7 @@ function action_set_wpa_supplicant_file() {
 function action_set_bashrc_file() {
     echo; info_msg "Setting user .bashrc file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -2045,7 +2045,7 @@ function action_set_bashrc_file() {
 function action_set_bashrc_template_file() {
     echo; info_msg "Setting user .bashrc template file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -2065,7 +2065,7 @@ function action_set_bashrc_template_file() {
 function action_set_bashaliases_file() {
     echo; info_msg "Setting user .bash_aliases file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -2085,7 +2085,7 @@ function action_set_bashaliases_file() {
 function action_set_hostname_file() {
     echo; info_msg "Setting system hostname file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -2105,7 +2105,7 @@ function action_set_hostname_file() {
 function action_set_hosts_file() {
     echo; info_msg "Setting system hosts file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0
@@ -2125,7 +2125,7 @@ function action_set_hosts_file() {
 function action_set_cron_file() {
     echo; info_msg "Setting user cron job file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0
