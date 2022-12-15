@@ -1,0 +1,92 @@
+#!/bin/bash
+#
+# Regards, the Alveare Solutions #!/Society -x
+#
+# Nomad's Gold - Action bills of materials
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Nomad's Gold  *                           *
+    _____________________________________________________v1.1Stonks____________
+              Excellent Regards, the Alveare Solutions #!/Society -x
+
+
+[ BOM ]: Action bill of materials -
+
+    ngvssactx         ,Crypto-TopX                  ,(*) -> (1) -> (1 + n + y)
+    ngvssacch         ,Currency-Chart               ,(*) -> (1) -> (2 + n + y)
+    ngvssacco         ,Currency-Convertor           ,(*) -> (1) -> (3 + n + y)
+    ngvssasphist      ,Stock-Price-History          ,(*) -> (1) -> (4 + n + y)
+    ngvssasr          ,Stock-Recommendations        ,(*) -> (1) -> (5 + n + y)
+    ngvssasi          ,Stock-Info                   ,(*) -> (1) -> (6 + n + y)
+    ngvssaspo         ,Stock-Price-Open             ,(*) -> (1) -> (7 + n + y)
+    ngvssaspc         ,Stock-Price-Close            ,(*) -> (1) -> (8 + n + y)
+    ngvssasphigh      ,Stock-Price-High             ,(*) -> (1) -> (9 + n + y)
+    ngvssaspl         ,Stock-Price-Low              ,(*) -> (1) -> (10 + n + y)
+    ngvssasv          ,Stock-Volume                 ,(*) -> (1) -> (11 + n + y)
+    ngvssacca         ,Company-Calendar             ,(*) -> (1) -> (12 + n + y)
+    ngvssasscu        ,Show-Supported-Currencies    ,(*) -> (1) -> (13 + n + y)
+    ngvssasscr        ,Show-Supported-Crypto        ,(*) -> (1) -> (14 + n + y)
+    ngvsarsbf         ,Start-Bot-Foreground         ,(*) -> (2) -> (1) -> (1 + n + y)
+    ngvsarsbb         ,Start-Bot-Background         ,(*) -> (2) -> (1) -> (2 + n + y)
+    ngvsarsb          ,Stop-Bot                     ,(*) -> (2) -> (1) -> (3 + n + y)
+    ngvsarcbr         ,Check-Bot-Running            ,(*) -> (2) -> (1) -> (4 + n + y)
+    ngvsarrl          ,Report-List                  ,(*) -> (2) -> (1) -> (5 + n + y)
+    ngvsarra          ,Report-All                   ,(*) -> (2) -> (1) -> (6 + n + y)
+    ngvsarrth         ,Report-Trading-History       ,(*) -> (2) -> (1) -> (7 + n + y)
+    ngvsarrdh         ,Report-Deposit-History       ,(*) -> (2) -> (1) -> (8 + n + y)
+    ngvsarrwh         ,Report-Withdrawal-History    ,(*) -> (2) -> (1) -> (9 + n + y)
+    ngvsarrsr         ,Report-Success-Rate          ,(*) -> (2) -> (1) -> (10 + n + y)
+    ngvsarebc         ,Edit-Bot-Config              ,(*) -> (2) -> (1) -> (11 + n + y)
+    ngvsarvbc         ,View-Bot-Config              ,(*) -> (2) -> (1) -> (12 + n + y)
+    ngvsarvr          ,View-Report                  ,(*) -> (2) -> (1) -> (13 + n + y)
+    ngvsarvmd         ,View-Market-Details          ,(*) -> (2) -> (1) -> (14 + n + y)
+    ngvsarvad         ,View-Account-Details         ,(*) -> (2) -> (1) -> (15 + n + y)
+    ngvsarrr          ,Remove-Reports               ,(*) -> (2) -> (1) -> (16 + n + y)
+    ngvscpssf         ,Set-Silence-FLAG             ,(*) -> (3) -> (1 + y)
+    ngvscpswatchf     ,Set-Watch-FLAG               ,(*) -> (3) -> (2 + y)
+    ngvscpswrf        ,Set-Write-FLAG               ,(*) -> (3) -> (3 + y)
+    ngvscpsahf        ,Set-Action-Header-FLAG       ,(*) -> (3) -> (4 + y)
+    ngvscpsss         ,Set-Stock-Symbol             ,(*) -> (3) -> (5 + <ticker-symbol>)
+    ngvscpsbc         ,Set-Base-Currency            ,(*) -> (3) -> (6 + <currency-symbol>)
+    ngvscpsec         ,Set-Exchange-Currency        ,(*) -> (3) -> (7 + <currency-symbol>)
+    ngvscpsq          ,Set-Quantity                 ,(*) -> (3) -> (8 + <currency-quantity>)
+    ngvscpswi         ,Set-Watch-Interval           ,(*) -> (3) -> (9 + <seconds)
+    ngvscpswanchf     ,Set-Watch-Anchor-File        ,(*) -> (3) -> (10 + <file-path>)
+    ngvscpsp          ,Set-Period                   ,(*) -> (3) -> (11 + <1d|5d|1w|3mo|1y|ytd|max>)
+    ngvscpspi         ,Set-Period-Interval          ,(*) -> (3) -> (12 + <1d|5d|1w|3mo|1y>)
+    ngvscpsps         ,Set-Period-Start             ,(*) -> (3) -> (13 + <date-(YYYY-MM-DD)>)
+    ngvscpspe         ,Set-Period-End               ,(*) -> (3) -> (14 + <date-(YYYY-MM-DD)>)
+    ngvscpswm         ,Set-Write-Mode               ,(*) -> (3) -> (15 + <write|append>)
+    ngvscpsof         ,Set-Out-File                 ,(*) -> (3) -> (16 + <file-path>)
+    ngvscpsat         ,Set-Action-Target            ,(*) -> (3) -> (17 + <stock|currency|crypto>)
+    ngvscpsctx        ,Set-Crypto-TopX              ,(*) -> (3) -> (18 + <number-of-top-coins>)
+    ngvscpsconff      ,Set-Conf-File                ,(*) -> (3) -> (19 + <file-path>)
+    ngvscpscj         ,Set-Conf-JSON                ,(*) -> (3) -> (20 + <file-path>)
+    ngvscpslf         ,Set-Log-File                 ,(*) -> (3) -> (21 + <file-path>)
+    ngvscpsll         ,Set-Log-Lines                ,(*) -> (3) -> (22 + <number-of-lines>)
+    ngvscpswsf        ,Set-WPASupplicant-File       ,(*) -> (3) -> (23 + <file-path>)
+    ngvscpsbrf        ,Set-BashRC-File              ,(*) -> (3) -> (24 + <file-path>)
+    ngvscpsbrt        ,Set-BashRC-Template          ,(*) -> (3) -> (25 + <file-path>)
+    ngvscpsbaf        ,Set-BashAliases-File         ,(*) -> (3) -> (26 + <file-path>)
+    ngvscpshnf        ,Set-Hostname-File            ,(*) -> (3) -> (27 + <file-path>)
+    ngvscpshf         ,Set-Hosts-File               ,(*) -> (3) -> (28 + <file-path>)
+    ngvscpscronf      ,Set-Cron-File                ,(*) -> (3) -> (29 + <file-path>)
+    ngvscpswe         ,Set-Wifi-Essid               ,(*) -> (3) -> (30 + <ESSID>)
+    ngvscpswp         ,Set-Wifi-Password            ,(*) -> (3) -> (31 + <PSK>)
+    ngvscpssu         ,Set-System-User              ,(*) -> (3) -> (32 + <user-name>)
+    ngvscpsspa        ,Set-System-Password          ,(*) -> (3) -> (33 + <user-pass>)
+    ngvscpsspe        ,Set-System-Permissions       ,(*) -> (3) -> (34 + <octal-permissions>)
+    ngvscpsm          ,Setup-Machine                ,(*) -> (3) -> (35 + y)
+    ngvscpucj         ,Update-Conf-JSON             ,(*) -> (3) -> (36 + y)
+    ngvscpubcj        ,Update-Bot-Conf-JSON         ,(*) -> (3) -> (37 + y)
+    ngvscpid          ,Install-Dependencies         ,(*) -> (3) -> (38 + y)
+    ngvslvdt          ,Display-Tail                 ,(*) -> (4) -> (1)
+    ngvslvdh          ,Display-Head                 ,(*) -> (4) -> (2)
+    ngvslvdm          ,Display-More                 ,(*) -> (4) -> (3)
+    ngvslvcl          ,Clear-Log                    ,(*) -> (4) -> (4)
+
+EOF
+
+exit $?

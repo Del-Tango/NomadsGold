@@ -1546,7 +1546,7 @@ function action_set_watch_interval() {
 function action_set_watch_anchor_file() {
     echo; info_msg "Setting watch process anchor file -"
     info_msg "Type absolute file path or (${MAGENTA}.back${RESET})."
-    local FILE_PATH=`fetch_file_path_from_user 'FilePath'`
+    local FILE_PATH=`fetch_file_path_from_user_force 'FilePath'`
     if [ $? -ne 0 ] || [ -z "$FILE_PATH" ]; then
         echo; info_msg 'Aborting action.'
         return 0

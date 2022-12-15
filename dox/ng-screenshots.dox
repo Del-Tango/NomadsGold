@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Regards, the Alveare Solutions #!/Society -x
+#
+# Nomad's Gold - BOM Screenshot Viewer
+
+NG_SCREENSHOTS_DIR="screenshots"
+
+cat <<EOF
+    ___________________________________________________________________________
+
+     *                          *  Nomad's Gold  *                           *
+    _____________________________________________________v1.1Stonks____________
+              Excellent Regards, the Alveare Solutions #!/Society -x
+
+EOF
+
+# TODO - use ($ for dir in dirs; do fim --cd-and-readdir ${dir}; done)
+
+exit $?

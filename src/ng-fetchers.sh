@@ -5,7 +5,7 @@
 # FETCHERS
 
 # TODO - Add to Machine Dialogue
-function fetch_file_path_from_user () {
+function fetch_file_path_from_user_force () {
     local PROMPT_STRING="${1:-FilePath}"
     while :
     do
@@ -14,7 +14,7 @@ function fetch_file_path_from_user () {
             echo; info_msg "Aborting action."
             echo; return 1
         fi
-        CHECK_VALID=`check_valid_file_path "$FILE_PATH"`
+        CHECK_VALID=`check_file_path "$FILE_PATH"`
         if [ $? -ne 0 ]; then
             echo; warning_msg "Invalid file path"\
                 "${RED}$FILE_PATH${RESET}."
