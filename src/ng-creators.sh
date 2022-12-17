@@ -31,7 +31,7 @@ function create_bot_ctrl_menu_controller () {
         "${CYAN}$BOT_CONTROLLER_DESCRIPTION${RESET}" \
         "$BOT_CONTROLLER_OPTIONS"
     info_msg "Setting ${CYAN}$BOT_CONTROLLER_LABEL${RESET} extented"\
-        "banner function ${MAGENTA}display_server_ctrl_settings${RESET}..."
+        "banner function ${MAGENTA}display_bot_ctrl_settings${RESET}..."
     set_menu_controller_extended_banner "$BOT_CONTROLLER_LABEL" \
         'display_bot_ctrl_settings'
     return $?
@@ -42,7 +42,7 @@ function create_analysis_ctrl_menu_controller () {
         "${CYAN}$ANALYSIS_CONTROLLER_DESCRIPTION${RESET}" \
         "$ANALYSIS_CONTROLLER_OPTIONS"
     info_msg "Setting ${CYAN}$ANALYSIS_CONTROLLER_LABEL${RESET} extented"\
-        "banner function ${MAGENTA}display_manual_ctrl_settings${RESET}..."
+        "banner function ${MAGENTA}display_analysis_ctrl_settings${RESET}..."
     set_menu_controller_extended_banner "$ANALYSIS_CONTROLLER_LABEL" \
         'display_analysis_ctrl_settings'
     return $?
