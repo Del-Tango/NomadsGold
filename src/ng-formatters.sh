@@ -554,7 +554,7 @@ function format_ar_config_json_file_content() {
          "debug":                    `format_config_json_flag ${MD_DEFAULT['ar-debug']}`,
          "silence":                  `format_config_json_flag ${MD_DEFAULT['ar-silence']}`,
          "analyze-risk":             `format_config_json_flag ${MD_DEFAULT['ar-analyze-risk']}`,
-         "risk-tolerance":           ${MD_DEFAULT['ar-risk-tolerance']},
+         "risk-tolerance":           "${MD_DEFAULT['ar-risk-tolerance']}",
          "indicator-update-delay":   ${MD_DEFAULT['ar-indicator-update-delay']},
          "strategy":                 "${MD_DEFAULT['ar-strategy']}",
          "side":                     "${MD_DEFAULT['ar-side']}",
@@ -675,7 +675,7 @@ function format_config_json_file_content() {
          "action-target":        "${MD_DEFAULT['action-target']}",
          "base-currency":        "${MD_DEFAULT['base-currency']}",
          "quote-currency":       "${MD_DEFAULT['quote-currency']}",
-         "quantity":             "${MD_DEFAULT['quantity']}"
+         "quantity":             ${MD_DEFAULT['quantity']}
     },
     "NG_CARGO": {
         "nomads-gold":       "${MD_CARGO['nomads-gold']}"
