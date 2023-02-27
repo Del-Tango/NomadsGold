@@ -47,7 +47,7 @@ function format_arisk_start_trading_bot_cargo_args() {
         "--strategy ${MD_DEFAULT['ar-strategy']}"
         "--ticker-symbol ${MD_DEFAULT['ticker-symbol']}"
         "--base-currency ${MD_DEFAULT['base-currency']}"
-        "--quote-currency ${MD_DEFAULT['exchange-currency']}"
+        "--quote-currency ${MD_DEFAULT['quote-currency']}"
         "--market-open ${MD_DEFAULT['ar-market-open']}"
         "--market-close ${MD_DEFAULT['ar-market-close']}"
         "--max-trades ${MD_DEFAULT['ar-max-trades']}"
