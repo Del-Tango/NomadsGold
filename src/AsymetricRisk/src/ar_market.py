@@ -47,6 +47,8 @@ class TradingMarket(Client):
         )
         self.period_interval = kwargs.get('period-interval', '1h')                   # Time represented by each candle in chart
         self.period = float(kwargs.get('period', 30))                                # No. of candles when backtracking a chart
+        self.period_start = kwargs.get('period-start', '')
+        self.period_stop = kwargs.get('period-start', '')
         self.chart = kwargs.get('chart', 'candles')
         self.cache_size_limit = int(kwargs.get('cache-size-limit', 20))              # Records (dict keys)
         self.history_backtrack = int(kwargs.get('backtrack', 5)),                    # Candles
@@ -92,6 +94,27 @@ class TradingMarket(Client):
         return calling_all_ancestors_from_beyond_the_grave
 
     # FETCHERS
+
+#   @pysnooper.snoop('log/nomads-gold.log')
+    def fetch_candle_info(self, *args, **kwargs):
+        log.debug('')
+        sanitized_ticker = kwargs.get('ticker-symbol', self.ticker_symbol)\
+            .replace('/', '')
+        getter_kwargs = {'limit': int(kwargs.get('period', self.period or 0)),}
+        if kwargs.get('period-start'):
+            getter_kwargs.update({'start_str': kwargs['period-start']})
+        if kwargs.get('period-end'):
+            getter_kwargs.update({'end_str': kwargs['period-end']})
+        log.debug(
+            'Getting historical klines with args/kwargs: {}, {}, {}'.format(
+                sanitized_ticker, kwargs.get('interval', self.period_interval),
+                getter_kwargs
+            ),
+        )
+        return self.get_historical_klines(
+            sanitized_ticker, kwargs.get('interval', self.period_interval),
+            **getter_kwargs
+        )
 
 #   @pysnooper.snoop()
     def fetch_deposit_details(self, *args, **kwargs):
@@ -341,21 +364,6 @@ class TradingMarket(Client):
             'open_time', 'open', 'high', 'low', 'close', 'volume', 'close_time',
             'qav', 'num_trades', 'taker_base_vol', 'taker_quote_vol', 'ignore'
         ]
-
-#   @pysnooper.snoop()
-    def fetch_candle_info(self, *args, **kwargs):
-        log.debug('')
-        sanitized_ticker = kwargs.get('ticker-symbol', self.ticker_symbol)\
-            .replace('/', '')
-        getter_kwargs = {'limit': kwargs.get('period', self.period or int()),}
-        if kwargs.get('period-start'):
-            getter_kwargs.update({'start_str': kwargs['period-start']})
-        if kwargs.get('period-end'):
-            getter_kwargs.update({'end_str': kwargs['period-end']})
-        return self.get_historical_klines(
-            sanitized_ticker, kwargs.get('interval', self.period_interval),
-            **getter_kwargs
-        )
 
     def fetch_details(self, *args, **kwargs):
         '''
@@ -984,6 +992,26 @@ class TradingMarket(Client):
 
     # GENERAL
 
+#   @pysnooper.snoop('log/nomads-gold.log')
+    def build_candle_info_data_frame(self, *args, **kwargs):
+        log.debug('')
+        try:
+            candle_info = self.fetch_candle_info(*args, **kwargs)
+            if not candle_info:
+                stdout_msg(
+                    'Could not fetch candle info! Details: {}'
+                    .format(candle_info), err=True
+                )
+            data_frame = pandas.DataFrame(candle_info)
+            data_frame.columns = self.fetch_candle_info_column_labels()
+        except Exception as e:
+            stdout_msg(
+                'Could not build candle info dataframe! \nDetails: {}'.format(e),
+                err=True
+            )
+            return False
+        return data_frame
+
 #   @pysnooper.snoop()
     def trade(self, trade_amount, *args, take_profit=None, stop_loss=None,
               trailing_stop=None, side='buy', **kwargs):
@@ -1094,22 +1122,6 @@ class TradingMarket(Client):
             trade_amount, *args, take_profit=take_profit, stop_loss=stop_loss,
             trailing_stop=trailing_stop, **details
         )
-
-#   @pysnooper.snoop()
-    def build_candle_info_data_frame(self, *args, **kwargs):
-        log.debug('')
-        try:
-            candle_info = self.fetch_candle_info(*args, **kwargs)
-#           if not candle_info:
-#               stdout_msg('Could not fetch candle info!', err=True)
-            data_frame = pandas.DataFrame(candle_info)
-            data_frame.columns = self.fetch_candle_info_column_labels()
-        except Exception as e:
-            stdout_msg(
-                'Could not build candle info dataframe! Details: {}'.format(e)
-            )
-            return False
-        return data_frame
 
 #   @pysnooper.snoop()
     def raw_api_response_convertor(self, raw_value):
@@ -1228,13 +1240,13 @@ class TradingMarket(Client):
 
     # UPDATERS
 
-#   @pysnooper.snoop()
+#   @pysnooper.snoop('log/nomads-gold.log')
     def update_price_volume_history(self, *update_targets,
                                     timestamp=str(time.time()), **kwargs):
         '''
         [ NOTE ]: Data fetched from binance.com
         '''
-        log.debug('')
+        log.debug('TODO - Period date strings not yet supported')
         return_dict = {'history': {
             'price': [], 'volume': [], 'price-support': None,
             'price-resistance': None,
@@ -1249,7 +1261,10 @@ class TradingMarket(Client):
             )
             details.update({'backtracks': self.history_backtracks,})
         try:
-            candle_info = self.build_candle_info_data_frame(**kwargs)
+            builder_kwargs = kwargs.copy()
+            # TODO - Period date strings not yet supported
+            builder_kwargs.update({'period-start': None, 'period-end': None})
+            candle_info = self.build_candle_info_data_frame(**builder_kwargs)
         except Exception as e:
             return_dict.update({
                 'error': True,

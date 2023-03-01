@@ -9,7 +9,7 @@ import stat
 import logging
 import pysnooper
 
-from .bp_filters import list_intersection
+from src.backpack.bp_filters import list_intersection
 
 log = logging.getLogger('AsymetricRisk')
 
